@@ -14,7 +14,6 @@ public class LoginService {
     private UserData db = new UserData();
 
     public boolean verifyUser(User user) throws SQLException {
-        System.out.println(user.getUsername());
         ResultSet resultSet = db.verifyUser(user);
 
         if(resultSet.next()) {
@@ -22,8 +21,6 @@ public class LoginService {
             user.setName(resultSet.getString("name"));
             user.setUsername(resultSet.getString("username"));
             user.setRoleTier(resultSet.getInt("role_tier"));
-
-            System.out.println(user.getUsername());
             return true;
         } else {
             return false;

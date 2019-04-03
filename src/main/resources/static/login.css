@@ -28,4 +28,5 @@ body {
 
 #loginWindow form p {
     color: red;
+    text-align: center;
 }
