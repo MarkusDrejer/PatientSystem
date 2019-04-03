@@ -1,5 +1,6 @@
 package mmt.patientsystem.Repositories;
 
+import mmt.patientsystem.Models.User;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -41,5 +42,19 @@ public class UserData implements DBAccess {
     @Override
     public void delete() {
 
+    }
+
+    public ResultSet verifyUser(User user){
+        query = "SELECT * FROM users " +
+                "WHERE username = '" + user.getUsername() + "' AND password = '" + user.getPassword() + "'";
+
+        try {
+            preparedStatement = connection.prepareStatement(query);
+
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
