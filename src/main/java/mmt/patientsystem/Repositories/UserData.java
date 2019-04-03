@@ -11,6 +11,7 @@ public class UserData implements DBAccess {
     private Connection connection;
     private PreparedStatement preparedStatement;
     private Statement statement;
+    private ResultSet resultSet;
     private String query;
 
     public UserData() {
@@ -47,14 +48,12 @@ public class UserData implements DBAccess {
     public ResultSet verifyUser(User user){
         query = "SELECT * FROM users " +
                 "WHERE username = '" + user.getUsername() + "' AND password = '" + user.getPassword() + "'";
-
         try {
             preparedStatement = connection.prepareStatement(query);
-
-            return preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return resultSet;
     }
 }

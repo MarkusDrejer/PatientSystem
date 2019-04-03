@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="/login.css" type="text/css">
     <meta charset="UTF-8">
@@ -11,11 +11,13 @@
 
         <h1>Login-Screen</h1>
 
-        <form action="#" method="post">
+        <form th:action="@{/login}" method="post" th:object="${User}">
             <input type="text" placeholder="Username" name="username">
             <input type="password" placeholder="Password" name="password">
             <br>
             <button type="submit">Login</button>
+            <br>
+            <p th:if="${invalid}">Wrong Username or Password</p>
         </form>
     </div>
 

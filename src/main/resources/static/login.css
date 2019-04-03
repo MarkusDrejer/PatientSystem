@@ -25,3 +25,7 @@ body {
 #loginWindow form button {
     font-size: 16px;
 }
+
+#loginWindow form p {
+    color: red;
+}
