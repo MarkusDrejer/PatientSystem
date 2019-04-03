@@ -23,6 +23,11 @@ public class LoginController {
         return "index";
     }
 
+    @GetMapping("/home")
+    public String homePage(){
+        return "home";
+    }
+
     @PostMapping("/login")
     public String login(HttpSession httpSession, @ModelAttribute User user, Model model) throws SQLException {
 

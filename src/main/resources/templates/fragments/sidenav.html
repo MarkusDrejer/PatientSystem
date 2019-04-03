@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:fragment="sidenav">
+        <nav id="sidenav">
+            <a href="/home">Home</a>
+            <a href="#">Patients</a>
+            <a href="#">Users</a>
+            <a href="#">About</a>
+
+            <div th:switch="${session.roleTier}" class="welcome">
+                <p>Welcome
+
+                <p th:case="1">Doctor
+                <p th:case="2">Secretary
+
+                <p th:text="${session.name}"></p>
+            </div>
+
+            <form action="/logout" method="get">
+                <button type="submit">Log Out</button>
+            </form>
+
+        </nav>
+    </div>
+</body>
+</html>
