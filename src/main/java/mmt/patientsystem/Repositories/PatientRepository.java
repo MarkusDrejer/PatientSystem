@@ -13,10 +13,4 @@ public class PatientRepository {
     private Statement statement;
     private String query;
 
-    @Autowired
-    DBAccess dbAccess;
-
-    public PatientRepository() {
-        connection = dbAccess.getConnection();
-    }
 }

@@ -16,9 +16,10 @@ public class DBAccess {
                     "jdbc:mysql://den1.mysql6.gear.host/patientsystemdb",
                     "patientsystemdb",
                     "Hn5Y-xGfN-8W");
+            return connection;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return connection;
+        return null;
     }
 }

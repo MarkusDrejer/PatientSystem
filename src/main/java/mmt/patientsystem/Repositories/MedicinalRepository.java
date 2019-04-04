@@ -12,11 +12,4 @@ public class MedicinalRepository {
     private PreparedStatement preparedStatement;
     private Statement statement;
     private String query;
-
-    @Autowired
-    DBAccess dbAccess;
-
-    public MedicinalRepository() {
-        connection = dbAccess.getConnection();
-    }
 }

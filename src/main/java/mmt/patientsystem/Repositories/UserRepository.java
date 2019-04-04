@@ -15,11 +15,15 @@ public class UserRepository {
     private ResultSet resultSet;
     private String query;
 
-    @Autowired
-    DBAccess dbAccess;
-
     public UserRepository() {
-        connection = dbAccess.getConnection();
+        try {
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://den1.mysql6.gear.host/patientsystemdb",
+                    "patientsystemdb",
+                    "Hn5Y-xGfN-8W");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ResultSet verifyUser(User user){
