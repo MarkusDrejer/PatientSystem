@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 
 @Repository
-public class MedicinalData implements DBAccess {
+public class MedicinalData {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -21,25 +21,5 @@ public class MedicinalData implements DBAccess {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public ResultSet get() {
-        return null;
-    }
-
-    @Override
-    public void create() {
-
-    }
-
-    @Override
-    public void edit() {
-
-    }
-
-    @Override
-    public void delete() {
-
     }
 }

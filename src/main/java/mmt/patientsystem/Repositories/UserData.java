@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 
 @Repository
-public class UserData implements DBAccess {
+public class UserData {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -23,26 +23,6 @@ public class UserData implements DBAccess {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public ResultSet get() {
-        return null;
-    }
-
-    @Override
-    public void create() {
-
-    }
-
-    @Override
-    public void edit() {
-
-    }
-
-    @Override
-    public void delete() {
-
     }
 
     public ResultSet verifyUser(User user){
