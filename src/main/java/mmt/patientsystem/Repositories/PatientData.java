@@ -1,5 +1,6 @@
 package mmt.patientsystem.Repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -12,14 +13,10 @@ public class PatientData {
     private Statement statement;
     private String query;
 
+    @Autowired
+    DBAccess dbAccess;
+
     public PatientData() {
-        try {
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://den1.mysql6.gear.host/patientsystemdb",
-                    "patientsystemdb",
-                    "Hn5Y-xGfN-8W");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connection = dbAccess.getConnection();
     }
 }
