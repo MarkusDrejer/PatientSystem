@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 
 @Repository
-public class MedicinalData {
+public class MedicinalRepository {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -16,7 +16,7 @@ public class MedicinalData {
     @Autowired
     DBAccess dbAccess;
 
-    public MedicinalData() {
+    public MedicinalRepository() {
         connection = dbAccess.getConnection();
     }
 }

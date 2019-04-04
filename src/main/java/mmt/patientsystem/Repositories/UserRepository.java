@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 
 @Repository
-public class UserData {
+public class UserRepository {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -18,7 +18,7 @@ public class UserData {
     @Autowired
     DBAccess dbAccess;
 
-    public UserData() {
+    public UserRepository() {
         connection = dbAccess.getConnection();
     }
 
