@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.name != null}">
+<head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <link rel="stylesheet" href="/patients.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Patients</title>
+</head>
+<body>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+
+    <div id="main">
+        <h1>Patient List</h1>
+
+        <table id="patientTable">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Birthdate</th>
+                <th>CPR</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>Gender</th>
+                <th>Description</th>
+            </tr>
+
+            <div th:each="patient:${patients}">
+                <tr>
+                        <td><a href="/" th:text="${patient.name}"></a></td>
+                        <td><p th:text="${patient.age}"></p></td>
+                        <td><p th:text="${patient.birthDate}"></p></td>
+                        <td><p th:text="${patient.CPR}"></p></td>
+                        <td><p th:text="${patient.height}"></p></td>
+                        <td><p th:text="${patient.weight}"></p></td>
+                        <td><p th:text="${patient.gender}"></p></td>
+                        <td><p th:text="${patient.personalDescription}"></p></td>
+                </tr>
+            </div>
+        </table>
+    </div>
+
+</body>
+</div>
+</html>

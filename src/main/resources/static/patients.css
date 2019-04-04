@@ -1,0 +1,37 @@
+#main h1 {
+    text-align: center;
+}
+
+#patientTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#patientTable th, #patientTable td {
+    border: 1px solid grey;
+    padding: 8px;
+}
+
+#patientTable tr:nth-child(even) {
+    background-color: darkgray;
+}
+
+#patientTable tr:hover {
+    background-color: lightblue;
+}
+
+#patientTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: blue;
+    color: white;
+}
+
+#patientTable tr {
+    text-align: left;
+}
+
+#patientTable tr a {
+    text-decoration: none;
+}

@@ -11,8 +11,8 @@ public class Patient {
     private int CPR;
     private double height;
     private double weight;
-    private String personalDescription;
     private String gender;
+    private String personalDescription;
 
 
     public Patient() {
@@ -76,19 +76,19 @@ public class Patient {
         this.weight = weight;
     }
 
-    public String getPersonalDescription() {
-        return personalDescription;
-    }
-
-    public void setPersonalDescription(String personalDescription) {
-        this.personalDescription = personalDescription;
-    }
-
     public String getGender() {
         return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getPersonalDescription() {
+        return personalDescription;
+    }
+
+    public void setPersonalDescription(String personalDescription) {
+        this.personalDescription = personalDescription;
     }
 }

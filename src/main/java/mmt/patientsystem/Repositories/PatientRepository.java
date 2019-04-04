@@ -13,4 +13,23 @@ public class PatientRepository {
     private Statement statement;
     private String query;
 
+    public PatientRepository() {
+        try {
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://den1.mysql6.gear.host/patientsystemdb",
+                    "patientsystemdb",
+                    "Hn5Y-xGfN-8W");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet getAllPatients() throws SQLException{
+        query = "SELECT * FROM patients " +
+                "ORDER BY name";
+
+        statement = connection.createStatement();
+
+        return statement.executeQuery(query);
+    }
 }

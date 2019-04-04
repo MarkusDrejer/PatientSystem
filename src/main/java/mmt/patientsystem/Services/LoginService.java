@@ -12,10 +12,10 @@ import java.sql.SQLException;
 public class LoginService {
 
     @Autowired
-    private UserRepository db;
+    private UserRepository userRepository;
 
     public boolean verifyUser(User user) throws SQLException {
-        ResultSet resultSet = db.verifyUser(user);
+        ResultSet resultSet = userRepository.verifyUser(user);
 
         if(resultSet.next()) {
             user.setId(resultSet.getInt("id"));
