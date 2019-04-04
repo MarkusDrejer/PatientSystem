@@ -6,7 +6,7 @@ public class User {
     private String name;
     private String username;
     private String password;
-    private int roleTier;
+    private int role_id;
 
 
     public User() {
@@ -46,11 +46,11 @@ public class User {
         this.password = password;
     }
 
-    public int getRoleTier() {
-        return roleTier;
+    public int getRole_id() {
+        return role_id;
     }
 
-    public void setRoleTier(int roleTier) {
-        this.roleTier = roleTier;
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
     }
 }

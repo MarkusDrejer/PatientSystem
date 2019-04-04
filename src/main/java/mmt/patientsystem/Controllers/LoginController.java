@@ -29,7 +29,7 @@ public class LoginController {
         if(loginService.verifyUser(user)) {
             httpSession.setAttribute("id", user.getId());
             httpSession.setAttribute("name", user.getName());
-            httpSession.setAttribute("roleTier", user.getRoleTier());
+            httpSession.setAttribute("roleTier", user.getRole_id());
             return "home";
         } else {
             model.addAttribute("invalid", true);

@@ -15,8 +15,9 @@
             <div th:switch="${session.roleTier}" class="welcome">
                 <p>Welcome
 
-                <p th:case="1">Doctor
-                <p th:case="2">Secretary
+                <p th:case="1">Admin
+                <p th:case="2">Doctor
+                <p th:case="3">Secretary
 
                 <p th:text="${session.name}"></p>
             </div>

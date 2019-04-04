@@ -21,7 +21,7 @@ public class LoginService {
             user.setId(resultSet.getInt("id"));
             user.setName(resultSet.getString("name"));
             user.setUsername(resultSet.getString("username"));
-            user.setRoleTier(resultSet.getInt("role_tier"));
+            user.setRole_id(resultSet.getInt("fk_role"));
             return true;
         } else {
             return false;
