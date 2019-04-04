@@ -16,8 +16,8 @@ public class PatientService {
     @Autowired
     PatientRepository patientRepository;
 
-    public List<Patient> getAllPatients() throws SQLException {
-        ResultSet resultSet = patientRepository.getAllPatients();
+    public List<Patient> getAllPatients(int order) throws SQLException {
+        ResultSet resultSet = patientRepository.getAllPatients(order);
 
         List<Patient> patients = new ArrayList<>();
 

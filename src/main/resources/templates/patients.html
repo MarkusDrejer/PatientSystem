@@ -15,19 +15,19 @@
 
         <table id="patientTable">
             <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Birthdate</th>
-                <th>CPR</th>
-                <th>Height</th>
-                <th>Weight</th>
-                <th>Gender</th>
+                <th><a href="?order=1">Name</a></th>
+                <th><a href="?order=2">Age</a></th>
+                <th><a href="?order=3">Birthdate</a></th>
+                <th><a href="?order=4">CPR</a></th>
+                <th><a href="?order=5">Height</a></th>
+                <th><a href="?order=6">Weight</a></th>
+                <th><a href="?order=7">Gender</a></th>
                 <th>Description</th>
             </tr>
 
             <div th:each="patient:${patients}">
                 <tr>
-                        <td><a href="/" th:text="${patient.name}"></a></td>
+                        <td><p th:text="${patient.name}"></p></td>
                         <td><p th:text="${patient.age}"></p></td>
                         <td><p th:text="${patient.birthDate}"></p></td>
                         <td><p th:text="${patient.CPR}"></p></td>

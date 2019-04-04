@@ -24,10 +24,33 @@ public class PatientRepository {
         }
     }
 
-    public ResultSet getAllPatients() throws SQLException{
+    public ResultSet getAllPatients(int order) throws SQLException{
         query = "SELECT * FROM patients " +
-                "ORDER BY name";
+                "ORDER BY ";
 
+        switch (order) {
+            case 1:
+                query += "name";
+                break;
+            case 2:
+                query += "age";
+                break;
+            case 3:
+                query += "birthdate";
+                break;
+            case 4:
+                query += "cpr";
+                break;
+            case 5:
+                query += "height";
+                break;
+            case 6:
+                query += "weight";
+                break;
+            case 7:
+                query += "gender";
+                break;
+        }
         statement = connection.createStatement();
 
         return statement.executeQuery(query);
