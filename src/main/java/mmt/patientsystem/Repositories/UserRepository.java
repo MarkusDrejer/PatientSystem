@@ -19,9 +19,11 @@ public class UserRepository {
 
     public ResultSet verifyUser(User user){
         query = "SELECT * FROM users " +
-                "WHERE username = '" + user.getUsername() + "' AND password = '" + user.getPassword() + "'";
+                "WHERE username = ? AND password = ?";
         try {
             preparedStatement = dbAccess.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
