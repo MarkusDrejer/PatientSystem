@@ -24,32 +24,35 @@ public class PatientRepository {
         }
     }
 
-    public ResultSet getAllPatients(int order) throws SQLException{
+    public ResultSet getAllPatients(int order, boolean reverse) throws SQLException{
         query = "SELECT * FROM patients " +
                 "ORDER BY ";
 
         switch (order) {
             case 1:
-                query += "name";
+                query += "name ";
                 break;
             case 2:
-                query += "age";
+                query += "age ";
                 break;
             case 3:
-                query += "birthdate";
+                query += "birthdate ";
                 break;
             case 4:
-                query += "cpr";
+                query += "cpr ";
                 break;
             case 5:
-                query += "height";
+                query += "height ";
                 break;
             case 6:
-                query += "weight";
+                query += "weight ";
                 break;
             case 7:
-                query += "gender";
+                query += "gender ";
                 break;
+        }
+        if(reverse) {
+            query += "DESC";
         }
         statement = connection.createStatement();
 

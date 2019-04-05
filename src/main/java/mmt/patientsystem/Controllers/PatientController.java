@@ -18,8 +18,9 @@ public class PatientController {
 
     @GetMapping("/patients")
     public String patientListPage(@RequestParam(value = "order", defaultValue = "1") int order,
+                                  @RequestParam(value = "reverse", defaultValue = "false") boolean reverse,
                                   Model model) throws SQLException {
-        model.addAttribute("patients", patientService.getAllPatients(order));
+        model.addAttribute("patients", patientService.getAllPatients(order, reverse));
         return "patients";
     }
 }
