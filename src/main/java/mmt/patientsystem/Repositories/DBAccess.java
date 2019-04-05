@@ -11,7 +11,9 @@ public class DBAccess {
 
     private Connection connection;
 
-    public DBAccess() {
+
+
+    public Connection getConnection() {
         try {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://den1.mysql6.gear.host/patientsystemdb",
@@ -20,9 +22,6 @@ public class DBAccess {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public Connection getConnection() {
         return connection;
     }
 }

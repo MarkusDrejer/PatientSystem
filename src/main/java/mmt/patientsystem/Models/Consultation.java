@@ -15,11 +15,6 @@ public class Consultation {
     private Time fromTime;
     private Time toTime;
 
-
-    public Consultation() {
-    }
-
-
     public int getId() {
         return id;
     }

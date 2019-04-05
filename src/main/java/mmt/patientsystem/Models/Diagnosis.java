@@ -13,11 +13,6 @@ public class Diagnosis {
     private String note;
     private Date date;
 
-
-    public Diagnosis() {
-    }
-
-
     public int getId() {
         return id;
     }

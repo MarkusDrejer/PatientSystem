@@ -6,12 +6,6 @@ public class Medication {
     private String name;
     private String description;
 
-
-    public Medication() {
-
-    }
-
-
     public int getId() {
         return id;
     }

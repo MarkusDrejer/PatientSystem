@@ -13,12 +13,6 @@ public class Prescription {
     private Date date;
     private boolean validity;
 
-
-    public Prescription() {
-
-    }
-
-
     public int getId() {
         return id;
     }

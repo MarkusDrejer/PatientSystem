@@ -8,21 +8,12 @@ import java.sql.*;
 @Repository
 public class PatientRepository {
 
-    private Connection connection;
     private PreparedStatement preparedStatement;
     private Statement statement;
     private String query;
 
-    public PatientRepository() {
-        try {
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://den1.mysql6.gear.host/patientsystemdb",
-                    "patientsystemdb",
-                    "Hn5Y-xGfN-8W");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    @Autowired
+    DBAccess dbAccess;
 
     public ResultSet getAllPatients(int order, boolean reverse) throws SQLException{
         query = "SELECT * FROM patients " +
@@ -54,7 +45,7 @@ public class PatientRepository {
         if(reverse) {
             query += "DESC";
         }
-        statement = connection.createStatement();
+        statement = dbAccess.getConnection().createStatement();
 
         return statement.executeQuery(query);
     }

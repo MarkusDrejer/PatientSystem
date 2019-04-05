@@ -8,12 +8,6 @@ public class User {
     private String password;
     private int role_id;
 
-
-    public User() {
-
-    }
-
-
     public int getId() {
         return id;
     }

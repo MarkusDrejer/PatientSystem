@@ -16,10 +16,14 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
+    private boolean reverseTH = true;
+
     @GetMapping("/patients")
     public String patientListPage(@RequestParam(value = "order", defaultValue = "1") int order,
                                   @RequestParam(value = "reverse", defaultValue = "false") boolean reverse,
                                   Model model) throws SQLException {
+        reverseTH = !reverseTH;
+        model.addAttribute("reverse", reverseTH);
         model.addAttribute("patients", patientService.getAllPatients(order, reverse));
         return "patients";
     }

@@ -9,16 +9,10 @@ public class Patient {
     private int age;
     private Date birthDate;
     private int CPR;
-    private double height;
+    private int height;
     private double weight;
     private String gender;
     private String personalDescription;
-
-
-    public Patient() {
-
-    }
-
 
     public int getId() {
         return id;
@@ -60,11 +54,11 @@ public class Patient {
         this.CPR = CPR;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 

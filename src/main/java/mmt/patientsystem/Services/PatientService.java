@@ -30,7 +30,7 @@ public class PatientService {
             patient.setBirthDate(resultSet.getDate("birthdate"));
             patient.setCPR(resultSet.getInt("cpr"));
             patient.setHeight(resultSet.getInt("height"));
-            patient.setWeight(resultSet.getInt("weight"));
+            patient.setWeight(resultSet.getDouble("weight"));
             patient.setGender(resultSet.getString("gender"));
             patient.setPersonalDescription(resultSet.getString("description"));
 
