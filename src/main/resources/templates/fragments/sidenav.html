@@ -13,12 +13,7 @@
             <a href="#">About</a>
 
             <div th:switch="${session.roleTier}" class="welcome">
-                <p>Welcome
-
-                <p th:case="1">Admin
-                <p th:case="2">Doctor
-                <p th:case="3">Secretary
-
+                <p>Logged in as:
                 <p th:text="${session.name}"></p>
             </div>
 
