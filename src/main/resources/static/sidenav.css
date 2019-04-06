@@ -1,3 +1,7 @@
+body {
+    font-family: Arial,sans-serif;
+}
+
 #sidenav {
     height: 100%;
     width: 200px;
@@ -5,13 +9,13 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: darkblue;
+    background-color: #193c90;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding: 20px;
 }
 
 #sidenav a {
-    padding: 6px 6px 6px 32px;
+    padding: 6px 0px;
     text-decoration: none;
     font-size: 25px;
     color: lightgray;
@@ -25,9 +29,26 @@
 #sidenav .welcome {
     color: white;
     bottom: 0;
-    font-size: 16px;
+    font-size: 14px;
 }
-
+#sidenav #searchbox{
+    margin-bottom: 20px;
+    height: 30px;
+}
+#sidenav #searchfield {
+    float:left;
+    padding: 6px;
+    border-bottom-color: black;
+    font-size: 14px;
+    width: 150px;
+    height: 18px;
+}
+#sidenav #searchbutton {
+    background: url("images/search-icon.png") no-repeat #ffffff center;
+    float: right;
+    width: 34px;
+    height: 34px;
+}
 #main {
-    margin-left: 200px;
+    margin-left: 240px;
 }
