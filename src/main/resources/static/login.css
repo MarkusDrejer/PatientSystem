@@ -5,12 +5,19 @@ body {
 
 #loginWindow {
     margin: auto;
+    margin-top: auto;
+    width: 400px;
+    background: white;
+    padding: 30px;
+    margin-top: 50px;
 }
 
 #loginWindow h1 {
     text-align: center;
-    font-size: 60px;
-    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-top: 0px;
+    color: #333333;
 }
 
 #loginWindow form {
@@ -19,12 +26,21 @@ body {
 }
 
 #loginWindow form input{
-    padding-top: 5px;
+    padding: 10px 0;
     margin-bottom: 12px;
+    display: block;
+    width: 100%;
+    box-sizing: unset;
 }
 
 #loginWindow form button {
     font-size: 16px;
+    width: 100%;
+    border: none;
+    height: 34px;
+    background-color: #193c90;
+    color: white;
+    text-transform: uppercase;
 }
 
 #loginWindow form p {
