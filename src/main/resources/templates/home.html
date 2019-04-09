@@ -11,13 +11,9 @@
 <div th:replace="fragments/sidenav :: sidenav"></div>
 
     <div id="main">
-        <div class="welcome">
-            <h1>Welcome
 
-            <h1 th:text="${user.role_name}">
+            <h1>Welcome <span th:text="${user.role_name}"></span></h1>
 
-                <h1 th:text="${session.name}"></h1>
-        </div>
     </div>
 
 </body>

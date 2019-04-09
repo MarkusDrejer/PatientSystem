@@ -1,5 +1,6 @@
 package mmt.patientsystem.Controllers;
 
+import mmt.patientsystem.Models.Diagnosis;
 import mmt.patientsystem.Services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
