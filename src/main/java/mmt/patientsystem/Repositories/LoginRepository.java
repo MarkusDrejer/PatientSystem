@@ -20,18 +20,16 @@ public class LoginRepository {
     private ResultSet resultSet;
     private String query;
 
-    public ResultSet loginVerification(User user){
+    public ResultSet loginVerification(User user) throws SQLException {
         query = "SELECT users.*, roles.role_name FROM users " +
                 "INNER JOIN roles ON users.fk_role = roles.id " +
                 "WHERE username = ? AND password = ?";
-        try {
+
             preparedStatement = dbAccess.getConnection().prepareStatement(query);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
             resultSet = preparedStatement.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
         return resultSet;
     }
 }

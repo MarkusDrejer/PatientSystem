@@ -22,16 +22,28 @@ public class PatientController {
     @GetMapping("/patients")
     public String patientListPage(@RequestParam(value = "order", defaultValue = "1") int order,
                                   @RequestParam(value = "reverse", defaultValue = "false") boolean reverse,
-                                  Model model) throws SQLException {
-        reverseTH = !reverseTH;
-        model.addAttribute("reverse", reverseTH);
-        model.addAttribute("patients", patientService.getAllPatients(order, reverse));
-        return "PatientPages/patients";
+                                  Model model) {
+        try {
+            reverseTH = !reverseTH;
+            model.addAttribute("reverse", reverseTH);
+            model.addAttribute("patients", patientService.getAllPatients(order, reverse));
+            return "PatientPages/patients";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "errorPage";
+        }
     }
 
     @GetMapping("/patient/{id}")
-    public String singlePatientPage(@PathVariable(value = "id") int id, Model model) throws SQLException{
-        model.addAttribute("patient", patientService.getSinglePatient(id));
-        return "PatientPages/patientPage";
+    public String singlePatientPage(@PathVariable(value = "id") int id, Model model) {
+        try {
+            model.addAttribute("patient", patientService.getSinglePatient(id));
+            return "PatientPages/patientPage";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "errorPage";
+        }
     }
 }

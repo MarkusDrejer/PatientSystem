@@ -24,17 +24,22 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(HttpSession httpSession, @ModelAttribute User user, Model model) throws SQLException {
+    public String login(HttpSession httpSession, @ModelAttribute User user, Model model) {
+        try {
+            if (loginService.verifyUser(user)) {
+                httpSession.setAttribute("id", user.getId());
+                httpSession.setAttribute("name", user.getName());
+                httpSession.setAttribute("roleTier", user.getRole_id());
+                httpSession.setAttribute("role_name", user.getRole_name());
+                return "home";
+            } else {
+                model.addAttribute("invalid", true);
+                return "index";
+            }
 
-        if(loginService.verifyUser(user)) {
-            httpSession.setAttribute("id", user.getId());
-            httpSession.setAttribute("name", user.getName());
-            httpSession.setAttribute("roleTier", user.getRole_id());
-            httpSession.setAttribute("role_name", user.getRole_name());
-            return "home";
-        } else {
-            model.addAttribute("invalid", true);
-            return "index";
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "errorPage";
         }
     }
 
