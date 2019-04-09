@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.name != null}">
 <head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <meta charset="UTF-8">
     <title>Patient</title>
 </head>
 <body>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+
+<div id="main">
 
     <p th:text="${patient.id}"></p>
     <p th:text="${patient.name}"></p>
@@ -13,6 +18,7 @@
     <p th:text="${patient.gender}"></p>
     <p th:text="${patient.personalDescription}"></p>
 
-
+</div>
 </body>
+</div>
 </html>
