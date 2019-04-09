@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.roleTier == 1}">
+<head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Edit-User</title>
+</head>
+<body>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+
+<div id="main">
+    <form th:action="@{/users/edituser}" method="post" th:object="${User}">
+        <input type="hidden" th:value="${user.id}" name="id">
+        <input type="text" placeholder="Name" th:value="${user.name}" name="name">
+        <input type="text" placeholder="Username" th:value="${user.username}" name="username">
+        <input type="password" placeholder="Password" th:value="${user.password}" name="password">
+        <input type="text" placeholder="Role ID" th:value="${user.role_id}" name="role_id">
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+</body>
+</div>
+</html>

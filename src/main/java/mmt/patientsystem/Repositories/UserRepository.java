@@ -17,5 +17,58 @@ public class UserRepository {
     private ResultSet resultSet;
     private String query;
 
+    public ResultSet getAllUsers() throws SQLException {
+        query = "SELECT users.*, roles.role_name FROM users " +
+                "INNER JOIN roles ON users.fk_role = roles.id " +
+                "ORDER BY fk_role";
 
+        statement = dbAccess.getConnection().createStatement();
+        return statement.executeQuery(query);
+    }
+
+    public ResultSet getSingleUser(int id) throws SQLException {
+        query = "SELECT * FROM users " +
+                "WHERE id = '" + id + "'";
+
+        statement = dbAccess.getConnection().createStatement();
+        return statement.executeQuery(query);
+    }
+
+    public void editUser(User user) throws SQLException {
+        query = "UPDATE users " +
+                "SET name = ?, username = ?, password = ?, fk_role = ? " +
+                "WHERE id = ?";
+
+        preparedStatement = dbAccess.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, user.getName());
+        preparedStatement.setString(2, user.getUsername());
+        preparedStatement.setString(3, user.getPassword());
+        preparedStatement.setInt(4, user.getRole_id());
+        preparedStatement.setInt(5, user.getId());
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+    }
+
+    public void deleteUser(int id) throws SQLException {
+        query = "DELETE FROM users " +
+                "WHERE id = '" + id + "'";
+
+        statement = dbAccess.getConnection().createStatement();
+        statement.executeUpdate(query);
+    }
+
+    public void addUser(User user) throws SQLException {
+        query = "INSERT INTO users (name, username, password, fk_role) " +
+                "VALUES (?, ?, ?, ?)";
+
+        preparedStatement = dbAccess.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, user.getName());
+        preparedStatement.setString(2, user.getUsername());
+        preparedStatement.setString(3, user.getPassword());
+        preparedStatement.setInt(4, user.getRole_id());
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+    }
 }

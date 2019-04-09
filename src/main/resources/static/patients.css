@@ -2,10 +2,6 @@ body {
     font-family: Arial,sans-serif;
 }
 
-#main h1 {
-    text-align: center;
-}
-
 #patientTable {
     border-collapse: collapse;
     width: 100%;

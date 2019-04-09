@@ -15,7 +15,7 @@
                 </form>
             </div>
             <a href="/patients">Patients</a>
-            <a href="#">Users</a>
+            <a th:if="${session.roleTier == 1}" href="/users">Users</a>
             <a href="#">About</a>
 
             <div th:switch="${session.roleTier}" class="welcome">

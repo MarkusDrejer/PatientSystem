@@ -49,6 +49,10 @@ body {
     width: 34px;
     height: 34px;
 }
+
 #main {
     margin-left: 240px;
+}
+#main h1 {
+    text-align: center;
 }
