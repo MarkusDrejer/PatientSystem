@@ -11,12 +11,10 @@
 <div th:replace="fragments/sidenav :: sidenav"></div>
 
     <div id="main">
-        <div th:switch="${session.roleTier}" class="welcome">
+        <div class="welcome">
             <h1>Welcome
 
-            <h1 th:case="1">Admin
-            <h1 th:case="2">Doctor
-            <h1 th:case="3">Secretary
+            <h1 th:text="${user.role_name}">
 
                 <h1 th:text="${session.name}"></h1>
         </div>

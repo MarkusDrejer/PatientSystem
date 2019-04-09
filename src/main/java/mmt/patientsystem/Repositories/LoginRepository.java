@@ -21,7 +21,8 @@ public class LoginRepository {
     private String query;
 
     public ResultSet loginVerification(User user){
-        query = "SELECT * FROM users " +
+        query = "SELECT users.*, roles.role_name FROM users " +
+                "INNER JOIN roles ON users.fk_role = roles.id " +
                 "WHERE username = ? AND password = ?";
         try {
             preparedStatement = dbAccess.getConnection().prepareStatement(query);

@@ -23,6 +23,7 @@ public class LoginService {
             user.setName(resultSet.getString("name"));
             user.setUsername(resultSet.getString("username"));
             user.setRole_id(resultSet.getInt("fk_role"));
+            user.setRole_name(resultSet.getString("role_name"));
             return true;
         } else {
             return false;
