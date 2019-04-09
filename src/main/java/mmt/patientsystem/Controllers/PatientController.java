@@ -25,6 +25,12 @@ public class PatientController {
         reverseTH = !reverseTH;
         model.addAttribute("reverse", reverseTH);
         model.addAttribute("patients", patientService.getAllPatients(order, reverse));
-        return "patients";
+        return "PatientPages/patients";
+    }
+
+    @GetMapping("/patient/{id}")
+    public String singlePatientPage(@PathVariable(value = "id") int id, Model model) throws SQLException{
+        model.addAttribute("patient", patientService.getSinglePatient(id));
+        return "PatientPages/patientPage";
     }
 }

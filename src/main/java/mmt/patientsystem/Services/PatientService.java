@@ -16,26 +16,42 @@ public class PatientService {
     @Autowired
     PatientRepository patientRepository;
 
-    public List<Patient> getAllPatients(int order, boolean reverse) throws SQLException {
-        ResultSet resultSet = patientRepository.getAllPatients(order, reverse);
+    private ResultSet resultSet;
 
+    public List<Patient> getAllPatients(int order, boolean reverse) throws SQLException {
+        resultSet = patientRepository.getAllPatients(order, reverse);
         List<Patient> patients = new ArrayList<>();
 
         while (resultSet.next()) {
-            Patient patient = new Patient();
-
-            patient.setId(resultSet.getInt("id"));
-            patient.setName(resultSet.getString("name"));
-            patient.setAge(resultSet.getInt("age"));
-            patient.setBirthDate(resultSet.getDate("birthdate"));
-            patient.setCPR(resultSet.getInt("cpr"));
-            patient.setHeight(resultSet.getInt("height"));
-            patient.setWeight(resultSet.getDouble("weight"));
-            patient.setGender(resultSet.getString("gender"));
-            patient.setPersonalDescription(resultSet.getString("description"));
-
-            patients.add(patient);
+            patients.add(fillPatientInfo());
         }
         return patients;
+    }
+
+    public Patient getSinglePatient(int id) throws SQLException{
+        resultSet = patientRepository.getSinglePatient(id);
+        Patient patient = null;
+
+        while (resultSet.next()) {
+            patient = fillPatientInfo();
+        }
+
+        return patient;
+    }
+
+    private Patient fillPatientInfo() throws SQLException{
+        Patient patient = new Patient();
+
+        patient.setId(resultSet.getInt("id"));
+        patient.setName(resultSet.getString("name"));
+        patient.setAge(resultSet.getInt("age"));
+        patient.setBirthDate(resultSet.getDate("birthdate"));
+        patient.setCPR(resultSet.getInt("cpr"));
+        patient.setHeight(resultSet.getInt("height"));
+        patient.setWeight(resultSet.getDouble("weight"));
+        patient.setGender(resultSet.getString("gender"));
+        patient.setPersonalDescription(resultSet.getString("description"));
+
+        return patient;
     }
 }

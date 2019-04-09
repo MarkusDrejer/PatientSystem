@@ -1,6 +1,7 @@
 package mmt.patientsystem.Services;
 
 import mmt.patientsystem.Models.User;
+import mmt.patientsystem.Repositories.LoginRepository;
 import mmt.patientsystem.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,10 @@ import java.sql.SQLException;
 public class LoginService {
 
     @Autowired
-    private UserRepository userRepository;
+    private LoginRepository loginRepository;
 
     public boolean verifyUser(User user) throws SQLException {
-        ResultSet resultSet = userRepository.verifyUser(user);
+        ResultSet resultSet = loginRepository.loginVerification(user);
 
         if(resultSet.next()) {
             user.setId(resultSet.getInt("id"));

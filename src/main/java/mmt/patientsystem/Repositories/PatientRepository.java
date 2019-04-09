@@ -8,12 +8,12 @@ import java.sql.*;
 @Repository
 public class PatientRepository {
 
+    @Autowired
+    DBAccess dbAccess;
+
     private PreparedStatement preparedStatement;
     private Statement statement;
     private String query;
-
-    @Autowired
-    DBAccess dbAccess;
 
     public ResultSet getAllPatients(int order, boolean reverse) throws SQLException{
         query = "SELECT * FROM patients " +
@@ -45,8 +45,16 @@ public class PatientRepository {
         if(reverse) {
             query += "DESC";
         }
-        statement = dbAccess.getConnection().createStatement();
 
+        statement = dbAccess.getConnection().createStatement();
+        return statement.executeQuery(query);
+    }
+
+    public ResultSet getSinglePatient(int id) throws SQLException{
+        query = "SELECT * FROM patients " +
+                "WHERE id = '" + id + "'";
+
+        statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);
     }
 }

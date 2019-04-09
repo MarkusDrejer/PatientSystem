@@ -40,7 +40,9 @@
 
             <div th:each="patient:${patients}">
                 <tr>
-                        <td><p th:text="${patient.name}"></p></td>
+                        <td><a th:href="@{/patient/{id}(id=${patient.id})}">
+                            <p th:text="${patient.name}"></p></a></td>
+
                         <td><p th:text="${patient.age}"></p></td>
                         <td><p th:text="${patient.birthDate}"></p></td>
                         <td><p th:text="${patient.CPR}"></p></td>
