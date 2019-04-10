@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<div th:if="${session.name != null}">
+<div th:if="${session.roleTier == 1 or session.roleTier == 2}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <meta charset="UTF-8">

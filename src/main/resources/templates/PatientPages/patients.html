@@ -24,7 +24,7 @@
                     <th><a href="?order=6&reverse=false">Weight</a></th>
                     <th><a href="?order=7&reverse=false">Gender</a></th>
                     <th>Description</th>
-                    <th>Options</th>
+                    <th th:if="not ${session.roleTier == 3}">Options</th>
                 </tr>
 
                 <tr th:case="true">
@@ -36,7 +36,7 @@
                     <th><a href="?order=6&reverse=true">Weight</a></th>
                     <th><a href="?order=7&reverse=true">Gender</a></th>
                     <th>Description</th>
-                    <th>Options</th>
+                    <th th:if="not ${session.roleTier == 3}">Options</th>
                 </tr>
             </div>
 
@@ -53,7 +53,7 @@
                         <td><p th:text="${patient.gender}"></p></td>
                         <td><p th:text="${patient.personalDescription}"></p></td>
 
-                        <td>
+                        <td th:if="not ${session.roleTier == 3}">
                             <a class="options" th:href="@{/patients/editpatient/{id}(id=${patient.id})}">Edit</a>
 
                             <form th:action="@{/patients/deletepatient/{id}(id=${patient.id})}" method="post">
@@ -63,7 +63,7 @@
                 </tr>
             </div>
         </table>
-                            <a href="/patients/addpatient">New Patient</a>
+                            <a th:if="not ${session.roleTier == 3}" href="/patients/addpatient">New Patient</a>
     </div>
 
 </body>
