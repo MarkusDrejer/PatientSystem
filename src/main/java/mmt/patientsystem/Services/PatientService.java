@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 @Service
@@ -28,12 +29,24 @@ public class PatientService {
         return patients;
     }
 
-    public Patient getSinglePatient(int id) throws SQLException{
-        resultSet = patientRepository.getSinglePatient(id);
+    public Patient getSinglePatientID(int id) throws SQLException{
+        resultSet = patientRepository.getSinglePatientID(id);
         Patient patient = null;
 
         while (resultSet.next()) {
             patient = fillPatientInfo();
+        }
+
+        return patient;
+    }
+
+    public Patient getSinglePatientSearch(Patient patient) throws SQLException {
+        resultSet = patientRepository.getSinglePatientSearch(patient);
+
+        if (resultSet.next()) {
+            patient = fillPatientInfo();
+        } else {
+            throw new InputMismatchException();
         }
 
         return patient;

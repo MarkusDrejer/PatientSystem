@@ -9,16 +9,17 @@
     <div th:fragment="sidenav">
         <nav id="sidenav">
             <div id="searchbox">
-                <form>
-                    <input id="searchfield" type="text" placeholder="Enter CPR..">
-                    <input id="searchbutton" type="submit" value="">
+                <form th:action="@{/patient/search}" method="post" th:object="${Patient}">
+                    <input id="searchfield" type="text" placeholder="Enter CPR.." name="CPR">
+                    <button id="searchbutton" type="submit"></button>
                 </form>
             </div>
+            <p th:if="${invalid}">Invalid CPR</p>
             <a href="/patients">Patients</a>
             <a th:if="${session.roleTier == 1}" href="/users">Users</a>
             <a href="#">About</a>
 
-            <div th:switch="${session.roleTier}" class="welcome">
+            <div class="welcome">
                 <p>Logged in as:
                 <p th:text="${session.name}"></p>
             </div>

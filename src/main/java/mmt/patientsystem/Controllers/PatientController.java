@@ -1,6 +1,5 @@
 package mmt.patientsystem.Controllers;
 
-import mmt.patientsystem.Models.Diagnosis;
 import mmt.patientsystem.Models.Patient;
 import mmt.patientsystem.Services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 
 @Controller
 public class PatientController {
@@ -37,7 +37,7 @@ public class PatientController {
     @GetMapping("/patient/{id}")
     public String singlePatientPage(@PathVariable(value = "id") int id, Model model) {
         try {
-            model.addAttribute("patient", patientService.getSinglePatient(id));
+            model.addAttribute("patient", patientService.getSinglePatientID(id));
             return "PatientPages/patientPage";
 
         } catch (SQLException e) {
@@ -46,10 +46,25 @@ public class PatientController {
         }
     }
 
+    @PostMapping("/patient/search")
+    public String singlePatientSearch(@ModelAttribute Patient patient, Model model) {
+        try {
+            model.addAttribute("patient", patientService.getSinglePatientSearch(patient));
+            return "PatientPages/patientPage";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "errorPage";
+        } catch (InputMismatchException e) {
+            model.addAttribute("invalid", true);
+            return "fragments/sidenav";
+        }
+    }
+
     @GetMapping("/patients/editpatient/{id}")
     public String editPatient(@PathVariable(value = "id") int id, Model model) {
         try {
-            model.addAttribute("patient", patientService.getSinglePatient(id));
+            model.addAttribute("patient", patientService.getSinglePatientID(id));
             return "PatientPages/editpatient";
 
         } catch (SQLException e) {

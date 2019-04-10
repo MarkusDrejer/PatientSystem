@@ -16,8 +16,6 @@ public class LoginRepository {
     DBAccess dbAccess;
 
     private PreparedStatement preparedStatement;
-    private Statement statement;
-    private ResultSet resultSet;
     private String query;
 
     public ResultSet loginVerification(User user) throws SQLException {
@@ -28,8 +26,6 @@ public class LoginRepository {
             preparedStatement = dbAccess.getConnection().prepareStatement(query);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
-            resultSet = preparedStatement.executeQuery();
-
-        return resultSet;
+            return preparedStatement.executeQuery();
     }
 }

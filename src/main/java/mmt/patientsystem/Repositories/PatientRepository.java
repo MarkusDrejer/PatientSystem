@@ -51,12 +51,22 @@ public class PatientRepository {
         return statement.executeQuery(query);
     }
 
-    public ResultSet getSinglePatient(int id) throws SQLException{
+    public ResultSet getSinglePatientID(int id) throws SQLException{
         query = "SELECT * FROM patients " +
                 "WHERE id = '" + id + "'";
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);
+    }
+
+    public ResultSet getSinglePatientSearch(Patient patient) throws SQLException {
+        query = "SELECT * FROM patients " +
+                "WHERE cpr = ?";
+
+        preparedStatement = dbAccess.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, patient.getCPR());
+
+        return preparedStatement.executeQuery();
     }
 
     public void editPatient(Patient patient) throws SQLException {
