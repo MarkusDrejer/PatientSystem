@@ -50,6 +50,14 @@
                         <td><p th:text="${patient.weight}"></p></td>
                         <td><p th:text="${patient.gender}"></p></td>
                         <td><p th:text="${patient.personalDescription}"></p></td>
+
+                        <td>
+                            <a th:href="@{/patients/editpatient/{id}(id=${patient.id})}">Edit</a>
+
+                            <form th:action="@{/patients/deletepatient/{id}(id=${patient.id})}" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
                 </tr>
             </div>
         </table>

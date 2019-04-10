@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.name != null}">
+<head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Edit-Patient</title>
+</head>
+<body>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+
+<div id="main">
+    <form th:action="@{/patients/editpatient}" method="post" th:object="${Patient}">
+        <input type="hidden" th:value="${patient.id}" name="id">
+        <input type="text" placeholder="Name" th:value="${patient.name}" name="name">
+        <input type="text" placeholder="Age" th:value="${patient.age}" name="age">
+        <input type="date" placeholder="BirthDate" th:value="${patient.birthDate}" name="birthDate">
+        <input type="text" placeholder="CPR" th:value="${patient.CPR}" name="CPR">
+        <input type="text" placeholder="Height" th:value="${patient.height}" name="height">
+        <input type="text" placeholder="Weight" th:value="${patient.weight}" name="weight">
+        <input type="text" placeholder="Gender" th:value="${patient.gender}" name="gender">
+        <input type="text" placeholder="Description" th:value="${patient.personalDescription}" name="personalDescription">
+        <button type="submit">Edit</button>
+    </form>
+</div>
+
+</body>
+</div>
+</html>

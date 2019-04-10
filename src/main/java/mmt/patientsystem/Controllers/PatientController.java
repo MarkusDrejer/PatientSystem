@@ -46,6 +46,42 @@ public class PatientController {
         }
     }
 
+    @GetMapping("/patients/editpatient/{id}")
+    public String editPatient(@PathVariable(value = "id") int id, Model model) {
+        try {
+            model.addAttribute("patient", patientService.getSinglePatient(id));
+            return "PatientPages/editpatient";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "errorPage";
+        }
+    }
+
+    @PostMapping("/patients/editpatient")
+    public String editPatient(@ModelAttribute Patient patient, Model model) {
+        try {
+            patientService.editPatient(patient);
+            return "redirect:/patients";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "errorPage";
+        }
+    }
+
+    @PostMapping("/patients/deletepatient/{id}")
+    public String deletePatient(@PathVariable(value = "id") int id, Model model) {
+        try {
+            patientService.deletePatient(id);
+            return "redirect:/patients";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "errorPage";
+        }
+    }
+
     @GetMapping("/patients/addpatient")
     public String addPatient() {
         return "PatientPages/addpatient";

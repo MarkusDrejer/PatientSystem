@@ -55,6 +55,14 @@ public class PatientService {
         return patient;
     }
 
+    public void editPatient(Patient patient) throws SQLException {
+        patientRepository.editPatient(patient);
+    }
+
+    public void deletePatient(int id) throws SQLException {
+        patientRepository.deletePatient(id);
+    }
+
     public void addPatient(Patient patient) throws SQLException {
         patientRepository.addPatient(patient);
     }
