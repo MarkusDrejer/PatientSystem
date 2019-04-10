@@ -10,6 +10,11 @@
 <div th:replace="fragments/sidenav :: sidenav"></div>
 
 <div id="main">
+
+    <h1>Editing User:
+    <h1 th:text="${user.name}">
+    </h1></h1>
+
     <form th:action="@{/users/edituser}" method="post" th:object="${User}">
         <input type="hidden" th:value="${user.id}" name="id">
         <input type="text" placeholder="Name" th:value="${user.name}" name="name">

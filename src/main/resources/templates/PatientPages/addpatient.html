@@ -11,6 +11,8 @@
 
 <div id="main">
 
+    <h1>Creating New Patient</h1>
+
     <form th:action="@{/patients/addpatient}" method="post" th:object="${Patient}">
         <input type="text" placeholder="Name" name="name">
         <input type="text" placeholder="Age" name="age">
