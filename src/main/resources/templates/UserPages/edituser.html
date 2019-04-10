@@ -20,7 +20,12 @@
         <input type="text" placeholder="Name" th:value="${user.name}" name="name">
         <input type="text" placeholder="Username" th:value="${user.username}" name="username">
         <input type="password" placeholder="Password" th:value="${user.password}" name="password">
-        <input type="text" placeholder="Role ID" th:value="${user.role_id}" name="role_id">
+        <select name="role_id">
+            <optgroup label="Role ID">
+                <option th:each="i : ${#numbers.sequence(1, 3)}" th:value="${i}" th:text="${i}"
+                th:selected="${i == user.role_id}"></option>
+            </optgroup>
+        </select>
         <button type="submit">Save</button>
     </form>
 

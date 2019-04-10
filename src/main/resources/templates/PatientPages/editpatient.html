@@ -24,9 +24,9 @@
         <input type="text" placeholder="Height" th:value="${patient.height}" name="height">
         <input type="text" placeholder="Weight" th:value="${patient.weight}" name="weight">
         <select name="gender">
-            <optgroup label="Select Gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+            <optgroup label="Gender">
+                <option value="Male" th:selected="${'Male' == patient.gender}">Male</option>
+                <option value="Female" th:selected="${'Female' == patient.gender}">Female</option>
             </optgroup>
         </select>
         <input type="text" placeholder="Description" th:value="${patient.personalDescription}" name="personalDescription">

@@ -17,7 +17,11 @@
         <input type="text" placeholder="Name" name="name">
         <input type="text" placeholder="Username" name="username">
         <input type="password" placeholder="Password" name="password">
-        <input type="text" placeholder="Role ID" name="role_id">
+        <select name="role_id">
+            <optgroup label="Role ID">
+                <option th:each="i : ${#numbers.sequence(1, 3)}" th:value="${i}" th:text="${i}"></option>
+            </optgroup>
+        </select>
         <button type="submit">Create New User</button>
     </form>
 
