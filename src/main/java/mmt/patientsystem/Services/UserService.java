@@ -23,12 +23,8 @@ public class UserService {
         List<User> userList = new ArrayList<>();
 
         while (resultSet.next()) {
-            User user = new User();
+            User user = userFiller();
 
-            user.setId(resultSet.getInt("id"));
-            user.setName(resultSet.getString("name"));
-            user.setUsername(resultSet.getString("username"));
-            user.setRole_id(resultSet.getInt("fk_role"));
             user.setRole_name(resultSet.getString("role_name"));
 
             userList.add(user);
@@ -38,15 +34,23 @@ public class UserService {
 
     public User getSingleUser(int id) throws SQLException {
         resultSet = userRepository.getSingleUser(id);
-        User user = new User();
+        User user = null;
 
         while (resultSet.next()) {
-            user.setId(resultSet.getInt("id"));
-            user.setName(resultSet.getString("name"));
-            user.setUsername(resultSet.getString("username"));
+            user = userFiller();
             user.setPassword(resultSet.getString("password"));
-            user.setRole_id(resultSet.getInt("fk_role"));
         }
+        return user;
+    }
+
+    private User userFiller() throws SQLException {
+        User user = new User();
+
+        user.setId(resultSet.getInt("id"));
+        user.setName(resultSet.getString("name"));
+        user.setUsername(resultSet.getString("username"));
+        user.setRole_id(resultSet.getInt("fk_role"));
+
         return user;
     }
 

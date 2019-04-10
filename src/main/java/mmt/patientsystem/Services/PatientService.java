@@ -24,7 +24,7 @@ public class PatientService {
         List<Patient> patients = new ArrayList<>();
 
         while (resultSet.next()) {
-            patients.add(fillPatientInfo());
+            patients.add(patientFiller());
         }
         return patients;
     }
@@ -34,7 +34,7 @@ public class PatientService {
         Patient patient = null;
 
         while (resultSet.next()) {
-            patient = fillPatientInfo();
+            patient = patientFiller();
         }
 
         return patient;
@@ -44,7 +44,7 @@ public class PatientService {
         resultSet = patientRepository.getSinglePatientSearch(patient);
 
         if (resultSet.next()) {
-            patient = fillPatientInfo();
+            patient = patientFiller();
         } else {
             throw new InputMismatchException();
         }
@@ -52,7 +52,7 @@ public class PatientService {
         return patient;
     }
 
-    private Patient fillPatientInfo() throws SQLException{
+    private Patient patientFiller() throws SQLException{
         Patient patient = new Patient();
 
         patient.setId(resultSet.getInt("id"));
