@@ -14,31 +14,17 @@
         <h1>Patient List</h1>
 
         <table id="patientTable">
-            <div th:switch="${reverse}">
-                <tr th:case="false">
-                    <th><a href="?order=1&reverse=false">Name</a></th>
-                    <th><a href="?order=2&reverse=false">Age</a></th>
-                    <th><a href="?order=3&reverse=false">BirthDate</a></th>
-                    <th><a href="?order=4&reverse=false">CPR</a></th>
-                    <th><a href="?order=5&reverse=false">Height</a></th>
-                    <th><a href="?order=6&reverse=false">Weight</a></th>
-                    <th><a href="?order=7&reverse=false">Gender</a></th>
+                <tr>
+                    <th><a th:href="@{?order=1&reverse={state}(state=${reverse})}" >Name</a></th>
+                    <th><a th:href="@{?order=2&reverse={state}(state=${reverse})}">Age</a></th>
+                    <th><a th:href="@{?order=3&reverse={state}(state=${reverse})}">BirthDate</a></th>
+                    <th><a th:href="@{?order=4&reverse={state}(state=${reverse})}">CPR</a></th>
+                    <th><a th:href="@{?order=5&reverse={state}(state=${reverse})}">Height</a></th>
+                    <th><a th:href="@{?order=6&reverse={state}(state=${reverse})}">Weight</a></th>
+                    <th><a th:href="@{?order=7&reverse={state}(state=${reverse})}">Gender</a></th>
                     <th>Description</th>
                     <th th:if="not ${session.roleTier == 3}">Options</th>
                 </tr>
-
-                <tr th:case="true">
-                    <th><a href="?order=1&reverse=true">Name</a></th>
-                    <th><a href="?order=2&reverse=true">Age</a></th>
-                    <th><a href="?order=3&reverse=true">BirthDate</a></th>
-                    <th><a href="?order=4&reverse=true">CPR</a></th>
-                    <th><a href="?order=5&reverse=true">Height</a></th>
-                    <th><a href="?order=6&reverse=true">Weight</a></th>
-                    <th><a href="?order=7&reverse=true">Gender</a></th>
-                    <th>Description</th>
-                    <th th:if="not ${session.roleTier == 3}">Options</th>
-                </tr>
-            </div>
 
             <div th:each="patient:${patients}">
                 <tr>
