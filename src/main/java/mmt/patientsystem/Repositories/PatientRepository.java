@@ -17,7 +17,8 @@ public class PatientRepository {
     private String query;
 
     public ResultSet getAllPatients(int order, boolean reverse) throws SQLException{
-        query = "SELECT * FROM patients " +
+        query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
+                "'-', MONTH(birthdate), '-', DAY(birthdate)), '%Y-%c-%e') > CURDATE(), 1, 0) AS age FROM patients " +
                 "ORDER BY ";
 
         switch (order) {
@@ -52,7 +53,8 @@ public class PatientRepository {
     }
 
     public ResultSet getSinglePatientID(int id) throws SQLException{
-        query = "SELECT * FROM patients " +
+        query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
+                "'-', MONTH(birthdate), '-', DAY(birthdate)), '%Y-%c-%e') > CURDATE(), 1, 0) AS age FROM patients " +
                 "WHERE id = '" + id + "'";
 
         statement = dbAccess.getConnection().createStatement();
@@ -60,7 +62,8 @@ public class PatientRepository {
     }
 
     public ResultSet getSinglePatientSearch(Patient patient) throws SQLException {
-        query = "SELECT * FROM patients " +
+        query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
+                "'-', MONTH(birthdate), '-', DAY(birthdate)), '%Y-%c-%e') > CURDATE(), 1, 0) AS age FROM patients " +
                 "WHERE cpr = ?";
 
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
@@ -70,18 +73,18 @@ public class PatientRepository {
 
     public void editPatient(Patient patient) throws SQLException {
         query = "UPDATE patients " +
-                "SET name = ?, age = ?, birthDate = ?, cpr = ?, height = ?, weight = ?, gender = ?, description = ? " +
+                "SET name = ?, birthDate = ?, cpr = ?, height = ?, weight = ?, gender = ?, description = ? " +
                 "WHERE id = ?";
 
         preparedStatement = patientFiller(patient);
-        preparedStatement.setInt(9, patient.getId());
+        preparedStatement.setInt(8, patient.getId());
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
 
     public void addPatient(Patient patient) throws SQLException {
-        query = "INSERT INTO patients (name, age, birthdate, cpr, height, weight, gender, description) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        query = "INSERT INTO patients (name, birthdate, cpr, height, weight, gender, description) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         preparedStatement = patientFiller(patient);
         preparedStatement.executeUpdate();
@@ -91,13 +94,12 @@ public class PatientRepository {
     private PreparedStatement patientFiller(Patient patient) throws SQLException {
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setString(1, patient.getName());
-        preparedStatement.setInt(2, patient.getAge());
-        preparedStatement.setDate(3, patient.getBirthDate());
-        preparedStatement.setInt(4, patient.getCPR());
-        preparedStatement.setInt(5, patient.getHeight());
-        preparedStatement.setDouble(6, patient.getWeight());
-        preparedStatement.setString(7, patient.getGender());
-        preparedStatement.setString(8, patient.getPersonalDescription());
+        preparedStatement.setDate(2, patient.getBirthDate());
+        preparedStatement.setInt(3, patient.getCPR());
+        preparedStatement.setInt(4, patient.getHeight());
+        preparedStatement.setDouble(5, patient.getWeight());
+        preparedStatement.setString(6, patient.getGender());
+        preparedStatement.setString(7, patient.getPersonalDescription());
         return preparedStatement;
     }
 

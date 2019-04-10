@@ -18,7 +18,6 @@
     <form th:action="@{/patients/editpatient}" method="post" th:object="${Patient}">
         <input type="hidden" th:value="${patient.id}" name="id">
         <input type="text" placeholder="Name" th:value="${patient.name}" name="name">
-        <input type="text" placeholder="Age" th:value="${patient.age}" name="age">
         <input type="date" placeholder="BirthDate" th:value="${patient.birthDate}" name="birthDate">
         <input type="text" placeholder="CPR" th:value="${patient.CPR}" name="CPR">
         <input type="text" placeholder="Height" th:value="${patient.height}" name="height">
