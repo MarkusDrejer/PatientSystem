@@ -24,9 +24,7 @@ public class UserService {
 
         while (resultSet.next()) {
             User user = userFiller();
-
             user.setRole_name(resultSet.getString("role_name"));
-
             userList.add(user);
         }
         return userList;
@@ -45,7 +43,6 @@ public class UserService {
 
     private User userFiller() throws SQLException {
         User user = new User();
-
         user.setId(resultSet.getInt("id"));
         user.setName(resultSet.getString("name"));
         user.setUsername(resultSet.getString("username"));

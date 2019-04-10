@@ -31,12 +31,11 @@ public class PatientService {
 
     public Patient getSinglePatientID(int id) throws SQLException{
         resultSet = patientRepository.getSinglePatientID(id);
-        Patient patient = null;
 
+        Patient patient = null;
         while (resultSet.next()) {
             patient = patientFiller();
         }
-
         return patient;
     }
 
@@ -48,13 +47,11 @@ public class PatientService {
         } else {
             throw new InputMismatchException();
         }
-
         return patient;
     }
 
     private Patient patientFiller() throws SQLException{
         Patient patient = new Patient();
-
         patient.setId(resultSet.getInt("id"));
         patient.setName(resultSet.getString("name"));
         patient.setAge(resultSet.getInt("age"));

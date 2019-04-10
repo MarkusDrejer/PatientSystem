@@ -65,7 +65,6 @@ public class PatientRepository {
 
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, patient.getCPR());
-
         return preparedStatement.executeQuery();
     }
 
@@ -77,7 +76,6 @@ public class PatientRepository {
         preparedStatement = patientFiller(patient);
         preparedStatement.setInt(9, patient.getId());
         preparedStatement.executeUpdate();
-
         preparedStatement.close();
     }
 
@@ -87,7 +85,6 @@ public class PatientRepository {
 
         preparedStatement = patientFiller(patient);
         preparedStatement.executeUpdate();
-
         preparedStatement.close();
     }
 
@@ -101,7 +98,6 @@ public class PatientRepository {
         preparedStatement.setDouble(6, patient.getWeight());
         preparedStatement.setString(7, patient.getGender());
         preparedStatement.setString(8, patient.getPersonalDescription());
-
         return preparedStatement;
     }
 

@@ -41,7 +41,6 @@ public class UserRepository {
         preparedStatement = userFiller(user);
         preparedStatement.setInt(5, user.getId());
         preparedStatement.executeUpdate();
-
         preparedStatement.close();
     }
 
@@ -51,7 +50,6 @@ public class UserRepository {
 
         preparedStatement = userFiller(user);
         preparedStatement.executeUpdate();
-
         preparedStatement.close();
     }
 
@@ -61,7 +59,6 @@ public class UserRepository {
         preparedStatement.setString(2, user.getUsername());
         preparedStatement.setString(3, user.getPassword());
         preparedStatement.setInt(4, user.getRole_id());
-
         return preparedStatement;
     }
 
