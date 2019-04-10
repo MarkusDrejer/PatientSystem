@@ -40,3 +40,8 @@ body {
 #patientTable tr a {
     text-decoration: none;
 }
+
+#patientTable .options {
+    float: left;
+    margin-right: 25px;
+}

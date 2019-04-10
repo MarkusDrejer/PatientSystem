@@ -24,6 +24,7 @@
                     <th><a href="?order=6&reverse=false">Weight</a></th>
                     <th><a href="?order=7&reverse=false">Gender</a></th>
                     <th>Description</th>
+                    <th>Options</th>
                 </tr>
 
                 <tr th:case="true">
@@ -35,6 +36,7 @@
                     <th><a href="?order=6&reverse=true">Weight</a></th>
                     <th><a href="?order=7&reverse=true">Gender</a></th>
                     <th>Description</th>
+                    <th>Options</th>
                 </tr>
             </div>
 
@@ -52,7 +54,7 @@
                         <td><p th:text="${patient.personalDescription}"></p></td>
 
                         <td>
-                            <a th:href="@{/patients/editpatient/{id}(id=${patient.id})}">Edit</a>
+                            <a class="options" th:href="@{/patients/editpatient/{id}(id=${patient.id})}">Edit</a>
 
                             <form th:action="@{/patients/deletepatient/{id}(id=${patient.id})}" method="post">
                                 <button type="submit">Delete</button>
