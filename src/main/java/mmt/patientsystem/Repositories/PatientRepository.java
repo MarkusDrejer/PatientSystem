@@ -17,9 +17,8 @@ public class PatientRepository {
     private String query;
 
     public ResultSet getAllPatients(int order, boolean reverse) throws SQLException{
-        query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
-                "'-', MONTH(birthdate), '-', DAY(birthdate)), '%Y-%c-%e') > CURDATE(), 1, 0) AS age FROM patients " +
-                "ORDER BY ";
+        patientSelectFiller();
+        query += "ORDER BY ";
 
         switch (order) {
             case 1:
@@ -53,22 +52,25 @@ public class PatientRepository {
     }
 
     public ResultSet getSinglePatientID(int id) throws SQLException{
-        query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
-                "'-', MONTH(birthdate), '-', DAY(birthdate)), '%Y-%c-%e') > CURDATE(), 1, 0) AS age FROM patients " +
-                "WHERE id = '" + id + "'";
+        patientSelectFiller();
+        query += "WHERE id = '" + id + "'";
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);
     }
 
     public ResultSet getSinglePatientSearch(Patient patient) throws SQLException {
-        query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
-                "'-', MONTH(birthdate), '-', DAY(birthdate)), '%Y-%c-%e') > CURDATE(), 1, 0) AS age FROM patients " +
-                "WHERE cpr = ?";
+        patientSelectFiller();
+        query += "WHERE cpr = ?";
 
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, patient.getCPR());
         return preparedStatement.executeQuery();
+    }
+
+    private void patientSelectFiller() {
+        query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
+                "'-', MONTH(birthdate), '-', DAY(birthdate)), '%Y-%c-%e') > CURDATE(), 1, 0) AS age FROM patients ";
     }
 
     public void editPatient(Patient patient) throws SQLException {
