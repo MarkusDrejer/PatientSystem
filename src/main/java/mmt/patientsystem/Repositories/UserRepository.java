@@ -14,7 +14,6 @@ public class UserRepository {
 
     private PreparedStatement preparedStatement;
     private Statement statement;
-    private ResultSet resultSet;
     private String query;
 
     public ResultSet getAllUsers() throws SQLException {
@@ -39,15 +38,31 @@ public class UserRepository {
                 "SET name = ?, username = ?, password = ?, fk_role = ? " +
                 "WHERE id = ?";
 
+        preparedStatement = userFiller(user);
+        preparedStatement.setInt(5, user.getId());
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+    }
+
+    public void addUser(User user) throws SQLException {
+        query = "INSERT INTO users (name, username, password, fk_role) " +
+                "VALUES (?, ?, ?, ?)";
+
+        preparedStatement = userFiller(user);
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+    }
+
+    private PreparedStatement userFiller(User user) throws SQLException {
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setString(1, user.getName());
         preparedStatement.setString(2, user.getUsername());
         preparedStatement.setString(3, user.getPassword());
         preparedStatement.setInt(4, user.getRole_id());
-        preparedStatement.setInt(5, user.getId());
-        preparedStatement.executeUpdate();
 
-        preparedStatement.close();
+        return preparedStatement;
     }
 
     public void deleteUser(int id) throws SQLException {
@@ -56,19 +71,5 @@ public class UserRepository {
 
         statement = dbAccess.getConnection().createStatement();
         statement.executeUpdate(query);
-    }
-
-    public void addUser(User user) throws SQLException {
-        query = "INSERT INTO users (name, username, password, fk_role) " +
-                "VALUES (?, ?, ?, ?)";
-
-        preparedStatement = dbAccess.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, user.getName());
-        preparedStatement.setString(2, user.getUsername());
-        preparedStatement.setString(3, user.getPassword());
-        preparedStatement.setInt(4, user.getRole_id());
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
     }
 }

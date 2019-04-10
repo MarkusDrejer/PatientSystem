@@ -74,6 +74,24 @@ public class PatientRepository {
                 "SET name = ?, age = ?, birthDate = ?, cpr = ?, height = ?, weight = ?, gender = ?, description = ? " +
                 "WHERE id = ?";
 
+        preparedStatement = patientFiller(patient);
+        preparedStatement.setInt(9, patient.getId());
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+    }
+
+    public void addPatient(Patient patient) throws SQLException {
+        query = "INSERT INTO patients (name, age, birthdate, cpr, height, weight, gender, description) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        preparedStatement = patientFiller(patient);
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+    }
+
+    private PreparedStatement patientFiller(Patient patient) throws SQLException {
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setString(1, patient.getName());
         preparedStatement.setInt(2, patient.getAge());
@@ -83,10 +101,8 @@ public class PatientRepository {
         preparedStatement.setDouble(6, patient.getWeight());
         preparedStatement.setString(7, patient.getGender());
         preparedStatement.setString(8, patient.getPersonalDescription());
-        preparedStatement.setInt(9, patient.getId());
-        preparedStatement.executeUpdate();
 
-        preparedStatement.close();
+        return preparedStatement;
     }
 
     public void deletePatient(int id) throws SQLException {
@@ -95,23 +111,5 @@ public class PatientRepository {
 
         statement = dbAccess.getConnection().createStatement();
         statement.executeUpdate(query);
-    }
-
-    public void addPatient(Patient patient) throws SQLException {
-        query = "INSERT INTO patients (name, age, birthdate, cpr, height, weight, gender, description) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        preparedStatement = dbAccess.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, patient.getName());
-        preparedStatement.setInt(2, patient.getAge());
-        preparedStatement.setDate(3, patient.getBirthDate());
-        preparedStatement.setInt(4, patient.getCPR());
-        preparedStatement.setInt(5, patient.getHeight());
-        preparedStatement.setDouble(6, patient.getWeight());
-        preparedStatement.setString(7, patient.getGender());
-        preparedStatement.setString(8, patient.getPersonalDescription());
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
     }
 }
