@@ -54,4 +54,8 @@ public class PatientService {
 
         return patient;
     }
+
+    public void addPatient(Patient patient) throws SQLException {
+        patientRepository.addPatient(patient);
+    }
 }

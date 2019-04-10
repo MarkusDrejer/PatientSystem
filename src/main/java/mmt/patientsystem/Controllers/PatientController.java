@@ -1,13 +1,12 @@
 package mmt.patientsystem.Controllers;
 
 import mmt.patientsystem.Models.Diagnosis;
+import mmt.patientsystem.Models.Patient;
 import mmt.patientsystem.Services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -40,6 +39,23 @@ public class PatientController {
         try {
             model.addAttribute("patient", patientService.getSinglePatient(id));
             return "PatientPages/patientPage";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "errorPage";
+        }
+    }
+
+    @GetMapping("/patients/addpatient")
+    public String addPatient() {
+        return "PatientPages/addpatient";
+    }
+
+    @PostMapping("/patients/addpatient")
+    public String addPatient(@ModelAttribute Patient patient, Model model) {
+        try {
+            patientService.addPatient(patient);
+            return "redirect:/patients";
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());

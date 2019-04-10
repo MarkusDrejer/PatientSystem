@@ -1,13 +1,13 @@
 package mmt.patientsystem.Models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Patient {
 
     private int id;
     private String name;
     private int age;
-    private Date birthDate;
+    private java.sql.Date birthDate;
     private int CPR;
     private int height;
     private double weight;
@@ -42,7 +42,7 @@ public class Patient {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(java.sql.Date birthDate) {
         this.birthDate = birthDate;
     }
 
