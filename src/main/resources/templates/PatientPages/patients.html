@@ -3,7 +3,7 @@
 <div th:if="${session.name != null}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
-    <link rel="stylesheet" href="/patients.css" type="text/css">
+    <link rel="stylesheet" href="/tables.css" type="text/css">
     <meta charset="UTF-8">
     <title>Patients</title>
 </head>
@@ -13,7 +13,7 @@
     <div id="main">
         <h1>Patient List</h1>
 
-        <table id="patientTable">
+        <table id="overviewTable">
                 <tr>
                     <th><a th:href="@{?order=1&reverse={state}(state=${reverse})}" >Name</a></th>
                     <th><a th:href="@{?order=2&reverse={state}(state=${reverse})}">Age</a></th>
@@ -34,13 +34,13 @@
                         <td><p th:text="${patient.age}"></p></td>
                         <td><p th:text="${patient.birthDate}"></p></td>
                         <td><p th:text="${patient.CPR}"></p></td>
-                        <td><p th:text="${patient.height}"></p></td>
-                        <td><p th:text="${patient.weight}"></p></td>
+                        <td><p th:text="${patient.height} + ' cm'"></p></td>
+                        <td><p th:text="${patient.weight} + ' kg'"></p></td>
                         <td><p th:text="${patient.gender}"></p></td>
                         <td><p th:text="${patient.personalDescription}"></p></td>
 
-                        <td th:if="not ${session.roleTier == 3}">
-                            <a class="options" th:href="@{/patients/editpatient/{id}(id=${patient.id})}">Edit</a>
+                        <td class="options" th:if="not ${session.roleTier == 3}">
+                            <a th:href="@{/patients/editpatient/{id}(id=${patient.id})}">Edit</a>
 
                             <form th:action="@{/patients/deletepatient/{id}(id=${patient.id})}" method="post">
                                 <button type="submit">Delete</button>

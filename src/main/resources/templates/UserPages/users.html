@@ -3,6 +3,7 @@
 <div th:if="${session.roleTier == 1}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <link rel="stylesheet" href="/tables.css" type="text/css">
     <meta charset="UTF-8">
     <title>Users</title>
 </head>
@@ -13,7 +14,7 @@
 
         <h1>Users</h1>
 
-        <table id="userTable">
+        <table id="overviewTable">
 
                 <tr>
                     <th>ID</th>
@@ -32,7 +33,7 @@
                     <td th:text="${user.role_id}"></td>
                     <td th:text="${user.role_name}"></td>
 
-                    <td>
+                    <td class="options">
                         <a th:href="@{/users/edituser/{id}(id=${user.id})}">Edit</a>
 
                         <form th:action="@{/users/deleteuser/{id}(id=${user.id})}" method="post">

@@ -2,25 +2,25 @@ body {
     font-family: Arial,sans-serif;
 }
 
-#patientTable {
+#overviewTable {
     border-collapse: collapse;
     width: 100%;
 }
 
-#patientTable th, #patientTable td {
+#overviewTable th, #overviewTable td {
     border: 1px solid grey;
     padding: 8px;
 }
 
-#patientTable tr:nth-child(even) {
+#overviewTable tr:nth-child(even) {
     background-color: darkgray;
 }
 
-#patientTable tr:hover {
+#overviewTable tr:hover {
     background-color: lightblue;
 }
 
-#patientTable th {
+#overviewTable th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
@@ -28,20 +28,23 @@ body {
     color: white;
 }
 
-#patientTable tr th a {
+#overviewTable tr th a {
     text-decoration: none;
     color: white;
 }
 
-#patientTable tr {
+#overviewTable tr {
     text-align: left;
 }
 
-#patientTable tr a {
+#overviewTable tr a {
     text-decoration: none;
 }
 
-#patientTable .options {
+#overviewTable .options {
+    text-align: center;
+}
+
+#overviewTable .options a {
     float: left;
-    margin-right: 25px;
 }

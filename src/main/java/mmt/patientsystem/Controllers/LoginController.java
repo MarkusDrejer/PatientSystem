@@ -39,7 +39,7 @@ public class LoginController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 

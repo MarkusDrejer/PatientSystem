@@ -30,7 +30,7 @@ public class PatientController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -42,7 +42,7 @@ public class PatientController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -54,7 +54,7 @@ public class PatientController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         } catch (InputMismatchException e) {
             model.addAttribute("invalid", true);
             return "fragments/sidenav";
@@ -69,7 +69,7 @@ public class PatientController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -81,7 +81,7 @@ public class PatientController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -93,7 +93,7 @@ public class PatientController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -110,7 +110,7 @@ public class PatientController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 }

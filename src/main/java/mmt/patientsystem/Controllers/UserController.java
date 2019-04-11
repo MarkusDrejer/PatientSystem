@@ -26,7 +26,7 @@ public class UserController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -38,7 +38,7 @@ public class UserController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -50,7 +50,7 @@ public class UserController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -62,7 +62,7 @@ public class UserController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 
@@ -79,7 +79,7 @@ public class UserController {
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
-            return "errorPage";
+            return "sqlerror";
         }
     }
 }
