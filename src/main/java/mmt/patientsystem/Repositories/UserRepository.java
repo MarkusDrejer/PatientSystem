@@ -69,4 +69,15 @@ public class UserRepository {
         statement = dbAccess.getConnection().createStatement();
         statement.executeUpdate(query);
     }
+
+    public ResultSet getDoctors() throws SQLException {
+        query = "SELECT users.* FROM users " +
+                "INNER JOIN roles ON users.fk_role = roles.id " +
+                "WHERE roles.id = 2 " +
+                "ORDER BY fk_role";
+
+        statement = dbAccess.getConnection().createStatement();
+        return statement.executeQuery(query);
+    }
+
 }

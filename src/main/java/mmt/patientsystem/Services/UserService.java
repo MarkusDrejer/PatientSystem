@@ -62,4 +62,16 @@ public class UserService {
     public void addUser(User user) throws SQLException {
         userRepository.addUser(user);
     }
+
+    public List<User> getDoctors() throws SQLException {
+        resultSet = userRepository.getDoctors();
+        List<User> userList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            User user = userFiller();
+            userList.add(user);
+        }
+        return userList;
+    }
+
 }

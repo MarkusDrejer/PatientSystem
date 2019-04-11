@@ -3,6 +3,7 @@
 <div th:if="${session.name != null}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <link rel="stylesheet" href="/style.css" type="text/css">
     <meta charset="UTF-8">
     <title>Patient</title>
 </head>
@@ -13,14 +14,40 @@
 
     <h1 th:text="${patient.name}"></h1>
 
-    <p th:text="${patient.id}"></p>
-    <p th:text="${patient.name}"></p>
-    <p th:text="${patient.birthDate}"></p>
-    <p th:text="${patient.height}"></p>
-    <p th:text="${patient.gender}"></p>
-    <p th:text="${patient.CPR}"></p>
-    <p th:text="${patient.personalDescription}"></p>
-
+    <table class="table side">
+        <tr>
+            <th >ID</th>
+            <td th:text="${patient.id}"></td>
+        </tr>
+        <tr>
+            <th >Name</th>
+            <td th:text="${patient.name}"></td>
+        </tr>
+        <tr>
+            <th >Birthdate</th>
+            <td th:text="${patient.birthDate}"></td>
+        </tr>
+        <tr>
+            <th >Height</th>
+            <td th:text="${patient.height}"></td>
+        </tr>
+        <tr>
+            <th >Gender</th>
+            <td th:text="${patient.gender}"></td>
+        </tr>
+        <tr>
+            <th >CPR</th>
+            <td th:text="${patient.CPR}"></td>
+        </tr>
+        <tr>
+            <th >Note</th>
+            <td th:text="${patient.personalDescription}"></td>
+        </tr>
+        <tr>
+            <th ></th>
+            <td><a th:href="@{/consultation/add/?patient_id={id}(id=${patient.id})}">Add consultation</a></td>
+        </tr>
+    </table>
 </div>
 </body>
 </div>

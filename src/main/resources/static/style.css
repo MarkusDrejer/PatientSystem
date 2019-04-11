@@ -1,0 +1,16 @@
+.table {
+
+}
+
+.table.side tr th {
+    text-align:left;
+}
+
+.button {
+    border: none;
+    background: #e1dddd;
+    padding: 5px 8px;
+    color: #333030;
+    border-radius: 4px;
+    font-size: 13px;
+}

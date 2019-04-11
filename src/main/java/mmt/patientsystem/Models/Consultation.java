@@ -14,6 +14,8 @@ public class Consultation {
     private Date date;
     private Time fromTime;
     private Time toTime;
+    private int patientId;
+    private int doctorId;
 
     public int getId() {
         return id;
@@ -30,6 +32,14 @@ public class Consultation {
     public void setPatientName(String patientName) {
         this.patientName = patientName;
     }
+
+    public int getPatientId() { return patientId; }
+
+    public void setPatientId(int patientId) { this.patientId = patientId; }
+
+    public int getDoctorId() { return doctorId; }
+
+    public void setDoctorId(int doctorId) { this.doctorId = doctorId; }
 
     public String getDoctorName() {
         return doctorName;
@@ -67,9 +77,7 @@ public class Consultation {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setDate(java.sql.Date date) { this.date = date; }
 
     public Time getFromTime() {
         return fromTime;
