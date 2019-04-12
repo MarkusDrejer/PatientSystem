@@ -24,6 +24,7 @@
                     <th>Date</th>
                     <th>From</th>
                     <th>To</th>
+                    <th>Doctor</th>
                     <th>Options</th>
                 </tr>
 
@@ -31,6 +32,9 @@
                     <td th:text="${consultation.date}"></td>
                     <td th:text="${consultation.fromTime}"></td>
                     <td th:text="${consultation.toTime}"></td>
+                    <div th:each="doctor:${doctors}">
+                        <td th:if="${consultation.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
+                    </div>
 
                     <td>
                     <a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
@@ -50,6 +54,7 @@
                     <tr>
                         <th>Prescription</th>
                         <th>Medicine</th>
+                        <th>Doctor</th>
                         <th>Options</th>
                     </tr>
                 <div th:each="prescription:${prescriptions}">
@@ -57,8 +62,11 @@
                         <td th:text="${prescription.prescription}"></td>
                         <td th:text="${prescription.medications}"></td>
 
+                        <div th:each="doctor:${doctors}">
+                            <td th:if="${prescription.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
+                        </div>
                         <td>
-                            <!--<a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}">View</a>-->
+                            <a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}">View</a>
                             <!--<a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>-->
                             <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
                                 <button type="submit">Delete</button>
@@ -76,12 +84,16 @@
                     <tr>
                         <th>Diagnosis</th>
                         <th>Medicine</th>
+                        <th>Doctor</th>
                         <th>Options</th>
                     </tr>
                 <div th:each="diagnosis:${diagnosiss}">
                     <tr>
                         <td th:text="${diagnosis.diagnosis}"></td>
                         <td th:text="${diagnosis.medications}"></td>
+                        <div th:each="doctor:${doctors}">
+                            <td th:if="${diagnosis.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
+                        </div>
 
                         <td>
                             <!--<a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>

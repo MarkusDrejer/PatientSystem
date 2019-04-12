@@ -1,9 +1,7 @@
 package mmt.patientsystem.Controllers;
 
-import mmt.patientsystem.Models.Prescription;
-import mmt.patientsystem.Models.Patient;
+import mmt.patientsystem.Services.MedicationService;
 import mmt.patientsystem.Services.PrescriptionService;
-import mmt.patientsystem.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +16,13 @@ public class PrescriptionController {
     PrescriptionService prescriptionService;
 
     @Autowired
-    private UserService userService;
+    private MedicationService medicationService;
 
     @GetMapping("/prescription/{id}")
     public String singlePrescription(@PathVariable(value = "id") int id, Model model) throws SQLException {
 
             model.addAttribute("prescription", prescriptionService.getSinglePrescription(id));
+            model.addAttribute("medications", medicationService.getMedicationsPrescription(id));
             return "PrescriptionPages/prescriptionPage";
 
     }

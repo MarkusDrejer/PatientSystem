@@ -1,7 +1,6 @@
 package mmt.patientsystem.Services;
 
 import mmt.patientsystem.Models.Medication;
-import mmt.patientsystem.Models.Pre_Med;
 import mmt.patientsystem.Models.Prescription;
 import mmt.patientsystem.Repositories.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,9 @@ public class PrescriptionService {
         List<Prescription> prescriptionList = new ArrayList<>();
 
         while(resultSet.next()) {
-            prescriptionList.add(prescriptionFiller());
+            Prescription prescription = prescriptionFiller();
+            prescription.setMedications(resultSet.getString("medications_given"));
+            prescriptionList.add(prescription);
         }
 
         return prescriptionList;
@@ -47,7 +48,6 @@ public class PrescriptionService {
         prescription.setPrescription(resultSet.getString("prescription"));
         prescription.setNote(resultSet.getString("note"));
         prescription.setDate(resultSet.getDate("date"));
-        prescription.setMedications(resultSet.getString("medications_given"));
         prescription.setPatientId(resultSet.getInt("fk_patient"));
         prescription.setDoctorId(resultSet.getInt("fk_doctor"));
 

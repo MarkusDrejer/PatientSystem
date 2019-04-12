@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-    <p th:text="${prescription.medicationName}"></p>
+    <p th:text="${prescription.prescription}"></p>
+<div th:each="medication:${medications}">
+    <p th:text="${medication.name}"></p>
+</div>
 </body>
 </html>

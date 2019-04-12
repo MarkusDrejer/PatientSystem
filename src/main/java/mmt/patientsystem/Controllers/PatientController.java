@@ -1,10 +1,7 @@
 package mmt.patientsystem.Controllers;
 
 import mmt.patientsystem.Models.Patient;
-import mmt.patientsystem.Services.ConsultationService;
-import mmt.patientsystem.Services.DiagnosisService;
-import mmt.patientsystem.Services.PatientService;
-import mmt.patientsystem.Services.PrescriptionService;
+import mmt.patientsystem.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +21,8 @@ public class PatientController {
     private PrescriptionService prescriptionService;
     @Autowired
     private DiagnosisService diagnosisService;
+    @Autowired
+    private UserService userService;
 
     private boolean reverseTH = true;
 
@@ -50,6 +49,7 @@ public class PatientController {
             model.addAttribute("consultations", consultationService.getConsultations(id));
             model.addAttribute("prescriptions", prescriptionService.getPrescriptions(id));
             model.addAttribute("diagnosiss", diagnosisService.getDiagnosis(id));
+            model.addAttribute("doctors", userService.getDoctors());
             return "PatientPages/patientPage";
 
 
