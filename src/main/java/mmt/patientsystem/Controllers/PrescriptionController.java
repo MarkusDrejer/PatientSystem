@@ -20,11 +20,12 @@ public class PrescriptionController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/prescriptions")
-    public String list(Model model) {
+    @PostMapping("/{p_id}/prescription/deleteprescription/{id}")
+    public String deletePrescription(@PathVariable(value = "p_id") int p_id,
+                                     @PathVariable(value = "id") int id, Model model) {
         try {
-            model.addAttribute("prescriptions", prescriptionService.getPrescriptions());
-            return "Prescription/prescriptions";
+            prescriptionService.deletePrescription(id);
+            return "redirect:/patient/" + p_id;
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());

@@ -33,4 +33,12 @@ public class DiagnosisRepository {
 
         return preparedStatement;
     }
+
+    public void deleteDiagnosis(int id) throws SQLException {
+        query = "DELETE FROM diagnosis " +
+                "WHERE id = '" + id +"'";
+
+        statement = dbAccess.getConnection().createStatement();
+        statement.executeUpdate(query);
+    }
 }

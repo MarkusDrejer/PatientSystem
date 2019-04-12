@@ -35,6 +35,14 @@ public class PrescriptionRepository {
         return preparedStatement;
     }
 
+    public void deletePrescription(int id) throws SQLException {
+        query = "DELETE FROM prescriptions " +
+                "WHERE id = '" + id +"'";
+
+        statement = dbAccess.getConnection().createStatement();
+        statement.executeUpdate(query);
+    }
+
     public void addPrescription(Prescription prescription) throws SQLException {
         query = "INSERT INTO prescriptions (note, prescription, date, fk_patient, fk_doctor) " +
                 "VALUES (?, ?, ?, ?, ?)";

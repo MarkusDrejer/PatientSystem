@@ -55,13 +55,13 @@
                         <td th:text="${prescription.prescription}"></td>
                         <td th:text="${prescription.medicationName}"></td>
 
-                        <!--<td>
-                            <a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
-                            <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>
-                            <form th:action="@{/{p_id}/consultation/deleteconsultation/{id}(p_id=${patient.id},id=${consultation.id})}" method="post">
+                        <td>
+                            <!--<a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
+                            <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>-->
+                            <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
                                 <button type="submit">Delete</button>
                             </form>
-                        </td>-->
+                        </td>
                     </tr>
                 </div>
             </table>
@@ -80,13 +80,13 @@
                         <td th:text="${diagnosis.diagnosis}"></td>
                         <td th:text="${diagnosis.medicationName}"></td>
 
-                        <!--<td>
-                            <a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
-                            <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>
-                            <form th:action="@{/{p_id}/consultation/deleteconsultation/{id}(p_id=${patient.id},id=${consultation.id})}" method="post">
+                        <td>
+                            <!--<a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
+                            <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>-->
+                            <form th:action="@{/{p_id}/diagnosis/deletediagnosis/{id}(p_id=${patient.id},id=${diagnosis.id})}" method="post">
                                 <button type="submit">Delete</button>
                             </form>
-                        </td>-->
+                        </td>
                     </tr>
                 </div>
             </table>

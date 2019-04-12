@@ -42,4 +42,8 @@ public class DiagnosisService {
 
         return diagnosis;
     }
+
+    public void deleteDiagnosis(int id) throws SQLException {
+        diagnosisRepository.deleteDiagnosis(id);
+    }
 }
