@@ -22,9 +22,11 @@
             <input type="time" placeholder="To" name="toTime">
             <input type="hidden" th:value="${patient_id}" name="patientId">
             <select name="doctorId" >
+                <optgroup label="Doctor">
                 <div th:each="doctor:${doctors}">
                 <option th:text="${doctor.name}" th:value="${doctor.id}" th:selected="${doctor.name == session.name}"></option>
                 </div>
+                    </optgroup>
             </select>
             <button type="submit">Create</button>
         </form>

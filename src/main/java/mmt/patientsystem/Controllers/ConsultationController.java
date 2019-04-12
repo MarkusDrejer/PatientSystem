@@ -19,8 +19,56 @@ public class ConsultationController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/consultation/{id}")
+    public String singleConsultation(@PathVariable(value = "id") int id, Model model) {
+        try {
+            model.addAttribute("consultation", consultationService.getSingleConsultation(id));
+            return "ConsultationPages/consultationPage";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
+    }
+
+    @GetMapping("/consultation/editconsultation/{id}")
+    public String editConsultation(@PathVariable(value = "id") int id, Model model) {
+        try {
+            model.addAttribute("consultation", consultationService.getSingleConsultation(id));
+            return "ConsultationPages/editconsultation";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
+    }
+
+    @PostMapping("/consultation/editconsultation")
+    public String editConsultation(@ModelAttribute Consultation consultation, Model model) {
+        try {
+            consultationService.editConsultation(consultation);
+            return "redirect:/";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
+    }
+
+    @PostMapping("/consultation/deleteconsultation/{id}")
+    public String deleteConsultation(@PathVariable(value = "id") int id, Model model) {
+        try {
+            consultationService.deleteConsultation(id);
+            return "redirect:/patient/" + id;
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
+    }
+
     @GetMapping("/patient/{id}/addconsultation")
-    public String consultations(@PathVariable(value = "id") int id, Model model) {
+    public String addConsultation(@PathVariable(value = "id") int id, Model model) {
         try {
             model.addAttribute("patient_id", id);
             model.addAttribute("doctors", userService.getDoctors());
@@ -34,7 +82,7 @@ public class ConsultationController {
     }
 
     @PostMapping("/consultations/save")
-    public String save(@ModelAttribute Consultation consultation, Model model) {
+    public String addConsultation(@ModelAttribute Consultation consultation, Model model) {
         try {
             consultationService.addConsultation(consultation);
             return "redirect:/patient/" + consultation.getPatientId();

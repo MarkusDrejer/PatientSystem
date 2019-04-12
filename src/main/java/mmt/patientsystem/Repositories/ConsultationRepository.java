@@ -19,7 +19,16 @@ public class ConsultationRepository {
     private String query;
 
     public ResultSet getConsultations() throws SQLException {
-        consultationSelectFiller();
+        query = "SELECT * FROM consultations " +
+                "ORDER BY date";
+
+        statement = dbAccess.getConnection().createStatement();
+        return statement.executeQuery(query);
+    }
+
+    public ResultSet getSingleConsultation(int id) throws SQLException {
+        query = "SELECT * FROM consultations " +
+                "WHERE id = '" + id + "'";
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);
@@ -32,24 +41,35 @@ public class ConsultationRepository {
         preparedStatement.setDate(3, (Date) consultation.getDate());
         preparedStatement.setString(4, consultation.getFromTime());
         preparedStatement.setString(5, consultation.getToTime());
-        preparedStatement.setInt(6, consultation.getPatientId());
-        preparedStatement.setInt(7, consultation.getDoctorId());
+        preparedStatement.setInt(6, consultation.getDoctorId());
 
         return preparedStatement;
     }
 
-    private void consultationSelectFiller() {
-        query = "SELECT consultations.*, patients.cpr, patients.name as patient_name " +
-                "FROM consultations " +
-                "INNER JOIN patients " +
-                "ON patients.id = consultations.fk_patient";
+    public void editConsultation(Consultation consultation) throws SQLException {
+        query = "UPDATE consultations " +
+                "SET description = ?, consultation = ?, date = ?, from_time = ?, to_time = ?, fk_doctor = ? " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+
+        preparedStatement = consultationFiller(consultation);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    public void deleteConsultation(int id) throws SQLException {
+        query = "DELETE FROM consultations " +
+                "WHERE id = '" + id + "'";
+
+        statement = dbAccess.getConnection().createStatement();
+        statement.executeUpdate(query);
     }
 
     public void addConsultation(Consultation consultation) throws SQLException {
-        query = "INSERT INTO consultations (description, conclusion, date, from_time, to_time, fk_patient, fk_doctor) " +
+        query = "INSERT INTO consultations (description, conclusion, date, from_time, to_time, fk_doctor, fk_patient) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         preparedStatement = consultationFiller(consultation);
+        preparedStatement.setInt(7, consultation.getPatientId());
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }

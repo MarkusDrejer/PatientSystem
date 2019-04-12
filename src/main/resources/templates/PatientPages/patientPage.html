@@ -20,15 +20,23 @@
                 <div th:each="consultation:${consultations}">
                 <tr>
                     <th >Date </th>
-                    <td th:text="${consultation.date}"></td>
-                </tr>
-                <tr>
                     <th >From</th>
-                    <td th:text="${consultation.fromTime}"></td>
-                </tr>
-                <tr>
                     <th >To</th>
+                    <th>Options</th>
+                </tr>
+
+                <tr>
+                    <td th:text="${consultation.date}"></td>
+                    <td th:text="${consultation.fromTime}"></td>
                     <td th:text="${consultation.toTime}"></td>
+
+                    <td>
+                    <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">View</a>
+                    <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>
+                    <form th:action="@{/consultation/deleteconsultation/{id}(id=${consultation.id})}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                    </td>
                 </tr>
                 </div>
             </table>
@@ -71,13 +79,9 @@
         </div>
         <div style="clear:both;"></div>
     </div>-->
-
-
-
-            <th ></th>
-            <td><a th:href="@{/patient/{id}/addconsultation(id=${patient.id})}">Add consultation</a></td>
-        </tr>
     <!--</table>-->
+</div>
+    <a th:href="@{/patient/{id}/addconsultation(id=${patient.id})}">Add consultation</a>
 </div>
 </body>
 </div>

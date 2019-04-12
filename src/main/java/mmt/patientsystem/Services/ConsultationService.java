@@ -44,6 +44,24 @@ public class ConsultationService {
 
     }
 
+    public Consultation getSingleConsultation(int id) throws SQLException {
+        resultSet = consultationRepository.getSingleConsultation(id);
+
+        Consultation consultation = null;
+        while (resultSet.next()) {
+            consultation = consultationFiller();
+        }
+        return consultation;
+    }
+
+    public void editConsultation(Consultation consultation) throws SQLException {
+        consultationRepository.editConsultation(consultation);
+    }
+
+    public void deleteConsultation(int id) throws SQLException {
+        consultationRepository.deleteConsultation(id);
+    }
+
     public void addConsultation(Consultation consultation) throws SQLException {
         consultationRepository.addConsultation(consultation);
     }
