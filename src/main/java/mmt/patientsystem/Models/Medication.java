@@ -30,7 +30,5 @@ public class Medication {
         this.description = description;
     }
 
-    public boolean checkConflict() {
-        return true;
-    }
+
 }

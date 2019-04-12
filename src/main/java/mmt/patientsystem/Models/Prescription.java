@@ -7,11 +7,10 @@ public class Prescription {
     private int id;
     private String patientName;
     private String doctorName;
-    private int CPR;
     private String note;
     private String medicationName;
     private Date date;
-    private boolean validity;
+
 
     public int getId() {
         return id;
@@ -37,13 +36,6 @@ public class Prescription {
         this.doctorName = doctorName;
     }
 
-    public int getCPR() {
-        return CPR;
-    }
-
-    public void setCPR(int CPR) {
-        this.CPR = CPR;
-    }
 
     public String getNote() {
         return note;
@@ -69,11 +61,5 @@ public class Prescription {
         this.date = date;
     }
 
-    public boolean isValidity() {
-        return validity;
-    }
 
-    public void setValidity(boolean validity) {
-        this.validity = validity;
-    }
 }
