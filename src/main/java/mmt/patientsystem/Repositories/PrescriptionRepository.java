@@ -26,6 +26,15 @@ public class PrescriptionRepository {
         return statement.executeQuery(query);
     }
 
+    public ResultSet getSinglePrescription(int id) throws SQLException {
+        query = "SELECT prescriptions.*, medicine.name " +
+                "FROM prescriptions, medicine, pm_junction " +
+                "WHERE pm_junction.fk_prescription = prescriptions.id AND pm_junction.fk_medicin = medicine.id AND prescriptions.id = '" + id + "'";
+
+        statement = dbAccess.getConnection().createStatement();
+        return statement.executeQuery(query);
+    }
+
     private PreparedStatement prescriptionFiller(Prescription prescription) throws SQLException {
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setString(1, prescription.getNote());

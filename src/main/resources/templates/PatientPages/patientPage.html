@@ -56,8 +56,8 @@
                         <td th:text="${prescription.medicationName}"></td>
 
                         <td>
-                            <!--<a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
-                            <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>-->
+                            <a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}">View</a>
+                            <!--<a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>-->
                             <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
                                 <button type="submit">Delete</button>
                             </form>

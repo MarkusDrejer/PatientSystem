@@ -20,6 +20,14 @@ public class PrescriptionController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/prescription/{id}")
+    public String singlePrescription(@PathVariable(value = "id") int id, Model model) throws SQLException {
+
+            model.addAttribute("prescription", prescriptionService.getSinglePrescription(id));
+            return "PrescriptionPages/prescriptionPage";
+
+    }
+
     @PostMapping("/{p_id}/prescription/deleteprescription/{id}")
     public String deletePrescription(@PathVariable(value = "p_id") int p_id,
                                      @PathVariable(value = "id") int id, Model model) {

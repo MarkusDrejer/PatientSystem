@@ -29,6 +29,16 @@ public class PrescriptionService {
         return prescriptions;
     }
 
+    public Prescription getSinglePrescription(int id) throws SQLException {
+        resultSet = prescriptionRepository.getSinglePrescription(id);
+
+        Prescription prescription = null;
+        while (resultSet.next()) {
+            prescription = prescriptionFiller();
+        }
+        return prescription;
+    }
+
     private Prescription prescriptionFiller() throws SQLException {
         Prescription prescription = new Prescription();
         prescription.setId(resultSet.getInt("id"));

@@ -28,6 +28,16 @@ public class ConsultationService {
         return consultations;
     }
 
+    public Consultation getSingleConsultation(int id) throws SQLException {
+        resultSet = consultationRepository.getSingleConsultation(id);
+
+        Consultation consultation = null;
+        while (resultSet.next()) {
+            consultation = consultationFiller();
+        }
+        return consultation;
+    }
+
     private Consultation consultationFiller() throws SQLException {
         Consultation consultation = new Consultation();
         consultation.setId(resultSet.getInt("id"));
@@ -42,16 +52,6 @@ public class ConsultationService {
 
         return consultation;
 
-    }
-
-    public Consultation getSingleConsultation(int id) throws SQLException {
-        resultSet = consultationRepository.getSingleConsultation(id);
-
-        Consultation consultation = null;
-        while (resultSet.next()) {
-            consultation = consultationFiller();
-        }
-        return consultation;
     }
 
     public void editConsultation(Consultation consultation) throws SQLException {
