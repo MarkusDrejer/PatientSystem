@@ -26,6 +26,16 @@ public class DiagnosisRepository {
         return statement.executeQuery(query);
     }
 
+    public ResultSet getSingleDiagnosis(int id) throws SQLException {
+        query = "SELECT diagnosis.*, diagnose_names.d_name " +
+                "FROM diagnosis " +
+                "INNER JOIN diagnose_names ON diagnosis.fk_diagnose_name = diagnose_names.id " +
+                "WHERE diagnosis.id = '" + id + "'";
+
+        statement = dbAccess.getConnection().createStatement();
+        return statement.executeQuery(query);
+    }
+
     public void deleteDiagnosis(int id) throws SQLException {
         query = "DELETE FROM diagnosis " +
                 "WHERE id = '" + id +"'";

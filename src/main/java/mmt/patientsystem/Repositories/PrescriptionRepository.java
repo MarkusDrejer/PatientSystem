@@ -27,19 +27,10 @@ public class PrescriptionRepository {
         return statement.executeQuery(query);
     }
 
-    public ResultSet getMedication(int id) throws SQLException {
-        query = "SELECT * FROM pm_junction " +
-                "INNER JOIN medicine ON pm_junction.fk_medicin = medicine.id " +
-                "WHERE fk_prescription = '" + id + "'";
-
-        statement = dbAccess.getConnection().createStatement();
-        return statement.executeQuery(query);
-    }
-
     public ResultSet getSinglePrescription(int id) throws SQLException {
-        query = "SELECT prescriptions.*, medicine.* " +
-                "FROM prescriptions, medicine, pm_junction " +
-                "WHERE pm_junction.fk_prescription = prescriptions.id AND pm_junction.fk_medicin = medicine.m_id AND prescriptions.id = '" + id + "'";
+        query = "SELECT * " +
+                "FROM prescriptions " +
+                "WHERE prescriptions.id = '" + id + "'";
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);

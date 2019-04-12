@@ -1,6 +1,5 @@
 package mmt.patientsystem.Services;
 
-import mmt.patientsystem.Models.Medication;
 import mmt.patientsystem.Models.Prescription;
 import mmt.patientsystem.Repositories.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

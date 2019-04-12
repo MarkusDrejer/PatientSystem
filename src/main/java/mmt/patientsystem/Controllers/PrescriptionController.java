@@ -22,7 +22,7 @@ public class PrescriptionController {
     public String singlePrescription(@PathVariable(value = "id") int id, Model model) throws SQLException {
 
             model.addAttribute("prescription", prescriptionService.getSinglePrescription(id));
-            model.addAttribute("medications", medicationService.getMedicationsPrescription(id));
+            model.addAttribute("medications", medicationService.getMedications(id, 1));
             return "PrescriptionPages/prescriptionPage";
 
     }

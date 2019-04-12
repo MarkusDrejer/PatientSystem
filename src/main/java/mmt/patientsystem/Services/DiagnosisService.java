@@ -25,9 +25,21 @@ public class DiagnosisService {
         List<Diagnosis> diagnosiss = new ArrayList<>();
 
         while (resultSet.next()) {
-            diagnosiss.add(diagnosisFiller());
+            Diagnosis diagnosis = diagnosisFiller();
+            diagnosis.setMedications(resultSet.getString("medications_given"));
+            diagnosiss.add(diagnosis);
         }
         return diagnosiss;
+    }
+
+    public Diagnosis getSingleDiagnosis(int id) throws SQLException {
+        resultSet = diagnosisRepository.getSingleDiagnosis(id);
+
+        Diagnosis diagnosis = null;
+        while (resultSet.next()) {
+            diagnosis = diagnosisFiller();
+        }
+        return diagnosis;
     }
 
     private Diagnosis diagnosisFiller() throws SQLException {
@@ -36,7 +48,6 @@ public class DiagnosisService {
         diagnosis.setDiagnosis(resultSet.getString("d_name"));
         diagnosis.setNote(resultSet.getString("note"));
         diagnosis.setDate(resultSet.getDate("date"));
-        diagnosis.setMedications(resultSet.getString("medications_given"));
         diagnosis.setPatientId(resultSet.getInt("fk_patient"));
         diagnosis.setDoctorId(resultSet.getInt("fk_doctor"));
 

@@ -18,8 +18,8 @@ public class MedicationService {
 
     private ResultSet resultSet;
 
-    public List<Medication> getMedicationsPrescription(int id) throws SQLException {
-        resultSet = medicationRepository.getMedicationsPrescription(id);
+    public List<Medication> getMedications(int id, int type) throws SQLException {
+        resultSet = medicationRepository.getMedications(id, type);
         List<Medication> medicationList = new ArrayList<>();
 
         while(resultSet.next()) {
