@@ -48,7 +48,7 @@ public class PrescriptionController {
     }
 
     @GetMapping("/patient/{id}/addprescription")
-    public String prescriptions(@PathVariable(value = "id") int id, Model model) {
+    public String addPrescription(@PathVariable(value = "id") int id, Model model) {
         try {
             model.addAttribute("patient_id", id);
             model.addAttribute("doctors", userService.getDoctors());

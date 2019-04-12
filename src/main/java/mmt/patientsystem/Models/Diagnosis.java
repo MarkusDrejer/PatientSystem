@@ -6,11 +6,13 @@ public class Diagnosis {
 
     private int id;
     private String diagnosis;
+    private int diagnosisNameId;
     private String note;
     private Date date;
     private String medications;
     private int patientId;
     private int doctorId;
+    private int medLink;
 
     public int getId() {
         return id;
@@ -26,6 +28,14 @@ public class Diagnosis {
 
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
+    }
+
+    public int getDiagnosisNameId() {
+        return diagnosisNameId;
+    }
+
+    public void setDiagnosisNameId(int diagnosisNameId) {
+        this.diagnosisNameId = diagnosisNameId;
     }
 
     public String getNote() {
@@ -66,5 +76,13 @@ public class Diagnosis {
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
+    }
+
+    public int getMedLink() {
+        return medLink;
+    }
+
+    public void setMedLink(int medLink) {
+        this.medLink = medLink;
     }
 }

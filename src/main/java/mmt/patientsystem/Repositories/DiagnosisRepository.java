@@ -1,5 +1,6 @@
 package mmt.patientsystem.Repositories;
 
+import mmt.patientsystem.Models.Diagnosis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -36,11 +37,42 @@ public class DiagnosisRepository {
         return statement.executeQuery(query);
     }
 
+    public ResultSet getDiagnosisNames() throws SQLException {
+        query = "SELECT * FROM diagnose_names " +
+                "ORDER BY d_name";
+
+        statement = dbAccess.getConnection().createStatement();
+        return statement.executeQuery(query);
+    }
+
     public void deleteDiagnosis(int id) throws SQLException {
         query = "DELETE FROM diagnosis " +
                 "WHERE id = '" + id +"'";
 
         statement = dbAccess.getConnection().createStatement();
         statement.executeUpdate(query);
+    }
+
+    public ResultSet addDiagnosis(Diagnosis diagnosis) throws SQLException {
+        query = "INSERT INTO diagnosis (note, fk_diagnose_name, fk_patient, fk_doctor) " +
+                "VALUES (?, ?, ?, ?)";
+        preparedStatement = dbAccess.getConnection().prepareStatement(query, statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setString(1, diagnosis.getNote());
+        preparedStatement.setInt(2, diagnosis.getDiagnosisNameId());
+        preparedStatement.setInt(3, diagnosis.getPatientId());
+        preparedStatement.setInt(4, diagnosis.getDoctorId());
+        preparedStatement.executeUpdate();
+
+        return preparedStatement.getGeneratedKeys();
+    }
+
+    public void addDiagnosisJunction(int key, int medId) throws SQLException {
+        query = "INSERT INTO dm_junction (fk_medicin, fk_diagnosis) " +
+                "VALUES (?, ?)";
+        preparedStatement = dbAccess.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, medId);
+        preparedStatement.setInt(2, key);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
     }
 }

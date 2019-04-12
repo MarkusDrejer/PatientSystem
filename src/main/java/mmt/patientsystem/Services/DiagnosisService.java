@@ -1,9 +1,7 @@
 package mmt.patientsystem.Services;
 
 import mmt.patientsystem.Models.Diagnosis;
-import mmt.patientsystem.Models.Prescription;
 import mmt.patientsystem.Repositories.DiagnosisRepository;
-import mmt.patientsystem.Repositories.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +40,19 @@ public class DiagnosisService {
         return diagnosis;
     }
 
+    public List<Diagnosis> getDiagnosisNames() throws SQLException {
+        resultSet = diagnosisRepository.getDiagnosisNames();
+        List<Diagnosis> d_names = new ArrayList<>();
+
+        while(resultSet.next()) {
+            Diagnosis diagnosis = new Diagnosis();
+            diagnosis.setId(resultSet.getInt("id"));
+            diagnosis.setDiagnosis(resultSet.getString("d_name"));
+            d_names.add(diagnosis);
+        }
+        return d_names;
+    }
+
     private Diagnosis diagnosisFiller() throws SQLException {
         Diagnosis diagnosis = new Diagnosis();
         diagnosis.setId(resultSet.getInt("id"));
@@ -56,5 +67,13 @@ public class DiagnosisService {
 
     public void deleteDiagnosis(int id) throws SQLException {
         diagnosisRepository.deleteDiagnosis(id);
+    }
+
+    public void addDiagnosis(Diagnosis diagnosis) throws SQLException {
+        resultSet = diagnosisRepository.addDiagnosis(diagnosis);
+        resultSet.next();
+        int key = resultSet.getInt(1);
+        int medId = diagnosis.getMedLink();
+        diagnosisRepository.addDiagnosisJunction(key, medId);
     }
 }
