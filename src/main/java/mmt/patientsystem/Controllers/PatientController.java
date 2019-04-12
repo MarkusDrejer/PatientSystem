@@ -1,6 +1,7 @@
 package mmt.patientsystem.Controllers;
 
 import mmt.patientsystem.Models.Patient;
+import mmt.patientsystem.Services.ConsultationService;
 import mmt.patientsystem.Services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,9 @@ import java.util.InputMismatchException;
 public class PatientController {
 
     @Autowired
-    PatientService patientService;
+    private PatientService patientService;
+    @Autowired
+    private ConsultationService consultationService;
 
     private boolean reverseTH = true;
 
@@ -38,6 +41,7 @@ public class PatientController {
     public String singlePatientPage(@PathVariable(value = "id") int id, Model model) {
         try {
             model.addAttribute("patient", patientService.getSinglePatientID(id));
+            model.addAttribute("consultations", consultationService.getConsultations());
             return "PatientPages/patientPage";
 
         } catch (SQLException e) {

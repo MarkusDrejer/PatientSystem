@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.roleTier == 1 or session.roleTier == 2}">
+<head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <link rel="stylesheet" href="/addpatient.css" type="text/css>">
+    <meta charset="UTF-8">
+    <title>Add-Patient</title>
+</head>
+    <body>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+
+    <div id="main">
+
+        <h1>Creating New Consultation</h1>
+
+        <form action="/consultations/save" method="post" th:object="${Consultation}">
+            <input type="text" placeholder="Description" name="description">
+            <input type="text" placeholder="Conclusion" name="conclusion">
+            <input type="date" placeholder="Date" name="date">
+            <input type="time" placeholder="From" name="fromTime">
+            <input type="time" placeholder="To" name="toTime">
+            <input type="hidden" th:value="${patient_id}" name="patientId">
+            <select name="doctorId" >
+                <div th:each="doctor:${doctors}">
+                <option th:text="${doctor.name}" th:value="${doctor.id}" th:selected="${doctor.name == session.name}"></option>
+                </div>
+            </select>
+            <button type="submit">Create</button>
+        </form>
+
+    </div>
+
+    </body>
+</div>
+</html>

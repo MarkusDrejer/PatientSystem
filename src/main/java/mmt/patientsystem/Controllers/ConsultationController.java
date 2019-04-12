@@ -1,7 +1,6 @@
 package mmt.patientsystem.Controllers;
 
 import mmt.patientsystem.Models.Consultation;
-import mmt.patientsystem.Models.Patient;
 import mmt.patientsystem.Services.ConsultationService;
 import mmt.patientsystem.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,29 +19,12 @@ public class ConsultationController {
     @Autowired
     private UserService userService;
 
-    private boolean reverseTH = true;
-
-    @GetMapping("/consultations")
-    public String list(@RequestParam(value = "order", defaultValue = "1") int order,
-                                  @RequestParam(value = "reverse", defaultValue = "false") boolean reverse,
-                                  Model model) {
+    @GetMapping("/patient/{id}/addconsultation")
+    public String consultations(@PathVariable(value = "id") int id, Model model) {
         try {
-            reverseTH = !reverseTH;
-            model.addAttribute("reverse", reverseTH);
-            model.addAttribute("consultations", consultationService.getConsultations(order, reverse));
-            return "Consultation/consultations";
-
-        } catch (SQLException e) {
-            model.addAttribute("errorCode", e.getErrorCode());
-            return "sqlerror";
-        }
-    }
-
-    @GetMapping("/consultations/add")
-    public String consultations(Model model) {
-        try {
+            model.addAttribute("patient_id", id);
             model.addAttribute("doctors", userService.getDoctors());
-            return "Consultation/add";
+            return "ConsultationPages/addconsultation";
 
 
         } catch (SQLException e) {
@@ -55,7 +37,7 @@ public class ConsultationController {
     public String save(@ModelAttribute Consultation consultation, Model model) {
         try {
             consultationService.addConsultation(consultation);
-            return "redirect:/consultations";
+            return "redirect:/patient/" + consultation.getPatientId();
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
