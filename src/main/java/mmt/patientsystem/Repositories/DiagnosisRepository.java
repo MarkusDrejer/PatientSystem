@@ -16,9 +16,11 @@ public class DiagnosisRepository {
     private String query;
 
     public ResultSet getDiagnosis(int id) throws SQLException {
-        query = "SELECT diagnosis.*, medicine.name, diagnose_names.d_name " +
+        query = "SELECT diagnosis.*, diagnose_names.d_name, GROUP_CONCAT(medicine.NAME) AS medications_given " +
                 "FROM diagnosis, medicine, dm_junction, diagnose_names " +
-                "WHERE dm_junction.fk_diagnosis = diagnosis.id AND dm_junction.fk_medicin = medicine.m_id AND diagnosis.fk_diagnose_name = diagnose_names.id AND diagnosis.fk_patient = '" + id + "'";
+                "WHERE dm_junction.fk_diagnosis = diagnosis.id AND dm_junction.fk_medicin = medicine.m_id AND diagnosis.fk_diagnose_name = diagnose_names.id AND diagnosis.fk_patient = '" + id + "' " +
+                "GROUP BY diagnosis.id " +
+                "ORDER BY diagnose_names.d_name";
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);

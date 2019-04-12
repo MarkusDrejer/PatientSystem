@@ -73,16 +73,15 @@
         <div class ="box">
             <h3>Diagnosis</h3>
             <table class="table diagnosis overviewTable">
-                <div th:each="diagnosis:${diagnosiss}">
                     <tr>
                         <th>Diagnosis</th>
                         <th>Medicine</th>
                         <th>Options</th>
                     </tr>
-
+                <div th:each="diagnosis:${diagnosiss}">
                     <tr>
                         <td th:text="${diagnosis.diagnosis}"></td>
-                        <td th:text="${diagnosis.medicationName}"></td>
+                        <td th:text="${diagnosis.medications}"></td>
 
                         <td>
                             <!--<a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>

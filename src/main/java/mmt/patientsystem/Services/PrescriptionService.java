@@ -29,20 +29,6 @@ public class PrescriptionService {
         }
 
         return prescriptionList;
-
-        /*Pre_Med preMed = new Pre_Med();
-
-        while (resultSet.next()) {
-            preMed.setPrescriptionList(prescriptionFiller());
-
-            Medication medication = new Medication();
-            medication.setId(resultSet.getInt("m_id"));
-            medication.setName(resultSet.getString("name"));
-            medication.setDescription(resultSet.getString("description"));
-            medication.setSideEffects(resultSet.getString("Sideeffects"));
-            preMed.setMedicationList(medication);
-        }
-        return preMed;*/
     }
 
     public Prescription getSinglePrescription(int id) throws SQLException {

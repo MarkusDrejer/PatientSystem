@@ -17,11 +17,6 @@ public class PrescriptionRepository {
     private String query;
 
     public ResultSet getPrescriptions(int id) throws SQLException {
-        /*query = "SELECT prescriptions.*, medicine.* " +
-                "FROM prescriptions, medicine, pm_junction " +
-                "WHERE pm_junction.fk_prescription = prescriptions.id AND pm_junction.fk_medicin = medicine.m_id AND prescriptions.fk_patient = '" + id + "' " +
-                "ORDER BY prescriptions.prescription";*/
-
         query = "SELECT prescriptions.*, GROUP_CONCAT(medicine.NAME) AS medications_given " +
                 "FROM prescriptions, medicine, pm_junction " +
                 "WHERE pm_junction.fk_prescription = prescriptions.id AND pm_junction.fk_medicin = medicine.m_id AND prescriptions.fk_patient = '" + id + "' " +

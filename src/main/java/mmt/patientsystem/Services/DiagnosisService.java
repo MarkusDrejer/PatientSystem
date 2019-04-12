@@ -36,7 +36,7 @@ public class DiagnosisService {
         diagnosis.setDiagnosis(resultSet.getString("d_name"));
         diagnosis.setNote(resultSet.getString("note"));
         diagnosis.setDate(resultSet.getDate("date"));
-        diagnosis.setMedicationName(resultSet.getString("name"));
+        diagnosis.setMedications(resultSet.getString("medications_given"));
         diagnosis.setPatientId(resultSet.getInt("fk_patient"));
         diagnosis.setDoctorId(resultSet.getInt("fk_doctor"));
 

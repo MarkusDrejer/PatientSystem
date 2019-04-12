@@ -8,7 +8,7 @@ public class Diagnosis {
     private String diagnosis;
     private String note;
     private Date date;
-    private String medicationName;
+    private String medications;
     private int patientId;
     private int doctorId;
 
@@ -44,12 +44,12 @@ public class Diagnosis {
         this.date = date;
     }
 
-    public String getMedicationName() {
-        return medicationName;
+    public String getMedications() {
+        return medications;
     }
 
-    public void setMedicationName(String medicationName) {
-        this.medicationName = medicationName;
+    public void setMedications(String medications) {
+        this.medications = medications;
     }
 
     public int getPatientId() {
