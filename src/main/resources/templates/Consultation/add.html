@@ -16,8 +16,8 @@
 
         <form th:action="@{/consultations/save}" method="post" th:object="${Consultation}">
             <input type="date" placeholder="Date" name="date">
-            <input type="text" placeholder="FromTime" name="fromTime">
-            <input type="text" placeholder="ToTime" name="toTime">
+            <input type="time" placeholder="FromTime" name="fromTime">
+            <input type="time" placeholder="ToTime" name="toTime">
             <input type="text" placeholder="CPR" name="patientId">
             <input type="text" placeholder="Description" name="description">
             <input type="text" placeholder="Conclusion" name="conclusion">

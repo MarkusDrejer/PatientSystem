@@ -41,8 +41,8 @@ public class ConsultationRepository {
         preparedStatement.setString(1, consultation.getDescription());
         preparedStatement.setString(2, consultation.getConclusion());
         preparedStatement.setDate(3, (Date) consultation.getDate());
-        preparedStatement.setTime(4, consultation.getFromTime());
-        preparedStatement.setTime(5, consultation.getToTime());
+        preparedStatement.setString(4, consultation.getFromTime());
+        preparedStatement.setString(5, consultation.getToTime());
         preparedStatement.setInt(6, consultation.getPatientId());
         preparedStatement.setInt(7, consultation.getDoctorId());
 

@@ -34,8 +34,8 @@ public class ConsultationService {
         consultation.setDescription(resultSet.getString("description"));
         consultation.setConclusion(resultSet.getString("conclusion"));
         consultation.setDate(resultSet.getDate("date"));
-        consultation.setFromTime(resultSet.getTime("from_time"));
-        consultation.setToTime(resultSet.getTime("to_time"));
+        consultation.setFromTime(resultSet.getString("from_time"));
+        consultation.setToTime(resultSet.getString("to_time"));
         consultation.setPatientId(resultSet.getInt("fk_patient"));
         consultation.setDoctorId(resultSet.getInt("fk_doctor"));
 

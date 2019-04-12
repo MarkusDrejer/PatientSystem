@@ -12,8 +12,8 @@ public class Consultation {
     private String description;
     private String conclusion;
     private Date date;
-    private Time fromTime;
-    private Time toTime;
+    private String fromTime;
+    private String toTime;
     private int patientId;
     private int doctorId;
 
@@ -79,19 +79,19 @@ public class Consultation {
 
     public void setDate(java.sql.Date date) { this.date = date; }
 
-    public Time getFromTime() {
+    public String getFromTime() {
         return fromTime;
     }
 
-    public void setFromTime(Time fromTime) {
+    public void setFromTime(String fromTime) {
         this.fromTime = fromTime;
     }
 
-    public Time getToTime() {
+    public String getToTime() {
         return toTime;
     }
 
-    public void setToTime(Time toTime) {
+    public void setToTime(String toTime) {
         this.toTime = toTime;
     }
 }
