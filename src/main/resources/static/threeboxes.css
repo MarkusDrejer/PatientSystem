@@ -8,8 +8,17 @@ div.container {
 }
 div.box {
     box-sizing:border-box;
+    border:2px solid black;
     width: 33%;
-    border: 5px #193c90;
+    border: 5px solid #193c90;
     float:left;
-
+    min-height: 500px;
+}
+.button {
+    border: none;
+    background: #e1dddd;
+    padding: 5px 8px;
+    color: #333030;
+    border-radius: 4px;
+    font-size: 13px;
 }

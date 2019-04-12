@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <link rel="stylesheet" href="/threeboxes.css" type="text/css">
+    <link rel="stylesheet" href="/tables.css" type="text/css">
     <meta charset="UTF-8">
     <title>Patient</title>
 </head>
@@ -15,8 +16,9 @@
     <h1 th:text="${patient.name}"></h1>
 
     <div class="container">
-        <div class ="box">Consultation
-            <table class="table consultation">
+        <div class ="box">
+            <h3>Consultation</h3>
+            <table class="table consultation overviewTable">
                 <div th:each="consultation:${consultations}">
                 <tr>
                     <th>Date</th>
@@ -42,8 +44,9 @@
             </table>
         </div>
 
-        <div class ="box">Prescriptions
-            <table class="table prescription">
+        <div class ="box">
+            <h3>Prescriptions</h3>
+            <table class="table prescription overviewTable">
                     <tr>
                         <th>Prescription</th>
                         <th>Medicine</th>
@@ -67,8 +70,9 @@
         </div>
 
 
-        <div class ="box">Diagnosis
-            <table class="table diagnosis">
+        <div class ="box">
+            <h3>Diagnosis</h3>
+            <table class="table diagnosis overviewTable">
                 <div th:each="diagnosis:${diagnosiss}">
                     <tr>
                         <th>Diagnosis</th>
