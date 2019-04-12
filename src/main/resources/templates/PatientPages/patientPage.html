@@ -33,7 +33,7 @@
                     <td>
                     <a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
                     <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>
-                    <form th:action="@{/consultation/deleteconsultation/{id}(id=${consultation.id})}" method="post">
+                    <form th:action="@{/{p_id}/consultation/deleteconsultation/{id}(p_id=${patient.id},id=${consultation.id})}" method="post">
                         <button type="submit">Delete</button>
                     </form>
                     </td>

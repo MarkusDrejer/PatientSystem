@@ -13,14 +13,20 @@
 
         <h1>Editing Consultation</h1>
 
-        <form th:action="@{/consultations/editconsultation}" method="post" th:object="${Consultation}">
+        <form th:action="@{/{id}/consultation/editconsultation(id=${consultation.patientId})}" method="post" th:object="${Consultation}">
             <input type="hidden" th:value="${consultation.id}" name="id">
-            <input type="text" th:value="${consultation.description}" name="description">
-            <input type="text" th:value="${consultation.conclusion}" name="conclusion">
+            <textarea placeholder="Description" th:text="${consultation.description}" name="description"></textarea>
+            <textarea placeholder="Conclusion" th:text="${consultation.conclusion}" name="conclusion"></textarea>
             <input type="date" th:value="${consultation.date}" name="date">
             <input type="time" th:value="${consultation.fromTime}" name="fromTime">
             <input type="time" th:value="${consultation.toTime}" name="toTime">
-            <input type="text" th:value="${consultation.doctorId}" name="doctorId">
+            <select name="doctorId" >
+                <optgroup label="Doctor">
+                    <div th:each="doctor:${doctors}">
+                        <option th:text="${doctor.name}" th:value="${doctor.id}" th:selected="${consultation.doctorId == doctor.id}"></option>
+                    </div>
+                </optgroup>
+            </select>
             <button type="submit">Save</button>
         </form>
 

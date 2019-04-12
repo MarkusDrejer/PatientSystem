@@ -35,6 +35,7 @@ public class ConsultationController {
     public String editConsultation(@PathVariable(value = "id") int id, Model model) {
         try {
             model.addAttribute("consultation", consultationService.getSingleConsultation(id));
+            model.addAttribute("doctors", userService.getDoctors());
             return "ConsultationPages/editconsultation";
 
         } catch (SQLException e) {
@@ -43,11 +44,12 @@ public class ConsultationController {
         }
     }
 
-    @PostMapping("/consultation/editconsultation")
-    public String editConsultation(@ModelAttribute Consultation consultation, Model model) {
+    @PostMapping("/{id}/consultation/editconsultation")
+    public String editConsultation(@PathVariable(value = "id") int id,
+                                   @ModelAttribute Consultation consultation, Model model) throws SQLException {
         try {
             consultationService.editConsultation(consultation);
-            return "redirect:/";
+            return "redirect:/patient/" + id;
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
@@ -55,11 +57,13 @@ public class ConsultationController {
         }
     }
 
-    @PostMapping("/consultation/deleteconsultation/{id}")
-    public String deleteConsultation(@PathVariable(value = "id") int id, Model model) {
+    @PostMapping("/{p_id}/consultation/deleteconsultation/{id}")
+    public String deleteConsultation(@PathVariable(value = "id") int id,
+                                     @PathVariable(value = "p_id") int p_id,
+                                     Model model) throws SQLException {
         try {
             consultationService.deleteConsultation(id);
-            return "redirect:/patient/" + id;
+            return "redirect:/patient/" + p_id;
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());

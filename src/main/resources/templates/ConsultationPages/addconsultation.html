@@ -15,8 +15,8 @@
         <h1>Creating New Consultation</h1>
 
         <form action="/consultations/save" method="post" th:object="${Consultation}">
-            <input type="text" placeholder="Description" name="description">
-            <input type="text" placeholder="Conclusion" name="conclusion">
+            <textarea placeholder="Description" name="description"></textarea>
+            <textarea type="text" placeholder="Conclusion" name="conclusion"></textarea>
             <input type="date" placeholder="Date" name="date">
             <input type="time" placeholder="From" name="fromTime">
             <input type="time" placeholder="To" name="toTime">

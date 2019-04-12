@@ -48,8 +48,7 @@ public class ConsultationRepository {
 
     public void editConsultation(Consultation consultation) throws SQLException {
         query = "UPDATE consultations " +
-                "SET description = ?, consultation = ?, date = ?, from_time = ?, to_time = ?, fk_doctor = ? " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+                "SET description = ?, conclusion = ?, date = ?, from_time = ?, to_time = ?, fk_doctor = ?";
 
         preparedStatement = consultationFiller(consultation);
         preparedStatement.executeUpdate();
