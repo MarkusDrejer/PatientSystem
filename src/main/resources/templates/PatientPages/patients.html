@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <link rel="stylesheet" href="/tables.css" type="text/css">
+    <link rel="stylesheet" href="/style.css" type="text/css">
     <meta charset="UTF-8">
     <title>Patients</title>
 </head>
@@ -40,10 +41,10 @@
                         <td><p th:text="${patient.personalDescription}"></p></td>
 
                         <td class="options" th:if="not ${session.roleTier == 3}">
-                            <a th:href="@{/patients/editpatient/{id}(id=${patient.id})}">Edit</a>
+                            <a th:href="@{/patients/editpatient/{id}(id=${patient.id})}"class="button">Edit</a>
 
                             <form th:action="@{/patients/deletepatient/{id}(id=${patient.id})}" method="post">
-                                <button type="submit">Delete</button>
+                                <button type="submit" class="button">Delete</button>
                             </form>
                         </td>
                 </tr>

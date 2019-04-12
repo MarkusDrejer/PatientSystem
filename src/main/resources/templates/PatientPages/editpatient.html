@@ -3,6 +3,7 @@
 <div th:if="${session.roleTier == 1 or session.roleTier == 2}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <link rel="stylesheet" href="/style.css" type="text/css">
     <meta charset="UTF-8">
     <title>Edit-Patient</title>
 </head>
@@ -29,7 +30,7 @@
             </optgroup>
         </select>
         <input type="text" placeholder="Description" th:value="${patient.personalDescription}" name="personalDescription">
-        <button type="submit">Edit</button>
+        <button type="submit" class="button">Edit</button>
     </form>
 </div>
 
