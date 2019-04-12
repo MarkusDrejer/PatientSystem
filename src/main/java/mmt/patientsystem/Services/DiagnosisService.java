@@ -20,8 +20,8 @@ public class DiagnosisService {
 
     private ResultSet resultSet;
 
-    public List<Diagnosis> getDiagnosis() throws SQLException {
-        resultSet = diagnosisRepository.getDiagnosis();
+    public List<Diagnosis> getDiagnosis(int id) throws SQLException {
+        resultSet = diagnosisRepository.getDiagnosis(id);
         List<Diagnosis> diagnosiss = new ArrayList<>();
 
         while (resultSet.next()) {

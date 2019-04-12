@@ -5,6 +5,7 @@ public class Medication {
     private int id;
     private String name;
     private String description;
+    private String sideEffects;
 
     public int getId() {
         return id;
@@ -30,5 +31,11 @@ public class Medication {
         this.description = description;
     }
 
+    public String getSideEffects() {
+        return sideEffects;
+    }
 
+    public void setSideEffects(String sideEffects) {
+        this.sideEffects = sideEffects;
+    }
 }

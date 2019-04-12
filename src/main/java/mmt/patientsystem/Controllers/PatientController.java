@@ -47,9 +47,9 @@ public class PatientController {
     public String singlePatientPage(@PathVariable(value = "id") int id, Model model) throws SQLException {
 
             model.addAttribute("patient", patientService.getSinglePatientID(id));
-            model.addAttribute("consultations", consultationService.getConsultations());
-            model.addAttribute("prescriptions", prescriptionService.getPrescriptions());
-            model.addAttribute("diagnosiss", diagnosisService.getDiagnosis());
+            model.addAttribute("consultations", consultationService.getConsultations(id));
+            model.addAttribute("preMed", prescriptionService.getPrescriptions(id));
+            model.addAttribute("diagnosiss", diagnosisService.getDiagnosis(id));
             return "PatientPages/patientPage";
 
 

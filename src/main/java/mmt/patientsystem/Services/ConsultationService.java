@@ -18,8 +18,8 @@ public class ConsultationService {
 
     private ResultSet resultSet;
 
-    public List<Consultation> getConsultations() throws SQLException {
-        resultSet = consultationRepository.getConsultations();
+    public List<Consultation> getConsultations(int id) throws SQLException {
+        resultSet = consultationRepository.getConsultations(id);
         List<Consultation> consultations = new ArrayList<>();
 
         while (resultSet.next()) {

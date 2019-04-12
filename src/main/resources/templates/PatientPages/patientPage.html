@@ -44,28 +44,28 @@
 
         <div class ="box">Prescriptions
             <table class="table prescription">
-                <div th:each="prescription:${prescriptions}">
                     <tr>
                         <th>Prescription</th>
                         <th>Medicine</th>
                         <th>Options</th>
                     </tr>
-
+                <div th:each="i : ${#numbers.sequence( 0, preMed.prescriptionList.size()-1)}">
                     <tr>
-                        <td th:text="${prescription.prescription}"></td>
-                        <td th:text="${prescription.medicationName}"></td>
+                        <td th:text="${preMed.prescriptionList[i].prescription}"></td>
+                        <td th:text="${preMed.medicationList[i].name}"></td>
 
-                        <td>
-                            <a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}">View</a>
-                            <!--<a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>-->
+                        <!--<td>
+                            &lt;!&ndash;<a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}">View</a>&ndash;&gt;
+                            &lt;!&ndash;<a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>&ndash;&gt;
                             <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
                                 <button type="submit">Delete</button>
                             </form>
-                        </td>
+                        </td>-->
                     </tr>
                 </div>
             </table>
         </div>
+
 
         <div class ="box">Diagnosis
             <table class="table diagnosis">

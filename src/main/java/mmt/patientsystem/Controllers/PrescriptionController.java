@@ -41,7 +41,7 @@ public class PrescriptionController {
         }
     }
 
-    @GetMapping("/prescription/addprescription")
+    /*@GetMapping("/prescription/addprescription")
     public String prescriptions(Model model) {
         try {
             model.addAttribute("doctors", userService.getDoctors());
@@ -65,5 +65,5 @@ public class PrescriptionController {
             return "sqlerror";
         }
     }
-
+*/
 }

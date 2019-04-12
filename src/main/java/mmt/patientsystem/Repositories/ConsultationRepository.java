@@ -18,8 +18,9 @@ public class ConsultationRepository {
     private Statement statement;
     private String query;
 
-    public ResultSet getConsultations() throws SQLException {
+    public ResultSet getConsultations(int id) throws SQLException {
         query = "SELECT * FROM consultations " +
+                "WHERE fk_patient = '" + id + "' " +
                 "ORDER BY date";
 
         statement = dbAccess.getConnection().createStatement();

@@ -1,6 +1,5 @@
 package mmt.patientsystem.Repositories;
 
-import mmt.patientsystem.Models.Prescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,22 +15,13 @@ public class DiagnosisRepository {
     private Statement statement;
     private String query;
 
-    public ResultSet getDiagnosis() throws SQLException {
+    public ResultSet getDiagnosis(int id) throws SQLException {
         query = "SELECT diagnosis.*, medicine.name, diagnose_names.d_name " +
                 "FROM diagnosis, medicine, dm_junction, diagnose_names " +
-                "WHERE dm_junction.fk_diagnosis = diagnosis.id AND dm_junction.fk_medicin = medicine.id AND diagnosis.fk_diagnose_name = diagnose_names.id";
+                "WHERE dm_junction.fk_diagnosis = diagnosis.id AND dm_junction.fk_medicin = medicine.m_id AND diagnosis.fk_diagnose_name = diagnose_names.id AND diagnosis.fk_patient = '" + id + "'";
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);
-    }
-
-    private PreparedStatement diagnosisFiller(Prescription prescription) throws SQLException {
-        preparedStatement = dbAccess.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, prescription.getNote());
-        preparedStatement.setString(2, prescription.getMedicationName());
-        preparedStatement.setDate(3, (Date) prescription.getDate());
-
-        return preparedStatement;
     }
 
     public void deleteDiagnosis(int id) throws SQLException {
