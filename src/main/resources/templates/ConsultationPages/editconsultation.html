@@ -16,7 +16,7 @@
         <form th:action="@{/consultations/editconsultation}" method="post" th:object="${Consultation}">
             <input type="hidden" th:value="${consultation.id}" name="id">
             <input type="text" th:value="${consultation.description}" name="description">
-            <input type="text" th:value="${consultation.consultation}" name="consultation">
+            <input type="text" th:value="${consultation.conclusion}" name="conclusion">
             <input type="date" th:value="${consultation.date}" name="date">
             <input type="time" th:value="${consultation.fromTime}" name="fromTime">
             <input type="time" th:value="${consultation.toTime}" name="toTime">

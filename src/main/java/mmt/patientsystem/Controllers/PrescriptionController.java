@@ -20,15 +20,9 @@ public class PrescriptionController {
     @Autowired
     private UserService userService;
 
-    private boolean reverseTH = true;
-
     @GetMapping("/prescriptions")
-    public String list(@RequestParam(value = "order", defaultValue = "1") int order,
-                       @RequestParam(value = "reverse", defaultValue = "false") boolean reverse,
-                       Model model) {
+    public String list(Model model) {
         try {
-            reverseTH = !reverseTH;
-            model.addAttribute("reverse", reverseTH);
             model.addAttribute("prescriptions", prescriptionService.getPrescriptions());
             return "Prescription/prescriptions";
 
