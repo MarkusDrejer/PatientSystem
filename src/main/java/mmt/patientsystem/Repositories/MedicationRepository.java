@@ -21,10 +21,13 @@ public class MedicationRepository {
             query = "SELECT medicine.* FROM pm_junction " +
                     "INNER JOIN medicine ON pm_junction.fk_medicin = medicine.m_id " +
                     "WHERE fk_prescription = '" + id + "'";
-        } else {
+        } else if(type == 2){
             query = "SELECT medicine.* FROM dm_junction " +
                     "INNER JOIN medicine ON dm_junction.fk_medicin = medicine.m_id " +
                     "WHERE fk_diagnosis = '" + id + "'";
+        } else {
+            query = "SELECT * FROM medicine " +
+                    "ORDER BY name";
         }
 
         statement = dbAccess.getConnection().createStatement();

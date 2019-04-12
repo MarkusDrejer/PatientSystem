@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.roleTier == 1 or session.roleTier == 2}">
+<head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>New Prescription</title>
+</head>
+<body>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+
+    <div id="main">
+
+        <h1>Creating New Prescription</h1>
+
+        <form action="/prescription/save" method="post" th:object="${Prescription}">
+            <input type="text" placeholder="Prescription" name="prescription">
+            <textarea type="text" placeholder="Note" name="note"></textarea>
+            <input type="hidden" th:value="${patient_id}" name="patientId">
+
+            <select name="medLink" >
+                <optgroup label="Medications">
+                    <div th:each="medication:${medications}">
+                        <option th:text="${medication.name}" th:value="${medication.id}"></option>
+                    </div>
+                </optgroup>
+            </select>
+            <select name="doctorId" >
+                <optgroup label="Doctor">
+                    <div th:each="doctor:${doctors}">
+                        <option th:text="${doctor.name}" th:value="${doctor.id}" th:selected="${doctor.name == session.name}"></option>
+                    </div>
+                </optgroup>
+            </select>
+            <button type="submit">Create</button>
+        </form>
+
+    </div>
+
+</body>
+</div>
+</html>

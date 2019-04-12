@@ -11,6 +11,7 @@ public class Prescription {
     private String medications;
     private int patientId;
     private int doctorId;
+    private int medLink;
 
     public int getId() {
         return id;
@@ -66,5 +67,13 @@ public class Prescription {
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
+    }
+
+    public int getMedLink() {
+        return medLink;
+    }
+
+    public void setMedLink(int medLink) {
+        this.medLink = medLink;
     }
 }

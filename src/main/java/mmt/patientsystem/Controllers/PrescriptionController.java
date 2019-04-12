@@ -1,7 +1,9 @@
 package mmt.patientsystem.Controllers;
 
+import mmt.patientsystem.Models.Prescription;
 import mmt.patientsystem.Services.MedicationService;
 import mmt.patientsystem.Services.PrescriptionService;
+import mmt.patientsystem.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,17 +16,22 @@ public class PrescriptionController {
 
     @Autowired
     PrescriptionService prescriptionService;
-
     @Autowired
     private MedicationService medicationService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/prescription/{id}")
-    public String singlePrescription(@PathVariable(value = "id") int id, Model model) throws SQLException {
-
+    public String singlePrescription(@PathVariable(value = "id") int id, Model model) {
+        try {
             model.addAttribute("prescription", prescriptionService.getSinglePrescription(id));
             model.addAttribute("medications", medicationService.getMedications(id, 1));
             return "PrescriptionPages/prescriptionPage";
 
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
     }
 
     @PostMapping("/{p_id}/prescription/deleteprescription/{id}")
@@ -40,11 +47,13 @@ public class PrescriptionController {
         }
     }
 
-    /*@GetMapping("/prescription/addprescription")
-    public String prescriptions(Model model) {
+    @GetMapping("/patient/{id}/addprescription")
+    public String prescriptions(@PathVariable(value = "id") int id, Model model) {
         try {
+            model.addAttribute("patient_id", id);
             model.addAttribute("doctors", userService.getDoctors());
-            return "Prescription/addprescription";
+            model.addAttribute("medications", medicationService.getMedications(-1, -1));
+            return "PrescriptionPages/addprescription";
 
 
         } catch (SQLException e) {
@@ -53,16 +62,15 @@ public class PrescriptionController {
         }
     }
 
-    @PostMapping("/Prescription/save")
+    @PostMapping("/prescription/save")
     public String save(@ModelAttribute Prescription prescription, Model model) {
         try {
             prescriptionService.addPrescription(prescription);
-            return "redirect:/prescriptions";
+            return "redirect:/patient/" + prescription.getPatientId();
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());
             return "sqlerror";
         }
     }
-*/
 }

@@ -49,7 +49,6 @@ public class ConsultationService {
         consultation.setPatientId(resultSet.getInt("fk_patient"));
         consultation.setDoctorId(resultSet.getInt("fk_doctor"));
 
-
         return consultation;
 
     }

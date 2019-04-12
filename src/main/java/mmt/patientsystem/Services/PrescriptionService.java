@@ -56,4 +56,12 @@ public class PrescriptionService {
     public void deletePrescription(int id) throws SQLException {
         prescriptionRepository.deletePrescription(id);
     }
+
+    public void addPrescription(Prescription prescription) throws SQLException {
+        resultSet = prescriptionRepository.addPrescription(prescription);
+        resultSet.next();
+        int key = resultSet.getInt(1);
+        int medId = prescription.getMedLink();
+        prescriptionRepository.addPrescriptionJunction(key, medId);
+    }
 }

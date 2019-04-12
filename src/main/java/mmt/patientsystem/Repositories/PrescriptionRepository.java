@@ -1,5 +1,6 @@
 package mmt.patientsystem.Repositories;
 
+import mmt.patientsystem.Models.Prescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -42,5 +43,29 @@ public class PrescriptionRepository {
 
         statement = dbAccess.getConnection().createStatement();
         statement.executeUpdate(query);
+    }
+
+    public ResultSet addPrescription(Prescription prescription) throws SQLException {
+        query = "INSERT INTO prescriptions (prescription, note, fk_patient, fk_doctor) " +
+                "VALUES (?, ?, ?, ?)";
+
+        preparedStatement = dbAccess.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setString(1, prescription.getPrescription());
+        preparedStatement.setString(2, prescription.getNote());
+        preparedStatement.setInt(3, prescription.getPatientId());
+        preparedStatement.setInt(4, prescription.getDoctorId());
+        preparedStatement.executeUpdate();
+
+        return preparedStatement.getGeneratedKeys();
+    }
+
+    public void addPrescriptionJunction(int key, int medId) throws SQLException {
+        query = "INSERT INTO pm_junction (fk_medicin, fk_prescription) " +
+                "VALUES (?, ?)";
+        preparedStatement = dbAccess.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, medId);
+        preparedStatement.setInt(2, key);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
     }
 }
