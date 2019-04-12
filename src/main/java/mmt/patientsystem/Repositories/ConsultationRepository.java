@@ -18,19 +18,8 @@ public class ConsultationRepository {
     private Statement statement;
     private String query;
 
-    public ResultSet getConsultations(int order, boolean reverse) throws SQLException {
+    public ResultSet getConsultations() throws SQLException {
         consultationSelectFiller();
-        /*
-        query += "ORDER BY ";
-
-        switch (order) {
-
-        }
-        if(reverse) {
-            query += "DESC";
-        }
-        */
-
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);

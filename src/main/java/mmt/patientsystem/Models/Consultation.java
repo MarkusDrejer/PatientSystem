@@ -1,14 +1,10 @@
 package mmt.patientsystem.Models;
 
-import java.sql.Time;
 import java.util.Date;
 
 public class Consultation {
 
     private int id;
-    private String patientName;
-    private String doctorName;
-    private int CPR;
     private String description;
     private String conclusion;
     private Date date;
@@ -25,14 +21,6 @@ public class Consultation {
         this.id = id;
     }
 
-    public String getPatientName() {
-        return patientName;
-    }
-
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
     public int getPatientId() { return patientId; }
 
     public void setPatientId(int patientId) { this.patientId = patientId; }
@@ -40,22 +28,6 @@ public class Consultation {
     public int getDoctorId() { return doctorId; }
 
     public void setDoctorId(int doctorId) { this.doctorId = doctorId; }
-
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
-    }
-
-    public int getCPR() {
-        return CPR;
-    }
-
-    public void setCPR(int CPR) {
-        this.CPR = CPR;
-    }
 
     public String getDescription() {
         return description;
