@@ -52,18 +52,18 @@
                         <th>Medicine</th>
                         <th>Options</th>
                     </tr>
-                <div th:each="i : ${#numbers.sequence( 0, preMed.prescriptionList.size()-1)}">
+                <div th:each="prescription:${prescriptions}">
                     <tr>
-                        <td th:text="${preMed.prescriptionList[i].prescription}"></td>
-                        <td th:text="${preMed.medicationList[i].name}"></td>
+                        <td th:text="${prescription.prescription}"></td>
+                        <td th:text="${prescription.medications}"></td>
 
-                        <!--<td>
-                            &lt;!&ndash;<a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}">View</a>&ndash;&gt;
-                            &lt;!&ndash;<a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>&ndash;&gt;
+                        <td>
+                            <!--<a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}">View</a>-->
+                            <!--<a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>-->
                             <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
                                 <button type="submit">Delete</button>
                             </form>
-                        </td>-->
+                        </td>
                     </tr>
                 </div>
             </table>

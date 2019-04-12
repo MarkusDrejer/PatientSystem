@@ -48,7 +48,7 @@ public class PatientController {
 
             model.addAttribute("patient", patientService.getSinglePatientID(id));
             model.addAttribute("consultations", consultationService.getConsultations(id));
-            model.addAttribute("preMed", prescriptionService.getPrescriptions(id));
+            model.addAttribute("prescriptions", prescriptionService.getPrescriptions(id));
             model.addAttribute("diagnosiss", diagnosisService.getDiagnosis(id));
             return "PatientPages/patientPage";
 

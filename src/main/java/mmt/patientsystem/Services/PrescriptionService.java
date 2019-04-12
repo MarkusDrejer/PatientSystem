@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PrescriptionService {
@@ -18,9 +20,17 @@ public class PrescriptionService {
 
     private ResultSet resultSet;
 
-    public Pre_Med getPrescriptions(int id) throws SQLException {
+    public List<Prescription> getPrescriptions(int id) throws SQLException {
         resultSet = prescriptionRepository.getPrescriptions(id);
-        Pre_Med preMed = new Pre_Med();
+        List<Prescription> prescriptionList = new ArrayList<>();
+
+        while(resultSet.next()) {
+            prescriptionList.add(prescriptionFiller());
+        }
+
+        return prescriptionList;
+
+        /*Pre_Med preMed = new Pre_Med();
 
         while (resultSet.next()) {
             preMed.setPrescriptionList(prescriptionFiller());
@@ -32,7 +42,7 @@ public class PrescriptionService {
             medication.setSideEffects(resultSet.getString("Sideeffects"));
             preMed.setMedicationList(medication);
         }
-        return preMed;
+        return preMed;*/
     }
 
     public Prescription getSinglePrescription(int id) throws SQLException {
@@ -51,6 +61,7 @@ public class PrescriptionService {
         prescription.setPrescription(resultSet.getString("prescription"));
         prescription.setNote(resultSet.getString("note"));
         prescription.setDate(resultSet.getDate("date"));
+        prescription.setMedications(resultSet.getString("medications_given"));
         prescription.setPatientId(resultSet.getInt("fk_patient"));
         prescription.setDoctorId(resultSet.getInt("fk_doctor"));
 
