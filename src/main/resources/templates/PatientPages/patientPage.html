@@ -19,9 +19,9 @@
             <table class="table consultation">
                 <div th:each="consultation:${consultations}">
                 <tr>
-                    <th >Date </th>
-                    <th >From</th>
-                    <th >To</th>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>To</th>
                     <th>Options</th>
                 </tr>
 
@@ -42,44 +42,55 @@
             </table>
         </div>
 
-        <!--<div class ="box">Prescription</div>
-        <table class="table Prescription">
-            <div th:each="prescription:${prescription}">
-                <tr>
-                    <th >Date </th>
-                    <td th:text="${prescription.prescription}"></td>
-                </tr>
-                <tr>
-                    <th >From</th>
-                    <td th:text="${prescription.note}"></td>
-                </tr>
-                <tr>
-                    <th >To</th>
-                    <td th:text="${prescription.doctor}"></td>
-                </tr>
-            </div>
-        </table>-->
-       <!-- <div class ="box">Diagnosis
-            <table class="table Diagnosis">
-                <div th:each="diagnosis:${diagnosis}">
+        <div class ="box">Prescriptions
+            <table class="table prescription">
+                <div th:each="prescription:${prescriptions}">
                     <tr>
-                        <th >Diagnosis </th>
-                        <td th:text="${diagnosis.diagnosis}"></td>
+                        <th>Prescription</th>
+                        <th>Medicine</th>
+                        <th>Options</th>
                     </tr>
+
                     <tr>
-                        <th >Note</th>
-                        <td th:text="${diagnosis.note}"></td>
-                    </tr>
-                    <tr>
-                        <th >To</th>
-                        <td th:text="${diagnosis.fk_doctor}"></td>
+                        <td th:text="${prescription.prescription}"></td>
+                        <td th:text="${prescription.medicationName}"></td>
+
+                        <!--<td>
+                            <a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
+                            <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>
+                            <form th:action="@{/{p_id}/consultation/deleteconsultation/{id}(p_id=${patient.id},id=${consultation.id})}" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>-->
                     </tr>
                 </div>
             </table>
         </div>
-        <div style="clear:both;"></div>
-    </div>-->
-    <!--</table>-->
+
+        <div class ="box">Diagnosis
+            <table class="table diagnosis">
+                <div th:each="diagnosis:${diagnosiss}">
+                    <tr>
+                        <th>Diagnosis</th>
+                        <th>Medicine</th>
+                        <th>Options</th>
+                    </tr>
+
+                    <tr>
+                        <td th:text="${diagnosis.diagnosis}"></td>
+                        <td th:text="${diagnosis.medicationName}"></td>
+
+                        <!--<td>
+                            <a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
+                            <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>
+                            <form th:action="@{/{p_id}/consultation/deleteconsultation/{id}(p_id=${patient.id},id=${consultation.id})}" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>-->
+                    </tr>
+                </div>
+            </table>
+        </div>
 </div>
     <a th:href="@{/patient/{id}/addconsultation(id=${patient.id})}">Add consultation</a>
 </div>

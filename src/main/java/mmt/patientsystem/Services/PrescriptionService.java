@@ -13,8 +13,9 @@ import java.util.List;
 
 @Service
 public class PrescriptionService {
+
     @Autowired
-    PrescriptionRepository prescriptionRepository;
+    private PrescriptionRepository prescriptionRepository;
 
     private ResultSet resultSet;
 
@@ -31,15 +32,14 @@ public class PrescriptionService {
     private Prescription prescriptionFiller() throws SQLException {
         Prescription prescription = new Prescription();
         prescription.setId(resultSet.getInt("id"));
+        prescription.setPrescription(resultSet.getString("prescription"));
         prescription.setNote(resultSet.getString("note"));
-        prescription.setMedicationName(resultSet.getString("prescription"));
+        prescription.setMedicationName(resultSet.getString("name"));
         prescription.setDate(resultSet.getDate("date"));
-        prescription.setPatientName(resultSet.getString("fk_patient"));
-        prescription.setDoctorName(resultSet.getString("fk_doctor"));
-
+        prescription.setPatientId(resultSet.getInt("fk_patient"));
+        prescription.setDoctorId(resultSet.getInt("fk_doctor"));
 
         return prescription;
-
     }
 
     public void addPrescription(Prescription prescription) throws SQLException {

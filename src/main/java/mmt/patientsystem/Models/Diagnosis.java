@@ -5,13 +5,12 @@ import java.util.Date;
 public class Diagnosis {
 
     private int id;
-    private String patientName;
-    private String doctorName;
-    private int CPR;
     private String diagnosis;
-    private String medicationName;
     private String note;
     private Date date;
+    private String medicationName;
+    private int patientId;
+    private int doctorId;
 
     public int getId() {
         return id;
@@ -21,44 +20,12 @@ public class Diagnosis {
         this.id = id;
     }
 
-    public String getPatientName() {
-        return patientName;
-    }
-
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
-    }
-
-    public int getCPR() {
-        return CPR;
-    }
-
-    public void setCPR(int CPR) {
-        this.CPR = CPR;
-    }
-
     public String getDiagnosis() {
         return diagnosis;
     }
 
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
-    }
-
-    public String getMedicationName() {
-        return medicationName;
-    }
-
-    public void setMedicationName(String medicationName) {
-        this.medicationName = medicationName;
     }
 
     public String getNote() {
@@ -75,5 +42,29 @@ public class Diagnosis {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getMedicationName() {
+        return medicationName;
+    }
+
+    public void setMedicationName(String medicationName) {
+        this.medicationName = medicationName;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 }

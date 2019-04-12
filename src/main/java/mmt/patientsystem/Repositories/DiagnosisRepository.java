@@ -6,9 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 
-
 @Repository
-public class PrescriptionRepository {
+public class DiagnosisRepository {
 
     @Autowired
     DBAccess dbAccess;
@@ -17,16 +16,16 @@ public class PrescriptionRepository {
     private Statement statement;
     private String query;
 
-    public ResultSet getPrescriptions() throws SQLException {
-        query = "SELECT prescriptions.*, medicine.name " +
-                "FROM prescriptions, medicine, pm_junction " +
-                "WHERE pm_junction.fk_prescription = prescriptions.id AND pm_junction.fk_medicin = medicine.id";
+    public ResultSet getDiagnosis() throws SQLException {
+        query = "SELECT diagnosis.*, medicine.name, diagnose_names.d_name " +
+                "FROM diagnosis, medicine, dm_junction, diagnose_names " +
+                "WHERE dm_junction.fk_diagnosis = diagnosis.id AND dm_junction.fk_medicin = medicine.id AND diagnosis.fk_diagnose_name = diagnose_names.id";
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);
     }
 
-    private PreparedStatement prescriptionFiller(Prescription prescription) throws SQLException {
+    private PreparedStatement diagnosisFiller(Prescription prescription) throws SQLException {
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setString(1, prescription.getNote());
         preparedStatement.setString(2, prescription.getMedicationName());
@@ -34,15 +33,4 @@ public class PrescriptionRepository {
 
         return preparedStatement;
     }
-
-    public void addPrescription(Prescription prescription) throws SQLException {
-        query = "INSERT INTO prescriptions (note, prescription, date, fk_patient, fk_doctor) " +
-                "VALUES (?, ?, ?, ?, ?)";
-
-        preparedStatement = prescriptionFiller(prescription);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-    }
-
-
 }

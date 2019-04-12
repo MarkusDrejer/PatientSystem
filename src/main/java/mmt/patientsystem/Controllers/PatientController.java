@@ -2,7 +2,9 @@ package mmt.patientsystem.Controllers;
 
 import mmt.patientsystem.Models.Patient;
 import mmt.patientsystem.Services.ConsultationService;
+import mmt.patientsystem.Services.DiagnosisService;
 import mmt.patientsystem.Services.PatientService;
+import mmt.patientsystem.Services.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,10 @@ public class PatientController {
     private PatientService patientService;
     @Autowired
     private ConsultationService consultationService;
+    @Autowired
+    private PrescriptionService prescriptionService;
+    @Autowired
+    private DiagnosisService diagnosisService;
 
     private boolean reverseTH = true;
 
@@ -38,16 +44,15 @@ public class PatientController {
     }
 
     @GetMapping("/patient/{id}")
-    public String singlePatientPage(@PathVariable(value = "id") int id, Model model) {
-        try {
+    public String singlePatientPage(@PathVariable(value = "id") int id, Model model) throws SQLException {
+
             model.addAttribute("patient", patientService.getSinglePatientID(id));
             model.addAttribute("consultations", consultationService.getConsultations());
+            model.addAttribute("prescriptions", prescriptionService.getPrescriptions());
+            model.addAttribute("diagnosiss", diagnosisService.getDiagnosis());
             return "PatientPages/patientPage";
 
-        } catch (SQLException e) {
-            model.addAttribute("errorCode", e.getErrorCode());
-            return "sqlerror";
-        }
+
     }
 
     @PostMapping("/patient/search")

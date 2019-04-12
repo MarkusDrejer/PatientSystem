@@ -5,11 +5,12 @@ import java.util.Date;
 public class Prescription {
 
     private int id;
-    private String patientName;
-    private String doctorName;
+    private String prescription;
     private String note;
     private String medicationName;
     private Date date;
+    private int patientId;
+    private int doctorId;
 
 
     public int getId() {
@@ -20,22 +21,13 @@ public class Prescription {
         this.id = id;
     }
 
-    public String getPatientName() {
-        return patientName;
+    public String getPrescription() {
+        return prescription;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
     }
-
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
-    }
-
 
     public String getNote() {
         return note;
@@ -61,5 +53,19 @@ public class Prescription {
         this.date = date;
     }
 
+    public int getPatientId() {
+        return patientId;
+    }
 
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
 }
