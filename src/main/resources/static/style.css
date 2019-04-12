@@ -1,3 +1,5 @@
+body {
+    font-family: Arial,sans-serif;
 .table {
 
 }
@@ -13,7 +15,4 @@
     color: #333030;
     border-radius: 4px;
     font-size: 13px;
-}
-body {
-    font-family: Arial, sans-serif;
 }

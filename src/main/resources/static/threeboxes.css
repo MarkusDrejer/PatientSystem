@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, sans-serif;
+}
+div.container {
+    width: 100%;
+    border: 2px solid black;
+    float:right;
+}
+div.box {
+    box-sizing:border-box;
+    width: 33%;
+    border: 5px #193c90;
+    float:left;
+
+}

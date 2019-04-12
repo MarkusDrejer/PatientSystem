@@ -3,7 +3,7 @@
 <div th:if="${session.name != null}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
-    <link rel="stylesheet" href="/style.css" type="text/css">
+    <link rel="stylesheet" href="/threeboxes.css" type="text/css">
     <meta charset="UTF-8">
     <title>Patient</title>
 </head>
@@ -14,40 +14,70 @@
 
     <h1 th:text="${patient.name}"></h1>
 
-    <table class="table side">
-        <tr>
-            <th >ID</th>
-            <td th:text="${patient.id}"></td>
-        </tr>
-        <tr>
-            <th >Name</th>
-            <td th:text="${patient.name}"></td>
-        </tr>
-        <tr>
-            <th >Birthdate</th>
-            <td th:text="${patient.birthDate}"></td>
-        </tr>
-        <tr>
-            <th >Height</th>
-            <td th:text="${patient.height}"></td>
-        </tr>
-        <tr>
-            <th >Gender</th>
-            <td th:text="${patient.gender}"></td>
-        </tr>
-        <tr>
-            <th >CPR</th>
-            <td th:text="${patient.CPR}"></td>
-        </tr>
-        <tr>
-            <th >Note</th>
-            <td th:text="${patient.personalDescription}"></td>
-        </tr>
-        <tr>
+    <div class="container">
+        <div class ="box">Consultation
+            <table class="table consultation">
+                <div th:each="consultation:${consultations}">
+                <tr>
+                    <th >Date </th>
+                    <td th:text="${consultation.date}"></td>
+                </tr>
+                <tr>
+                    <th >From</th>
+                    <td th:text="${consultation.fromTime}"></td>
+                </tr>
+                <tr>
+                    <th >To</th>
+                    <td th:text="${consultation.toTime}"></td>
+                </tr>
+                </div>
+            </table>
+        </div>
+
+        <!--<div class ="box">Prescription</div>
+        <table class="table Prescription">
+            <div th:each="prescription:${prescription}">
+                <tr>
+                    <th >Date </th>
+                    <td th:text="${prescription.prescription}"></td>
+                </tr>
+                <tr>
+                    <th >From</th>
+                    <td th:text="${prescription.note}"></td>
+                </tr>
+                <tr>
+                    <th >To</th>
+                    <td th:text="${prescription.doctor}"></td>
+                </tr>
+            </div>
+        </table>-->
+       <!-- <div class ="box">Diagnosis
+            <table class="table Diagnosis">
+                <div th:each="diagnosis:${diagnosis}">
+                    <tr>
+                        <th >Diagnosis </th>
+                        <td th:text="${diagnosis.diagnosis}"></td>
+                    </tr>
+                    <tr>
+                        <th >Note</th>
+                        <td th:text="${diagnosis.note}"></td>
+                    </tr>
+                    <tr>
+                        <th >To</th>
+                        <td th:text="${diagnosis.fk_doctor}"></td>
+                    </tr>
+                </div>
+            </table>
+        </div>
+        <div style="clear:both;"></div>
+    </div>-->
+
+
+
             <th ></th>
             <td><a th:href="@{/patient/{id}/addconsultation(id=${patient.id})}">Add consultation</a></td>
         </tr>
-    </table>
+    <!--</table>-->
 </div>
 </body>
 </div>
