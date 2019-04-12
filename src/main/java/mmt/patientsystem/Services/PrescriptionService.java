@@ -1,5 +1,6 @@
 package mmt.patientsystem.Services;
 
+import mmt.patientsystem.External.CheckPrescription;
 import mmt.patientsystem.Models.Prescription;
 import mmt.patientsystem.Repositories.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class PrescriptionService {
 
     @Autowired
     private PrescriptionRepository prescriptionRepository;
+    @Autowired
+    private CheckPrescription checkPrescription;
 
     private ResultSet resultSet;
 
@@ -58,10 +61,14 @@ public class PrescriptionService {
     }
 
     public void addPrescription(Prescription prescription) throws SQLException {
-        resultSet = prescriptionRepository.addPrescription(prescription);
-        resultSet.next();
-        int key = resultSet.getInt(1);
-        int medId = prescription.getMedLink();
-        prescriptionRepository.addPrescriptionJunction(key, medId);
+        if(!checkPrescription.check()){
+            throw new IllegalStateException("Unable to validate Prescription");
+        } else {
+            resultSet = prescriptionRepository.addPrescription(prescription);
+            resultSet.next();
+            int key = resultSet.getInt(1);
+            int medId = prescription.getMedLink();
+            prescriptionRepository.addPrescriptionJunction(key, medId);
+        }
     }
 }
