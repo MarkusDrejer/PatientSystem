@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.name != null}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <link rel="stylesheet" href="/tables.css" type="text/css">
@@ -49,6 +50,9 @@
         </div>
     </table>
 
+    <a th:if="not ${session.roleTier == 3}" class="button" th:href="@{/addmedicine/{id}/{type}(id=${diagnosis.id},type=${2})}">Add Medicine</a>
+
 </div>
 </body>
+</div>
 </html>
