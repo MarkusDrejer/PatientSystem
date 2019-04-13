@@ -29,7 +29,7 @@
                 <option value="Female" th:selected="${'Female' == patient.gender}">Female</option>
             </optgroup>
         </select>
-        <input type="text" placeholder="Description" th:value="${patient.personalDescription}" name="personalDescription">
+        <textarea placeholder="Description" th:text="${patient.personalDescription}" name="personalDescription"></textarea>
         <button type="submit" class="button">Edit</button>
     </form>
 </div>
