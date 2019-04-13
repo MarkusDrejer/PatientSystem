@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <link rel="stylesheet" href="/tables.css" type="text/css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Prescriptions</title>
 </head>
 <body>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+
     <p th:text="${prescription.prescription}"></p>
-<div th:each="medication:${medications}">
+    <div th:each="medication:${medications}">
     <p th:text="${medication.name}"></p>
-</div>
+    </div>
 </body>
 </html>

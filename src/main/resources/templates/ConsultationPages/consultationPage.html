@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <link rel="stylesheet" href="/tables.css" type="text/css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Consultations</title>
 </head>
 <body>
-<div>Create Single Page</div>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+    <div id="main">
+        <table class="table consultation overviewTable">
+            <tr>
+                <th>Booking number</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Starts at</th>
+                <th>Ends at</th>
+                <th>CPR</th>
+                <th>Doctor</th>
+                <!--<th>Conclusion</th>-->
+            </tr>
+            <td th:text="${consultation.Id}"></td>
+            <td th:text="${consultation.Description}"></td>
+            <td th:text="${consultation.date}"></td>
+            <td th:text="${consultation.FromTime}"></td>
+            <td th:text="${consultation.PatientId}"></td>
+            <td th:text="${consultation.DoctorId}"></td>
+          <!--  <td th:text="${consultation.conclusion}"></td>-->
+        </table>
+    </div>
 </body>
 </html>
