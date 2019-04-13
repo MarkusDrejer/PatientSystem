@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <link rel="stylesheet" href="/threeboxes.css" type="text/css">
     <link rel="stylesheet" href="/tables.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Patient</title>
 </head>
@@ -17,7 +18,7 @@
 
     <div class="container">
         <div class ="box">
-            <h3>Consultation</h3>
+            <h3>Consultation <a class="button" th:href="@{/patient/{id}/addconsultation(id=${patient.id})}">Add</a></h3>
             <table class="table consultation overviewTable">
                 <tr>
                     <th>Date</th>
@@ -36,20 +37,19 @@
                     </div>
 
                     <td>
-                        <a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}">View</a>
-                        <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}">Edit</a>
+                        <a class="button" th:href="@{/consultation/{id}(id=${consultation.id})}" title="View"><i class="far fa-eye"></i></a>
+                        <a class="button" th:href="@{/consultation/editconsultation/{id}(id=${consultation.id})}" title="Edit"><i class="fas fa-edit"></i></a>
                         <form th:action="@{/{p_id}/consultation/deleteconsultation/{id}(p_id=${patient.id},id=${consultation.id})}" method="post">
-                            <button type="submit">Delete</button>
+                            <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>
                 </div>
             </table>
-            <a th:href="@{/patient/{id}/addconsultation(id=${patient.id})}">Add consultation</a>
         </div>
 
         <div class ="box">
-            <h3>Prescriptions</h3>
+            <h3>Prescriptions <a class="button" th:href="@{/patient/{id}/addprescription(id=${patient.id})}">Add</a></h3>
             <table class="table prescription overviewTable">
                     <tr>
                         <th>Prescription</th>
@@ -66,22 +66,21 @@
                             <td th:if="${prescription.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
                         </div>
                         <td>
-                            <a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}">View</a>
-                            <a class="button" th:href="@{/prescription/editprescription/{id}(id=${prescription.id})}">Edit</a>
+                            <a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}" title="View"><i class="far fa-eye"></i></a>
+                            <a class="button" th:href="@{/prescription/editprescription/{id}(id=${prescription.id})}" title="Edit"><i class="fas fa-edit"></i></a>
                             <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
-                                <button type="submit">Delete</button>
+                                <button type="submit" title="Delete"><i class="fas fa-trash-alt"></i></button>
                             </form>
                             <a class="button" th:href="@{/{p_id}/addmedicine/{id}/{type}(p_id=${patient.id},id=${prescription.id},type=${1})}">Add Medicine</a>
                         </td>
                     </tr>
                 </div>
             </table>
-            <a th:href="@{/patient/{id}/addprescription(id=${patient.id})}">Add Prescription</a>
         </div>
 
 
         <div class ="box">
-            <h3>Diagnosis</h3>
+            <h3>Diagnosis <a class="button" th:href="@{/patient/{id}/adddiagnosis(id=${patient.id})}">Add</a></h3>
             <table class="table diagnosis overviewTable">
                     <tr>
                         <th>Diagnosis</th>
@@ -98,17 +97,16 @@
                         </div>
 
                         <td>
-                            <a class="button" th:href="@{/diagnosis/{id}(id=${diagnosis.id})}">View</a>
-                            <a class="button" th:href="@{/diagnosis/editdiagnosis/{id}(id=${diagnosis.id})}">Edit</a>
+                            <a class="button" th:href="@{/diagnosis/{id}(id=${diagnosis.id})}" title="View"><i class="far fa-eye"></i></a>
+                            <a class="button" th:href="@{/diagnosis/editdiagnosis/{id}(id=${diagnosis.id})}" title="Edit"><i class="fas fa-edit"></i></a>
                             <form th:action="@{/{p_id}/diagnosis/deletediagnosis/{id}(p_id=${patient.id},id=${diagnosis.id})}" method="post">
-                                <button type="submit">Delete</button>
+                                <button type="submit" title="Delete"><i class="fas fa-trash-alt"></i></button>
                             </form>
                             <a class="button" th:href="@{/{p_id}/addmedicine/{id}/{type}(p_id=${patient.id},id=${diagnosis.id},type=${2})}">Add Medicine</a>
                         </td>
                     </tr>
                 </div>
             </table>
-            <a th:href="@{/patient/{id}/adddiagnosis(id=${patient.id})}">Add Diagnosis</a>
         </div>
 </div>
     <a th:href="@{/{id}/adddiagnosisname(id=${patient.id})}">New Diagnosis Type</a>

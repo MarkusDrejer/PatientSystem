@@ -48,3 +48,7 @@ body {
 .overviewTable .options a {
     float: left;
 }
+
+.overviewTable tr form {
+    display: inline;
+}

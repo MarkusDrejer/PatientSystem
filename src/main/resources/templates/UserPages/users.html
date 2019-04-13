@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <link rel="stylesheet" href="/tables.css" type="text/css">
     <link rel="stylesheet" href="/style.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Users</title>
 </head>
@@ -35,10 +36,10 @@
                     <td th:text="${user.role_name}"></td>
 
                     <td class="options">
-                        <a th:href="@{/users/edituser/{id}(id=${user.id})}" class="button">Edit</a>
+                        <a th:href="@{/users/edituser/{id}(id=${user.id})}" title="Edit"><i class="fas fa-edit"></i></a>
 
                         <form th:action="@{/users/deleteuser/{id}(id=${user.id})}" method="post">
-                            <button type="submit" class="button">Delete</button>
+                            <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>

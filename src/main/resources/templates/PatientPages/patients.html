@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <link rel="stylesheet" href="/tables.css" type="text/css">
     <link rel="stylesheet" href="/style.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Patients</title>
 </head>
@@ -41,10 +42,10 @@
                         <td><p th:text="${patient.personalDescription}"></p></td>
 
                         <td class="options" th:if="not ${session.roleTier == 3}">
-                            <a th:href="@{/patients/editpatient/{id}(id=${patient.id})}"class="button">Edit</a>
+                            <a th:href="@{/patients/editpatient/{id}(id=${patient.id})}"class="button" title="Edit"><i class="fas fa-edit"></i></a>
 
                             <form th:action="@{/patients/deletepatient/{id}(id=${patient.id})}" method="post">
-                                <button type="submit" class="button">Delete</button>
+                                <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
                             </form>
                         </td>
                 </tr>

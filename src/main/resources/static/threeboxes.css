@@ -22,3 +22,8 @@ div.box {
     border-radius: 4px;
     font-size: 13px;
 }
+div.box h3 a {
+    font-size: 15px;
+    float:right;
+    text-decoration: none;
+}
