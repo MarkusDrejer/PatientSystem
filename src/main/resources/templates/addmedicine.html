@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.roleTier == 1 or session.roleTier == 2}">
+<head>
+    <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Add Medicine</title>
+</head>
+<body>
+<div th:replace="fragments/sidenav :: sidenav"></div>
+
+    <div id="main">
+
+        <form th:action="@{/{p_id}/addmedicine/{type}(p_id=${patientId},type=${type})}" method="post" th:object="${Medication}">
+
+            <select name="id">
+                <optgroup label="Medications">
+                    <div th:each="m_names:${medications}">
+                        <option th:text="${m_names.name}" th:value="${m_names.id}"></option>
+                    </div>
+                </optgroup>
+            </select>
+            <input type="hidden" th:value="${couplingId}" name="couplingId">
+
+            <button type="submit">Add</button>
+        </form>
+
+    </div>
+
+</body>
+</div>
+</html>

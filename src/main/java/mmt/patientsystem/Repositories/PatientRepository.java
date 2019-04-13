@@ -60,8 +60,8 @@ public class PatientRepository {
     }
 
     public ResultSet getSinglePatientSearch(Patient patient) throws SQLException {
-        patientSelectFiller();
-        query += "WHERE cpr = ?";
+        query = "SELECT id FROM patients " +
+                "WHERE cpr = ?";
 
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, patient.getCPR());

@@ -6,6 +6,7 @@ public class Medication {
     private String name;
     private String description;
     private String sideEffects;
+    private int couplingId;
 
     public int getId() {
         return id;
@@ -37,5 +38,13 @@ public class Medication {
 
     public void setSideEffects(String sideEffects) {
         this.sideEffects = sideEffects;
+    }
+
+    public int getCouplingId() {
+        return couplingId;
+    }
+
+    public void setCouplingId(int couplingId) {
+        this.couplingId = couplingId;
     }
 }
