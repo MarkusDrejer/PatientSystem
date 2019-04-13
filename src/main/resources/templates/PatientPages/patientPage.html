@@ -69,9 +69,8 @@
                             <a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}" title="View"><i class="far fa-eye"></i></a>
                             <a class="button" th:href="@{/prescription/editprescription/{id}(id=${prescription.id})}" title="Edit"><i class="fas fa-edit"></i></a>
                             <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
-                                <button type="submit" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
                             </form>
-                            <!--<a class="button" th:href="@{/{p_id}/addmedicine/{id}/{type}(p_id=${patient.id},id=${prescription.id},type=${1})}">Add Medicine</a>-->
                         </td>
                     </tr>
                 </div>
@@ -100,14 +99,13 @@
                             <a class="button" th:href="@{/diagnosis/{id}(id=${diagnosis.id})}" title="View"><i class="far fa-eye"></i></a>
                             <a class="button" th:href="@{/diagnosis/editdiagnosis/{id}(id=${diagnosis.id})}" title="Edit"><i class="fas fa-edit"></i></a>
                             <form th:action="@{/{p_id}/diagnosis/deletediagnosis/{id}(p_id=${patient.id},id=${diagnosis.id})}" method="post">
-                                <button type="submit" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
                             </form>
-                          <!--  <a class="button" th:href="@{/{p_id}/addmedicine/{id}/{type}(p_id=${patient.id},id=${diagnosis.id},type=${2})}">Add Medicine</a>-->
                         </td>
                     </tr>
                 </div>
-                <a th:href="@{/{id}/adddiagnosisname(id=${patient.id})}">New Diagnosis Type</a>
             </table>
+            <a class="button" th:href="@{/{id}/adddiagnosisname(id=${patient.id})}">New Diagnosis Type</a><i class="fas fa-plus-square"></i></button>
         </div>
 </div>
 </div>
