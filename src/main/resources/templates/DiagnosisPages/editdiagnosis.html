@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.roleTier == 1 or session.roleTier == 2}">
+    <head>
+        <link rel="stylesheet" href="/sidenav.css" type="text/css">
+        <meta charset="UTF-8">
+        <title>Edit Diagnosis</title>
+    </head>
+    <body>
+    <div th:replace="fragments/sidenav :: sidenav"></div>
+
+    <div id="main">
+
+        <h1>Editing Diagnosis</h1>
+
+        <form th:action="@{/{id}/diagnosis/editdiagnosis(id=${diagnosis.patientId})}" method="post" th:object="${Diagnosis}">
+            <input type="hidden" th:value="${diagnosis.id}" name="id">
+
+            <select name="diagnosisNameId" >
+                <optgroup label="Diagnosis">
+                    <div th:each="d_name:${d_names}">
+                        <option th:text="${d_name.diagnosis}" th:value="${d_name.id}" th:selected="${d_name.id == diagnosis.diagnosisNameId}"></option>
+                    </div>
+                </optgroup>
+            </select>
+
+            <textarea type="text" placeholder="Note" th:text="${diagnosis.note}" name="note"></textarea>
+
+            <select name="doctorId" >
+                <optgroup label="Doctor">
+                    <div th:each="doctor:${doctors}">
+                        <option th:text="${doctor.name}" th:value="${doctor.id}" th:selected="${doctor.id == diagnosis.doctorId}"></option>
+                    </div>
+                </optgroup>
+            </select>
+            <button type="submit">Save</button>
+        </form>
+
+    </div>
+
+    </body>
+</div>
+</html>
