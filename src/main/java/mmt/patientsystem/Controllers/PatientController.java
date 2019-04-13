@@ -43,8 +43,8 @@ public class PatientController {
     }
 
     @GetMapping("/patient/{id}")
-    public String singlePatientPage(@PathVariable(value = "id") int id, Model model) throws SQLException {
-
+    public String singlePatientPage(@PathVariable(value = "id") int id, Model model) {
+        try {
             model.addAttribute("patient", patientService.getSinglePatientID(id));
             model.addAttribute("consultations", consultationService.getConsultations(id));
             model.addAttribute("prescriptions", prescriptionService.getPrescriptions(id));
@@ -52,7 +52,10 @@ public class PatientController {
             model.addAttribute("doctors", userService.getDoctors());
             return "PatientPages/patientPage";
 
-
+        } catch (SQLException e) {
+                model.addAttribute("errorCode", e.getErrorCode());
+                return "sqlerror";
+        }
     }
 
     @PostMapping("/patient/search")
