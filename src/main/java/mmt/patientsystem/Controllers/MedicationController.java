@@ -18,12 +18,10 @@ public class MedicationController {
     @Autowired
     private MedicationService medicationService;
 
-    @GetMapping("/{p_id}/addmedicine/{id}/{type}")
-    public String addMedicine(@PathVariable(value = "p_id") int p_id,
-                              @PathVariable(value = "id") int id,
+    @GetMapping("/addmedicine/{id}/{type}")
+    public String addMedicine(@PathVariable(value = "id") int id,
                               @PathVariable(value = "type") int type, Model model) {
         try {
-            model.addAttribute("patientId", p_id);
             model.addAttribute("couplingId", id);
             model.addAttribute("type", type);
             model.addAttribute("medications", medicationService.getMedications(-1, -1));
@@ -35,13 +33,17 @@ public class MedicationController {
         }
     }
 
-    @PostMapping("/{p_id}/addmedicine/{type}")
-    public String addMedicine(@PathVariable(value = "p_id") int p_id,
-                              @PathVariable(value = "type") int type,
-                              @ModelAttribute Medication medication, Model model) {
+    @PostMapping("/addmedicine/{id}/{type}")
+    public String addMedicine(@PathVariable(value = "id") int id,
+                                @PathVariable(value = "type") int type,
+                                @ModelAttribute Medication medication, Model model) {
         try {
             medicationService.addMedicine(medication, type);
-            return "redirect:/patient/" + p_id;
+            if(type == 1) {
+                return "redirect:/prescription/" + id;
+            } else {
+                return "redirect:/diagnosis/" + id;
+            }
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());

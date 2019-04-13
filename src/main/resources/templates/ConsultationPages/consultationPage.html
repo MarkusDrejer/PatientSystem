@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.name != null}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <link rel="stylesheet" href="/tables.css" type="text/css">
@@ -37,4 +38,5 @@
         </table>
     </div>
 </body>
+</div>
 </html>

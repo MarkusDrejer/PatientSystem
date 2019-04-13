@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="${session.name != null}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
     <meta charset="UTF-8">
@@ -17,7 +18,6 @@
             <p th:if="${invalid}">Invalid CPR</p>
             <a href="/patients">Patients</a>
             <a th:if="${session.roleTier == 1}" href="/users">Users</a>
-            <a href="#">About</a>
 
             <div class="welcome">
                 <p>Logged in as:
@@ -31,4 +31,5 @@
         </nav>
     </div>
 </body>
+</div>
 </html>
