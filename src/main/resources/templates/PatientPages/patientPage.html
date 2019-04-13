@@ -71,7 +71,7 @@
                             <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
                                 <button type="submit" title="Delete"><i class="fas fa-trash-alt"></i></button>
                             </form>
-                            <a class="button" th:href="@{/{p_id}/addmedicine/{id}/{type}(p_id=${patient.id},id=${prescription.id},type=${1})}">Add Medicine</a>
+                            <!--<a class="button" th:href="@{/{p_id}/addmedicine/{id}/{type}(p_id=${patient.id},id=${prescription.id},type=${1})}">Add Medicine</a>-->
                         </td>
                     </tr>
                 </div>
@@ -102,7 +102,7 @@
                             <form th:action="@{/{p_id}/diagnosis/deletediagnosis/{id}(p_id=${patient.id},id=${diagnosis.id})}" method="post">
                                 <button type="submit" title="Delete"><i class="fas fa-trash-alt"></i></button>
                             </form>
-                            <a class="button" th:href="@{/{p_id}/addmedicine/{id}/{type}(p_id=${patient.id},id=${diagnosis.id},type=${2})}">Add Medicine</a>
+                          <!--  <a class="button" th:href="@{/{p_id}/addmedicine/{id}/{type}(p_id=${patient.id},id=${diagnosis.id},type=${2})}">Add Medicine</a>-->
                         </td>
                     </tr>
                 </div>
