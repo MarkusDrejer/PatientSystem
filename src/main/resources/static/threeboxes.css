@@ -7,10 +7,9 @@ div.container {
 }
 div.box {
     box-sizing:border-box;
-    border:2px solid black;
     width: 33%;
     border: 5px solid #193c90;
-    float:left;
+    float:right;
     min-height: 500px;
 }
 .button {

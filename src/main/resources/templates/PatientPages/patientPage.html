@@ -3,6 +3,7 @@
 <div th:if="${session.name != null}">
 <head>
     <link rel="stylesheet" href="/sidenav.css" type="text/css">
+    <link rel="stylesheet" href="/tabs.css" type="text/css">
     <link rel="stylesheet" href="/threeboxes.css" type="text/css">
     <link rel="stylesheet" href="/tables.css" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -13,21 +14,26 @@
 <div th:replace="fragments/sidenav :: sidenav"></div>
 
 <div id="main">
-
     <h1 th:text="${patient.name}"></h1>
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'Consultation')">Consultation</button>
+        <button class="tablinks" onclick="openTab(event, 'Prescription')">Prescription</button>
+        <button class="tablinks" onclick="openTab(event, 'Diagnosis')">Diagnosis</button>
+    </div>
 
-    <div class="container">
-        <div class ="box">
-            <h3>Consultation <a class="button" th:href="@{/patient/{id}/addconsultation(id=${patient.id})}">Add</a></h3>
-            <table class="table consultation overviewTable">
-                <tr>
-                    <th>Date</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Doctor</th>
-                    <th>Options</th>
-                </tr>
-                <div th:each="consultation:${consultations}">
+    <!-- Tab content -->
+    <div id="Consultation" class="tabcontent" style="display:block">
+        <h3>Consultation <a class="button" th:href="@{/patient/{id}/addconsultation(id=${patient.id})}">Add</a></h3>
+        <table class="table consultation overviewTable">
+            <tr>
+                <th>Date</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Doctor</th>
+                <th>Options</th>
+            </tr>
+            <div th:each="consultation:${consultations}">
                 <tr>
                     <td th:text="${consultation.date}"></td>
                     <td th:text="${consultation.fromTime}"></td>
@@ -44,71 +50,73 @@
                         </form>
                     </td>
                 </tr>
-                </div>
-            </table>
-        </div>
+            </div>
+        </table>
+    </div>
 
-        <div class ="box">
-            <h3>Prescriptions <a class="button" th:href="@{/patient/{id}/addprescription(id=${patient.id})}">Add</a></h3>
-            <table class="table prescription overviewTable">
-                    <tr>
-                        <th>Prescription</th>
-                        <th>Medicine</th>
-                        <th>Doctor</th>
-                        <th>Options</th>
-                    </tr>
-                <div th:each="prescription:${prescriptions}">
-                    <tr>
-                        <td th:text="${prescription.prescription}"></td>
-                        <td th:text="${prescription.medications}"></td>
+    <div id="Prescription" class="tabcontent">
+        <h3>Prescriptions <a class="button" th:href="@{/patient/{id}/addprescription(id=${patient.id})}">Add</a></h3>
+        <table class="table prescription overviewTable">
+            <tr>
+                <th>Prescription</th>
+                <th>Medicine</th>
+                <th>Doctor</th>
+                <th>Options</th>
+            </tr>
+            <div th:each="prescription:${prescriptions}">
+                <tr>
+                    <td th:text="${prescription.prescription}"></td>
+                    <td th:text="${prescription.medications}"></td>
 
-                        <div th:each="doctor:${doctors}">
-                            <td th:if="${prescription.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
-                        </div>
-                        <td>
-                            <a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}" title="View"><i class="far fa-eye"></i></a>
-                            <a class="button" th:href="@{/prescription/editprescription/{id}(id=${prescription.id})}" title="Edit"><i class="fas fa-edit"></i></a>
-                            <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
-                                <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                </div>
-            </table>
-        </div>
+                    <div th:each="doctor:${doctors}">
+                        <td th:if="${prescription.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
+                    </div>
+                    <td>
+                        <a class="button" th:href="@{/prescription/{id}(id=${prescription.id})}" title="View"><i class="far fa-eye"></i></a>
+                        <a class="button" th:href="@{/prescription/editprescription/{id}(id=${prescription.id})}" title="Edit"><i class="fas fa-edit"></i></a>
+                        <form th:action="@{/{p_id}/prescription/deleteprescription/{id}(p_id=${patient.id},id=${prescription.id})}" method="post">
+                            <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            </div>
+        </table>
+    </div>
 
+    <div id="Diagnosis" class="tabcontent">
+        <h3>Diagnosis <a class="button" th:href="@{/patient/{id}/adddiagnosis(id=${patient.id})}">Add</a></h3>
+        <table class="table diagnosis overviewTable">
+            <tr>
+                <th>Diagnosis</th>
+                <th>Medicine</th>
+                <th>Doctor</th>
+                <th>Options</th>
+            </tr>
+            <div th:each="diagnosis:${diagnosiss}">
+                <tr>
+                    <td th:text="${diagnosis.diagnosis}"></td>
+                    <td th:text="${diagnosis.medications}"></td>
+                    <div th:each="doctor:${doctors}">
+                        <td th:if="${diagnosis.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
+                    </div>
 
-        <div class ="box">
-            <h3>Diagnosis <a class="button" th:href="@{/patient/{id}/adddiagnosis(id=${patient.id})}">Add</a></h3>
-            <table class="table diagnosis overviewTable">
-                    <tr>
-                        <th>Diagnosis</th>
-                        <th>Medicine</th>
-                        <th>Doctor</th>
-                        <th>Options</th>
-                    </tr>
-                <div th:each="diagnosis:${diagnosiss}">
-                    <tr>
-                        <td th:text="${diagnosis.diagnosis}"></td>
-                        <td th:text="${diagnosis.medications}"></td>
-                        <div th:each="doctor:${doctors}">
-                            <td th:if="${diagnosis.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
-                        </div>
-
-                        <td>
-                            <a class="button" th:href="@{/diagnosis/{id}(id=${diagnosis.id})}" title="View"><i class="far fa-eye"></i></a>
-                            <a class="button" th:href="@{/diagnosis/editdiagnosis/{id}(id=${diagnosis.id})}" title="Edit"><i class="fas fa-edit"></i></a>
-                            <form th:action="@{/{p_id}/diagnosis/deletediagnosis/{id}(p_id=${patient.id},id=${diagnosis.id})}" method="post">
-                                <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                </div>
-            </table>
-            <a class="button" th:href="@{/{id}/adddiagnosisname(id=${patient.id})}">New Diagnosis Type</a><i class="fas fa-plus-square"></i></button>
-        </div>
+                    <td>
+                        <a class="button" th:href="@{/diagnosis/{id}(id=${diagnosis.id})}" title="View"><i class="far fa-eye"></i></a>
+                        <a class="button" th:href="@{/diagnosis/editdiagnosis/{id}(id=${diagnosis.id})}" title="Edit"><i class="fas fa-edit"></i></a>
+                        <form th:action="@{/{p_id}/diagnosis/deletediagnosis/{id}(p_id=${patient.id},id=${diagnosis.id})}" method="post">
+                            <button type="submit" class="button" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            </div>
+        </table>
+        <a class="button" th:href="@{/{id}/adddiagnosisname(id=${patient.id})}">New Diagnosis Type</a><i class="fas fa-plus-square"></i></button>
+    </div>
 </div>
-</div>
+<script src="/js/tabs.js"></script>
+<script>
+    document.getElementById("Consultation").click();
+</script>
 </body>
 </div>
 </html>

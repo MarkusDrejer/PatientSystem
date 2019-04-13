@@ -37,6 +37,10 @@ body {
     text-align: left;
 }
 
+.overviewTable td {
+    padding:2px;
+}
+
 .overviewTable tr a {
     text-decoration: none;
 }
