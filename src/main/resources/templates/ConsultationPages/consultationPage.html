@@ -25,7 +25,9 @@
                 <td th:text="${consultation.date}"></td>
                 <td th:text="${consultation.FromTime}"></td>
                 <td th:text="${consultation.toTime}"></td>
-                <td th:text="${consultation.DoctorId}"></td>
+                <div th:each="doctor:${doctors}">
+                    <td th:if="${consultation.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
+                </div>
             </tr>
 
         </table>
