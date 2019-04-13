@@ -6,12 +6,21 @@
     <meta charset="UTF-8">
     <title>Diagnoses</title>
 </head>
+</head>
 <body>
 <div th:replace="fragments/sidenav :: sidenav"></div>
+<div id="main">
+    <table class="table diagnosis overviewTable">
+        <tr>
+            <th>Diagnosis id</th>
+            <th>Doctors notes</th>
+        </tr>
 
-    <p th:text="${diagnosis.diagnosis}"></p>
-    <div th:each="medication:${medications}">
-    <p th:text="${medication.name}"></p>
-    </div>
+        <tr>
+            <td th:text="${diagnosis.DiagnosisNameId}"></td>
+            <td th:text="${diagnosis.Note}"></td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

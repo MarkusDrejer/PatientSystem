@@ -16,18 +16,18 @@
                 <th>Date</th>
                 <th>Starts at</th>
                 <th>Ends at</th>
-                <th>CPR</th>
                 <th>Doctor</th>
-                <!--<th>Conclusion</th>-->
             </tr>
-            <td th:text="${consultation.Id}"></td>
-            <td th:text="${consultation.Description}"></td>
-            <td th:text="${consultation.date}"></td>
-            <td th:text="${consultation.FromTime}"></td>
-            <td th:text="${consultation.toTime}"></td>
-            <td th:text="${consultation.PatientId}"></td>
-            <td th:text="${consultation.DoctorId}"></td>
-          <!--  <td th:text="${consultation.conclusion}"></td>-->
+
+            <tr>
+                <td th:text="${consultation.Id}"></td>
+                <td th:text="${consultation.Description}"></td>
+                <td th:text="${consultation.date}"></td>
+                <td th:text="${consultation.FromTime}"></td>
+                <td th:text="${consultation.toTime}"></td>
+                <td th:text="${consultation.DoctorId}"></td>
+            </tr>
+
         </table>
     </div>
 </body>

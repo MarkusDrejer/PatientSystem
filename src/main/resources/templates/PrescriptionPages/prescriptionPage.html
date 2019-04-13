@@ -8,10 +8,19 @@
 </head>
 <body>
 <div th:replace="fragments/sidenav :: sidenav"></div>
+<div id="main">
+    <table class="table prescription overviewTable">
+        <tr>
+            <th>Prescription nr.</th>
+            <th>Note</th>
+        </tr>
 
-    <p th:text="${prescription.prescription}"></p>
-    <div th:each="medication:${medications}">
-    <p th:text="${medication.name}"></p>
-    </div>
+        <tr>
+            <td th:text="${prescription.id}"></td>
+            <td th:text="${prescription.note}"></td>
+        </tr>
+
+    </table>
+</div>
 </body>
 </html>
