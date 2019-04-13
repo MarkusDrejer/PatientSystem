@@ -73,9 +73,10 @@ public class DiagnosisRepository {
     }
 
     public ResultSet addDiagnosis(Diagnosis diagnosis) throws SQLException {
-        query = "INSERT INTO diagnosis (note, fk_diagnose_name, fk_patient, fk_doctor) " +
+        query = "INSERT INTO diagnosis (note, fk_diagnose_name, fk_doctor, fk_patient) " +
                 "VALUES (?, ?, ?, ?)";
 
+        preparedStatement = diagnosisFiller(diagnosis);
         preparedStatement.setInt(4, diagnosis.getPatientId());
         preparedStatement.executeUpdate();
 
@@ -85,9 +86,20 @@ public class DiagnosisRepository {
     public void addDiagnosisJunction(int key, int medId) throws SQLException {
         query = "INSERT INTO dm_junction (fk_medicin, fk_diagnosis) " +
                 "VALUES (?, ?)";
+
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, medId);
         preparedStatement.setInt(2, key);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    public void addDiagnosisName(String name) throws SQLException {
+        query = "INSERT INTO diagnose_names (d_name) " +
+                "VALUES (?)";
+
+        preparedStatement = dbAccess.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, name);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }

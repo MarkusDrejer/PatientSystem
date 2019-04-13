@@ -81,4 +81,8 @@ public class DiagnosisService {
         int medId = diagnosis.getMedLink();
         diagnosisRepository.addDiagnosisJunction(key, medId);
     }
+
+    public void addDiagnosisName(String name) throws SQLException{
+        diagnosisRepository.addDiagnosisName(name);
+    }
 }

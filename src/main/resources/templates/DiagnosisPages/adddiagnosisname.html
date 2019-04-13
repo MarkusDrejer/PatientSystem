@@ -13,7 +13,10 @@
 
         <h1>Creating New Diagnosis Type</h1>
 
-        <form th:action="@{}" method="post"></form>
+        <form th:action="@{/{id}/adddiagnosisname(id=${patientId})}" method="post">
+            <input type="text" placeholder="Diagnosis Name" name="name">
+            <button type="submit">Save</button>
+        </form>
 
     </div>
 

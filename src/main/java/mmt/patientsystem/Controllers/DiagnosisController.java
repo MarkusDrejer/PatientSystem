@@ -7,10 +7,7 @@ import mmt.patientsystem.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -93,16 +90,33 @@ public class DiagnosisController {
     }
 
     @PostMapping("/diagnosis/save")
-    public String save(@ModelAttribute Diagnosis diagnosis, Model model) throws SQLException{
-
+    public String save(@ModelAttribute Diagnosis diagnosis, Model model){
+        try {
             diagnosisService.addDiagnosis(diagnosis);
             return "redirect:/patient/" + diagnosis.getPatientId();
 
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
     }
 
     @GetMapping("/{id}/adddiagnosisname")
-    public String addDiagnosisName(@PathVariable(value = "id") int id, Model model) throws SQLException {
+    public String addDiagnosisName(@PathVariable(value = "id") int id, Model model) {
         model.addAttribute("patientId", id);
         return "DiagnosisPages/adddiagnosisname";
+    }
+
+    @PostMapping("/{id}/adddiagnosisname")
+    public String addDiagnosisName(@PathVariable(value = "id") int id,
+                                    @RequestParam String name, Model model) {
+        try {
+            diagnosisService.addDiagnosisName(name);
+            return "redirect:/patient/" + id;
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
     }
 }
