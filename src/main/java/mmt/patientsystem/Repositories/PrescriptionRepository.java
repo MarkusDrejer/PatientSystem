@@ -37,6 +37,25 @@ public class PrescriptionRepository {
         return statement.executeQuery(query);
     }
 
+    private PreparedStatement prescriptionFiller(Prescription prescription) throws SQLException {
+        preparedStatement = dbAccess.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setString(1, prescription.getPrescription());
+        preparedStatement.setString(2, prescription.getNote());
+        preparedStatement.setInt(3, prescription.getDoctorId());
+
+        return preparedStatement;
+    }
+
+    public void editPrescription(Prescription prescription) throws SQLException {
+        query = "UPDATE prescriptions " +
+                "SET prescription = ?, note = ?, fk_doctor = ? " +
+                "WHERE id = '" + prescription.getId() + "'";
+
+        preparedStatement = prescriptionFiller(prescription);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
     public void deletePrescription(int id) throws SQLException {
         query = "DELETE FROM prescriptions " +
                 "WHERE id = '" + id +"'";
@@ -46,14 +65,11 @@ public class PrescriptionRepository {
     }
 
     public ResultSet addPrescription(Prescription prescription) throws SQLException {
-        query = "INSERT INTO prescriptions (prescription, note, fk_patient, fk_doctor) " +
+        query = "INSERT INTO prescriptions (prescription, note, fk_doctor, fk_patient) " +
                 "VALUES (?, ?, ?, ?)";
 
-        preparedStatement = dbAccess.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        preparedStatement.setString(1, prescription.getPrescription());
-        preparedStatement.setString(2, prescription.getNote());
-        preparedStatement.setInt(3, prescription.getPatientId());
-        preparedStatement.setInt(4, prescription.getDoctorId());
+        preparedStatement = prescriptionFiller(prescription);
+        preparedStatement.setInt(4, prescription.getPatientId());
         preparedStatement.executeUpdate();
 
         return preparedStatement.getGeneratedKeys();

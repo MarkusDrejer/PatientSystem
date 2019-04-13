@@ -34,6 +34,32 @@ public class PrescriptionController {
         }
     }
 
+    @GetMapping("/prescription/editprescription/{id}")
+    public String editPrescription(@PathVariable(value = "id") int id, Model model) {
+        try {
+            model.addAttribute("prescription", prescriptionService.getSinglePrescription(id));
+            model.addAttribute("doctors", userService.getDoctors());
+            return "PrescriptionPages/editprescription";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
+    }
+
+    @PostMapping("/{id}/prescription/editprescription")
+    public String editConsultation(@PathVariable(value = "id") int id,
+                                   @ModelAttribute Prescription prescription, Model model) {
+        try {
+            prescriptionService.editPrescription(prescription);
+            return "redirect:/patient/" + id;
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
+    }
+
     @PostMapping("/{p_id}/prescription/deleteprescription/{id}")
     public String deletePrescription(@PathVariable(value = "p_id") int p_id,
                                      @PathVariable(value = "id") int id, Model model) {

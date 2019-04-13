@@ -56,6 +56,10 @@ public class PrescriptionService {
         return prescription;
     }
 
+    public void editPrescription(Prescription prescription) throws SQLException {
+        prescriptionRepository.editPrescription(prescription);
+    }
+
     public void deletePrescription(int id) throws SQLException {
         prescriptionRepository.deletePrescription(id);
     }

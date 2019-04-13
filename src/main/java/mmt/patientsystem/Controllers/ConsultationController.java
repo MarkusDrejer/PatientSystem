@@ -46,7 +46,7 @@ public class ConsultationController {
 
     @PostMapping("/{id}/consultation/editconsultation")
     public String editConsultation(@PathVariable(value = "id") int id,
-                                   @ModelAttribute Consultation consultation, Model model) throws SQLException {
+                                   @ModelAttribute Consultation consultation, Model model) {
         try {
             consultationService.editConsultation(consultation);
             return "redirect:/patient/" + id;
