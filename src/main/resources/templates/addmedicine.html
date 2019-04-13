@@ -11,6 +11,8 @@
 
     <div id="main">
 
+        <h1>Adding Medicine</h1>
+
         <form th:action="@{/{p_id}/addmedicine/{type}(p_id=${patientId},type=${type})}" method="post" th:object="${Medication}">
 
             <select name="id">

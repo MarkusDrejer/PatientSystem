@@ -23,6 +23,7 @@ public class ConsultationController {
     public String singleConsultation(@PathVariable(value = "id") int id, Model model) {
         try {
             model.addAttribute("consultation", consultationService.getSingleConsultation(id));
+            model.addAttribute("doctors", userService.getDoctors());
             return "ConsultationPages/consultationPage";
 
         } catch (SQLException e) {

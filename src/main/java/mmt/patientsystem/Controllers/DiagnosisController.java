@@ -99,4 +99,10 @@ public class DiagnosisController {
             return "redirect:/patient/" + diagnosis.getPatientId();
 
     }
+
+    @GetMapping("/{id}/adddiagnosisname")
+    public String addDiagnosisName(@PathVariable(value = "id") int id, Model model) throws SQLException {
+        model.addAttribute("patientId", id);
+        return "DiagnosisPages/adddiagnosisname";
+    }
 }
