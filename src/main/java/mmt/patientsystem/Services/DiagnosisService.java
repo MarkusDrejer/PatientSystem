@@ -57,12 +57,17 @@ public class DiagnosisService {
         Diagnosis diagnosis = new Diagnosis();
         diagnosis.setId(resultSet.getInt("id"));
         diagnosis.setDiagnosis(resultSet.getString("d_name"));
+        diagnosis.setDiagnosisNameId(resultSet.getInt("fk_diagnose_name"));
         diagnosis.setNote(resultSet.getString("note"));
         diagnosis.setDate(resultSet.getDate("date"));
         diagnosis.setPatientId(resultSet.getInt("fk_patient"));
         diagnosis.setDoctorId(resultSet.getInt("fk_doctor"));
 
         return diagnosis;
+    }
+
+    public void editDiagnosis(Diagnosis diagnosis) throws SQLException {
+        diagnosisRepository.editDiagnosis(diagnosis);
     }
 
     public void deleteDiagnosis(int id) throws SQLException {

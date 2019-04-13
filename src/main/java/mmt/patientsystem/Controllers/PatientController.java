@@ -58,8 +58,8 @@ public class PatientController {
     @PostMapping("/patient/search")
     public String singlePatientSearch(@ModelAttribute Patient patient, Model model) {
         try {
-            model.addAttribute("patient", patientService.getSinglePatientSearch(patient));
-            return "PatientPages/patientPage";
+            int id = patientService.getSinglePatientSearch(patient);
+            return "redirect:/patient/" + id;
 
         } catch (SQLException e) {
             model.addAttribute("errorCode", e.getErrorCode());

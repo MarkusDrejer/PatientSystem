@@ -32,4 +32,8 @@ public class MedicationService {
         }
         return medicationList;
     }
+
+    public void addMedicine(Medication medication, int type) throws SQLException {
+        medicationRepository.addMedicine(medication, type);
+    }
 }

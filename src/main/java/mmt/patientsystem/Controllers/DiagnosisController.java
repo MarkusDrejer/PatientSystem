@@ -37,6 +37,33 @@ public class DiagnosisController {
         }
     }
 
+    @GetMapping("/diagnosis/editdiagnosis/{id}")
+    public String editDiagnosis(@PathVariable(value = "id") int id, Model model) {
+        try {
+            model.addAttribute("diagnosis", diagnosisService.getSingleDiagnosis(id));
+            model.addAttribute("d_names", diagnosisService.getDiagnosisNames());
+            model.addAttribute("doctors", userService.getDoctors());
+            return "DiagnosisPages/editdiagnosis";
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
+    }
+
+    @PostMapping("/{id}/diagnosis/editdiagnosis")
+    public String editDiagnosis(@PathVariable(value = "id") int id,
+                                   @ModelAttribute Diagnosis diagnosis, Model model) {
+        try {
+            diagnosisService.editDiagnosis(diagnosis);
+            return "redirect:/patient/" + id;
+
+        } catch (SQLException e) {
+            model.addAttribute("errorCode", e.getErrorCode());
+            return "sqlerror";
+        }
+    }
+
     @PostMapping("/{p_id}/diagnosis/deletediagnosis/{id}")
     public String deletePrescription(@PathVariable(value = "p_id") int p_id,
                                      @PathVariable(value = "id") int id, Model model) {

@@ -37,12 +37,31 @@ public class DiagnosisRepository {
         return statement.executeQuery(query);
     }
 
+    private PreparedStatement diagnosisFiller(Diagnosis diagnosis) throws SQLException {
+        preparedStatement = dbAccess.getConnection().prepareStatement(query, statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setString(1, diagnosis.getNote());
+        preparedStatement.setInt(2, diagnosis.getDiagnosisNameId());
+        preparedStatement.setInt(3, diagnosis.getDoctorId());
+
+        return preparedStatement;
+    }
+
     public ResultSet getDiagnosisNames() throws SQLException {
         query = "SELECT * FROM diagnose_names " +
                 "ORDER BY d_name";
 
         statement = dbAccess.getConnection().createStatement();
         return statement.executeQuery(query);
+    }
+
+    public void editDiagnosis(Diagnosis diagnosis) throws SQLException {
+        query = "UPDATE diagnosis " +
+                "SET note = ?, fk_diagnose_name = ?, fk_doctor = ? " +
+                "WHERE id = '" + diagnosis.getId() + "'";
+
+        preparedStatement = diagnosisFiller(diagnosis);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
     }
 
     public void deleteDiagnosis(int id) throws SQLException {
@@ -56,11 +75,8 @@ public class DiagnosisRepository {
     public ResultSet addDiagnosis(Diagnosis diagnosis) throws SQLException {
         query = "INSERT INTO diagnosis (note, fk_diagnose_name, fk_patient, fk_doctor) " +
                 "VALUES (?, ?, ?, ?)";
-        preparedStatement = dbAccess.getConnection().prepareStatement(query, statement.RETURN_GENERATED_KEYS);
-        preparedStatement.setString(1, diagnosis.getNote());
-        preparedStatement.setInt(2, diagnosis.getDiagnosisNameId());
-        preparedStatement.setInt(3, diagnosis.getPatientId());
-        preparedStatement.setInt(4, diagnosis.getDoctorId());
+
+        preparedStatement.setInt(4, diagnosis.getPatientId());
         preparedStatement.executeUpdate();
 
         return preparedStatement.getGeneratedKeys();

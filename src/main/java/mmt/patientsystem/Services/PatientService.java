@@ -39,15 +39,16 @@ public class PatientService {
         return patient;
     }
 
-    public Patient getSinglePatientSearch(Patient patient) throws SQLException {
+    public int getSinglePatientSearch(Patient patient) throws SQLException {
         resultSet = patientRepository.getSinglePatientSearch(patient);
+        int id;
 
         if (resultSet.next()) {
-            patient = patientFiller();
+            id = resultSet.getInt("id");
         } else {
             throw new InputMismatchException();
         }
-        return patient;
+        return id;
     }
 
     private Patient patientFiller() throws SQLException{
