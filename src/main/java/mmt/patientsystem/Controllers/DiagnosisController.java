@@ -25,6 +25,7 @@ public class DiagnosisController {
     public String SingleDiagnosis(@PathVariable(value = "id") int id, Model model) {
         try {
             model.addAttribute("diagnosis", diagnosisService.getSingleDiagnosis(id));
+            model.addAttribute("doctors", userService.getDoctors());
             model.addAttribute("medications", medicationService.getMedications(id, 2));
             return "DiagnosisPages/diagnosisPage";
 

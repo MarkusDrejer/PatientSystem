@@ -9,17 +9,42 @@
 <body>
 <div th:replace="fragments/sidenav :: sidenav"></div>
 <div id="main">
+
+    <h1 th:text="${prescription.prescription}"></h1>
+
     <table class="table prescription overviewTable">
         <tr>
             <th>Prescription nr.</th>
             <th>Note</th>
+            <th>Doctor</th>
         </tr>
 
         <tr>
             <td th:text="${prescription.id}"></td>
             <td th:text="${prescription.note}"></td>
+            <div th:each="doctor:${doctors}">
+                <td th:if="${prescription.doctorId == doctor.id}"><span th:text="${doctor.name}"></span></td>
+            </div>
+        </tr>
+    </table>
+
+    <br>
+    <h2>Medications Administered</h2>
+
+    <table class="table prescription overviewTable">
+        <tr>
+            <th>Medication Name</th>
+            <th>Description</th>
+            <th>Side-Effects</th>
         </tr>
 
+        <div th:each="medication:${medications}">
+            <tr>
+                <td th:text="${medication.name}"></td>
+                <td th:text="${medication.description}"></td>
+                <td th:text="${medication.sideEffects}"></td>
+            </tr>
+        </div>
     </table>
 </div>
 </body>

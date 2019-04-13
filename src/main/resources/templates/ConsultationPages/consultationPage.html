@@ -8,7 +8,11 @@
 </head>
 <body>
 <div th:replace="fragments/sidenav :: sidenav"></div>
+
     <div id="main">
+
+        <h1 th:text="${consultation.conclusion}"></h1>
+
         <table class="table consultation overviewTable">
             <tr>
                 <th>Booking number</th>

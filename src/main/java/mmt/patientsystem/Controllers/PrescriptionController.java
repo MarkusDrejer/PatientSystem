@@ -25,6 +25,7 @@ public class PrescriptionController {
     public String singlePrescription(@PathVariable(value = "id") int id, Model model) {
         try {
             model.addAttribute("prescription", prescriptionService.getSinglePrescription(id));
+            model.addAttribute("doctors", userService.getDoctors());
             model.addAttribute("medications", medicationService.getMedications(id, 1));
             return "PrescriptionPages/prescriptionPage";
 
