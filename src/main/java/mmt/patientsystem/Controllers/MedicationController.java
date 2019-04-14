@@ -18,6 +18,11 @@ public class MedicationController {
     @Autowired
     private MedicationService medicationService;
 
+    /**
+     * displays add medicine form
+     * @param id
+     * @param type
+     **/
     @GetMapping("/addmedicine/{id}/{type}")
     public String addMedicine(@PathVariable(value = "id") int id,
                               @PathVariable(value = "type") int type, Model model) {
@@ -33,6 +38,11 @@ public class MedicationController {
         }
     }
 
+    /**
+     * saves the add medicine form
+     * @param id
+     * @param type
+     **/
     @PostMapping("/addmedicine/{id}/{type}")
     public String addMedicine(@PathVariable(value = "id") int id,
                                 @PathVariable(value = "type") int type,

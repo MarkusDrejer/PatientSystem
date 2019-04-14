@@ -21,6 +21,10 @@ public class DiagnosisController {
     @Autowired
     private UserService userService;
 
+    /**
+     * displays single diagnosis
+     * @param id
+     **/
     @GetMapping("/diagnosis/{id}")
     public String SingleDiagnosis(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -35,6 +39,10 @@ public class DiagnosisController {
         }
     }
 
+    /**
+     * shows the edits diagnosis form
+     * @param id
+     **/
     @GetMapping("/diagnosis/editdiagnosis/{id}")
     public String editDiagnosis(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -49,6 +57,10 @@ public class DiagnosisController {
         }
     }
 
+    /**
+     * saves the edited diagnosis form
+     * @param id
+     **/
     @PostMapping("/{id}/diagnosis/editdiagnosis")
     public String editDiagnosis(@PathVariable(value = "id") int id,
                                    @ModelAttribute Diagnosis diagnosis, Model model) {
@@ -62,6 +74,11 @@ public class DiagnosisController {
         }
     }
 
+    /**
+     * deletes the diagnosis
+     * @param id
+     * @param p_id
+     **/
     @PostMapping("/{p_id}/diagnosis/deletediagnosis/{id}")
     public String deletePrescription(@PathVariable(value = "p_id") int p_id,
                                      @PathVariable(value = "id") int id, Model model) {
@@ -75,6 +92,10 @@ public class DiagnosisController {
         }
     }
 
+    /**
+     * displays the add diagnosis form
+     * @param id
+     **/
     @GetMapping("/patient/{id}/adddiagnosis")
     public String prescriptions(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -90,6 +111,10 @@ public class DiagnosisController {
         }
     }
 
+    /**
+     * saves a diagnosis
+     * @param diagnosis
+     **/
     @PostMapping("/diagnosis/save")
     public String save(@ModelAttribute Diagnosis diagnosis, Model model){
         try {
@@ -102,12 +127,20 @@ public class DiagnosisController {
         }
     }
 
+    /**
+     * dislays the add new diagnosis form
+     * @param id
+     **/
     @GetMapping("/{id}/adddiagnosisname")
     public String addDiagnosisName(@PathVariable(value = "id") int id, Model model) {
         model.addAttribute("patientId", id);
         return "DiagnosisPages/adddiagnosisname";
     }
 
+    /**
+     * saves the diagnosis
+     * @param id
+     **/
     @PostMapping("/{id}/adddiagnosisname")
     public String addDiagnosisName(@PathVariable(value = "id") int id,
                                     @RequestParam String name, Model model) {

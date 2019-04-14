@@ -21,6 +21,10 @@ public class PrescriptionController {
     @Autowired
     private UserService userService;
 
+    /**
+     * displays prescription page
+     * @param id
+     **/
     @GetMapping("/prescription/{id}")
     public String singlePrescription(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -35,6 +39,10 @@ public class PrescriptionController {
         }
     }
 
+    /**
+     * displays edit prescription form
+     * @param id
+     **/
     @GetMapping("/prescription/editprescription/{id}")
     public String editPrescription(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -48,6 +56,10 @@ public class PrescriptionController {
         }
     }
 
+    /**
+     * saves edit prescription form
+     * @param id
+     **/
     @PostMapping("/{id}/prescription/editprescription")
     public String editConsultation(@PathVariable(value = "id") int id,
                                    @ModelAttribute Prescription prescription, Model model) {
@@ -61,6 +73,11 @@ public class PrescriptionController {
         }
     }
 
+    /**
+     * deletes chosen prescription
+     * @param id
+     * @param p_id
+     **/
     @PostMapping("/{p_id}/prescription/deleteprescription/{id}")
     public String deletePrescription(@PathVariable(value = "p_id") int p_id,
                                      @PathVariable(value = "id") int id, Model model) {
@@ -74,6 +91,10 @@ public class PrescriptionController {
         }
     }
 
+    /**
+     * displays a patients prescription page
+     * @param id
+     **/
     @GetMapping("/patient/{id}/addprescription")
     public String addPrescription(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -89,6 +110,10 @@ public class PrescriptionController {
         }
     }
 
+    /**
+     * saves changes in prescription page
+     * @param prescription
+     **/
     @PostMapping("/prescription/save")
     public String save(@ModelAttribute Prescription prescription, Model model) {
         try {

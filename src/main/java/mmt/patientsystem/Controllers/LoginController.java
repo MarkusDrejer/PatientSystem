@@ -18,11 +18,18 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    /**
+     * displays login page
+     **/
     @GetMapping("/")
     public String loginPage(){
         return "index";
     }
 
+    /**
+     * checks the login credentials
+     * @param user
+     **/
     @PostMapping("/login")
     public String login(HttpSession httpSession, @ModelAttribute User user, Model model) {
         try {
@@ -43,6 +50,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * logs user out
+     **/
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();

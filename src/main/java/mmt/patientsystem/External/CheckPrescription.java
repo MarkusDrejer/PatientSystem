@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.Random;
 
 @Service
-public class CheckPrescription {
+public class   CheckPrescription {
 
     private Random rand;
 

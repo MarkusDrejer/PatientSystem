@@ -18,6 +18,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * displays users page
+     **/
     @GetMapping("/users")
     public String usersPage(Model model) {
         try {
@@ -30,6 +33,10 @@ public class UserController {
         }
     }
 
+    /**
+     * displays edit user form
+     * @param id
+     **/
     @GetMapping("/users/edituser/{id}")
     public String editUser(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -42,6 +49,10 @@ public class UserController {
         }
     }
 
+    /**
+     * saves edit user form
+     * @param user
+     **/
     @PostMapping("/users/edituser")
     public String editUser(@ModelAttribute User user, Model model) {
         try {
@@ -54,6 +65,10 @@ public class UserController {
         }
     }
 
+    /**
+     * deletes user
+     * @param id
+     **/
     @PostMapping("/users/deleteuser/{id}")
     public String deleteUser(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -66,11 +81,18 @@ public class UserController {
         }
     }
 
+    /**
+     * displays add user form
+     **/
     @GetMapping("/users/adduser")
     public String addUser() {
         return "UserPages/adduser";
     }
 
+    /**
+     * saves add user form
+     * @param user
+     **/
     @PostMapping("/users/adduser")
     public String addUser(@ModelAttribute User user, Model model) {
         try {

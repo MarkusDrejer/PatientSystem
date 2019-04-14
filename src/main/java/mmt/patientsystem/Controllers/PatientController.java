@@ -26,6 +26,11 @@ public class PatientController {
 
     private boolean reverseTH = true;
 
+    /**
+     * displays patients and allows sorting
+     * @param order
+     * @param reverse
+     **/
     @GetMapping("/patients")
     public String patientListPage(@RequestParam(value = "order", defaultValue = "1") int order,
                                   @RequestParam(value = "reverse", defaultValue = "false") boolean reverse,
@@ -41,6 +46,7 @@ public class PatientController {
             return "sqlerror";
         }
     }
+
 
     @GetMapping("/patient/{id}")
     public String singlePatientPage(@PathVariable(value = "id") int id, Model model) {
@@ -58,6 +64,10 @@ public class PatientController {
         }
     }
 
+    /**
+     * searches for patient
+     * @param patient
+     **/
     @PostMapping("/patient/search")
     public String singlePatientSearch(@ModelAttribute Patient patient, Model model) {
         try {
@@ -73,6 +83,10 @@ public class PatientController {
         }
     }
 
+    /**
+     * displays edit patient page
+     * @param id
+     **/
     @GetMapping("/patients/editpatient/{id}")
     public String editPatient(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -85,6 +99,10 @@ public class PatientController {
         }
     }
 
+    /**
+     * saves edit patient page
+     * @param patient
+     **/
     @PostMapping("/patients/editpatient")
     public String editPatient(@ModelAttribute Patient patient, Model model) {
         try {
@@ -97,6 +115,10 @@ public class PatientController {
         }
     }
 
+    /**
+     * deletes specific patient
+     * @param id
+     **/
     @PostMapping("/patients/deletepatient/{id}")
     public String deletePatient(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -109,11 +131,18 @@ public class PatientController {
         }
     }
 
+    /**
+     * displays add patient page
+     **/
     @GetMapping("/patients/addpatient")
     public String addPatient() {
         return "PatientPages/addpatient";
     }
 
+    /**
+     * saves add patient page
+     * @param patient
+     **/
     @PostMapping("/patients/addpatient")
     public String addPatient(@ModelAttribute Patient patient, Model model) {
         try {

@@ -19,6 +19,10 @@ public class ConsultationController {
     @Autowired
     private UserService userService;
 
+    /**
+     * displays single consultation when given an id
+     * @param id
+     **/
     @GetMapping("/consultation/{id}")
     public String singleConsultation(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -32,6 +36,10 @@ public class ConsultationController {
         }
     }
 
+    /**
+     * edits consultation given an id
+     * @param id
+     **/
     @GetMapping("/consultation/editconsultation/{id}")
     public String editConsultation(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -45,6 +53,11 @@ public class ConsultationController {
         }
     }
 
+    /**
+     * saves new information on consultation
+     * @param id
+     * @param consultation
+     **/
     @PostMapping("/{id}/consultation/editconsultation")
     public String editConsultation(@PathVariable(value = "id") int id,
                                    @ModelAttribute Consultation consultation, Model model) {
@@ -58,6 +71,11 @@ public class ConsultationController {
         }
     }
 
+    /**
+     * deletes consultation
+     * @param id
+     * @param p_id
+     **/
     @PostMapping("/{p_id}/consultation/deleteconsultation/{id}")
     public String deleteConsultation(@PathVariable(value = "id") int id,
                                      @PathVariable(value = "p_id") int p_id,
@@ -72,6 +90,10 @@ public class ConsultationController {
         }
     }
 
+    /**
+     * shows add consultation form
+     * @param id
+     **/
     @GetMapping("/patient/{id}/addconsultation")
     public String addConsultation(@PathVariable(value = "id") int id, Model model) {
         try {
@@ -86,6 +108,10 @@ public class ConsultationController {
         }
     }
 
+    /**
+     * saves new consultation
+     * @param consultation
+     **/
     @PostMapping("/consultations/save")
     public String addConsultation(@ModelAttribute Consultation consultation, Model model) {
         try {
