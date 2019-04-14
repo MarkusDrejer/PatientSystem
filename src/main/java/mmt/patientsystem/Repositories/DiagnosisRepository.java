@@ -16,6 +16,10 @@ public class DiagnosisRepository {
     private Statement statement;
     private String query;
 
+    /**
+     * returns diagnosis
+     * @param id
+     **/
     public ResultSet getDiagnosis(int id) throws SQLException {
         query = "SELECT diagnosis.*, diagnose_names.d_name, GROUP_CONCAT(medicine.NAME) AS medications_given " +
                 "FROM diagnosis, medicine, dm_junction, diagnose_names " +
@@ -27,6 +31,10 @@ public class DiagnosisRepository {
         return statement.executeQuery(query);
     }
 
+    /**
+     * returns single consultations
+     * @param id
+     **/
     public ResultSet getSingleDiagnosis(int id) throws SQLException {
         query = "SELECT diagnosis.*, diagnose_names.d_name " +
                 "FROM diagnosis " +
@@ -37,6 +45,10 @@ public class DiagnosisRepository {
         return statement.executeQuery(query);
     }
 
+    /**
+     * fills diagnosis
+     * @param diagnosis
+     **/
     private PreparedStatement diagnosisFiller(Diagnosis diagnosis) throws SQLException {
         preparedStatement = dbAccess.getConnection().prepareStatement(query, statement.RETURN_GENERATED_KEYS);
         preparedStatement.setString(1, diagnosis.getNote());
@@ -46,6 +58,9 @@ public class DiagnosisRepository {
         return preparedStatement;
     }
 
+    /**
+     * returns diagnosis names
+     **/
     public ResultSet getDiagnosisNames() throws SQLException {
         query = "SELECT * FROM diagnose_names " +
                 "ORDER BY d_name";
@@ -54,6 +69,10 @@ public class DiagnosisRepository {
         return statement.executeQuery(query);
     }
 
+    /**
+     * edit diagnosis
+     * @param diagnosis
+     **/
     public void editDiagnosis(Diagnosis diagnosis) throws SQLException {
         query = "UPDATE diagnosis " +
                 "SET note = ?, fk_diagnose_name = ?, fk_doctor = ? " +
@@ -64,6 +83,10 @@ public class DiagnosisRepository {
         preparedStatement.close();
     }
 
+    /**
+     * delete diagnosis
+     * @param id
+     **/
     public void deleteDiagnosis(int id) throws SQLException {
         query = "DELETE FROM diagnosis " +
                 "WHERE id = '" + id +"'";
@@ -72,6 +95,10 @@ public class DiagnosisRepository {
         statement.executeUpdate(query);
     }
 
+    /**
+     * adds diagnosis
+     * @param diagnosis
+     **/
     public ResultSet addDiagnosis(Diagnosis diagnosis) throws SQLException {
         query = "INSERT INTO diagnosis (note, fk_diagnose_name, fk_doctor, fk_patient) " +
                 "VALUES (?, ?, ?, ?)";
@@ -83,6 +110,11 @@ public class DiagnosisRepository {
         return preparedStatement.getGeneratedKeys();
     }
 
+    /**
+     * adds diagnosis through junction
+     * @param key
+     * @param medId
+     **/
     public void addDiagnosisJunction(int key, int medId) throws SQLException {
         query = "INSERT INTO dm_junction (fk_medicin, fk_diagnosis) " +
                 "VALUES (?, ?)";
@@ -94,6 +126,10 @@ public class DiagnosisRepository {
         preparedStatement.close();
     }
 
+    /**
+     * adds diagnosis name
+     * @param name
+     **/
     public void addDiagnosisName(String name) throws SQLException {
         query = "INSERT INTO diagnose_names (d_name) " +
                 "VALUES (?)";

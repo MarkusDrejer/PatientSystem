@@ -16,6 +16,10 @@ public class PatientRepository {
     private Statement statement;
     private String query;
 
+    /**
+     * returns patients
+     * @param order
+     **/
     public ResultSet getAllPatients(int order, boolean reverse) throws SQLException{
         patientSelectFiller();
         query += "ORDER BY ";
@@ -51,6 +55,10 @@ public class PatientRepository {
         return statement.executeQuery(query);
     }
 
+    /**
+     * returns single patient
+     * @param id
+     **/
     public ResultSet getSinglePatientID(int id) throws SQLException{
         patientSelectFiller();
         query += "WHERE id = '" + id + "'";
@@ -59,6 +67,10 @@ public class PatientRepository {
         return statement.executeQuery(query);
     }
 
+    /**
+     * returns search of single patient
+     * @param patient
+     **/
     public ResultSet getSinglePatientSearch(Patient patient) throws SQLException {
         query = "SELECT id FROM patients " +
                 "WHERE cpr = ?";
@@ -68,11 +80,18 @@ public class PatientRepository {
         return preparedStatement.executeQuery();
     }
 
+    /**
+     * fills chosen patient
+     **/
     private void patientSelectFiller() {
         query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
                 "'-', MONTH(birthdate), '-', DAY(birthdate)), '%Y-%c-%e') > CURDATE(), 1, 0) AS age FROM patients ";
     }
 
+    /**
+     * edits patient
+     * @param patient
+     **/
     public void editPatient(Patient patient) throws SQLException {
         query = "UPDATE patients " +
                 "SET name = ?, birthDate = ?, cpr = ?, height = ?, weight = ?, gender = ?, description = ? " +
@@ -84,6 +103,10 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    /**
+     * adds patient
+     * @param patient
+     **/
     public void addPatient(Patient patient) throws SQLException {
         query = "INSERT INTO patients (name, birthdate, cpr, height, weight, gender, description) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -93,6 +116,10 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    /**
+     * fills patient
+     * @param patient
+     **/
     private PreparedStatement patientFiller(Patient patient) throws SQLException {
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setString(1, patient.getName());
@@ -105,6 +132,10 @@ public class PatientRepository {
         return preparedStatement;
     }
 
+    /**
+     * delete patient
+     * @param id
+     **/
     public void deletePatient(int id) throws SQLException {
         query = "DELETE FROM patients " +
                 "WHERE id = '" + id + "'";

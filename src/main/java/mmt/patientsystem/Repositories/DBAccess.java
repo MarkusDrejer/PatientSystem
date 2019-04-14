@@ -11,6 +11,9 @@ public class DBAccess {
 
     private Connection connection;
 
+    /**
+     * connects to database
+     **/
     public Connection getConnection() {
         try {
             connection = DriverManager.getConnection(

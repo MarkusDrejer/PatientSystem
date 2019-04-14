@@ -18,6 +18,10 @@ public class ConsultationRepository {
     private Statement statement;
     private String query;
 
+    /**
+     * returns consultations
+     * @param id
+     **/
     public ResultSet getConsultations(int id) throws SQLException {
         query = "SELECT * FROM consultations " +
                 "WHERE fk_patient = '" + id + "' " +
@@ -27,6 +31,10 @@ public class ConsultationRepository {
         return statement.executeQuery(query);
     }
 
+    /**
+     * returns single consultation
+     * @param id
+     **/
     public ResultSet getSingleConsultation(int id) throws SQLException {
         query = "SELECT * FROM consultations " +
                 "WHERE id = '" + id + "'";
@@ -35,6 +43,10 @@ public class ConsultationRepository {
         return statement.executeQuery(query);
     }
 
+    /**
+     * fills consultation
+     * @param consultation
+     **/
     private PreparedStatement consultationFiller(Consultation consultation) throws SQLException {
         preparedStatement = dbAccess.getConnection().prepareStatement(query);
         preparedStatement.setString(1, consultation.getDescription());
@@ -47,6 +59,10 @@ public class ConsultationRepository {
         return preparedStatement;
     }
 
+    /**
+     * edits consultation
+     * @param consultation
+     **/
     public void editConsultation(Consultation consultation) throws SQLException {
         query = "UPDATE consultations " +
                 "SET description = ?, conclusion = ?, date = ?, from_time = ?, to_time = ?, fk_doctor = ? " +
@@ -57,6 +73,10 @@ public class ConsultationRepository {
         preparedStatement.close();
     }
 
+    /**
+     * deletes consultation
+     * @param id
+     **/
     public void deleteConsultation(int id) throws SQLException {
         query = "DELETE FROM consultations " +
                 "WHERE id = '" + id + "'";
@@ -65,6 +85,10 @@ public class ConsultationRepository {
         statement.executeUpdate(query);
     }
 
+    /**
+     * adds consultation
+     * @param consultation
+     **/
     public void addConsultation(Consultation consultation) throws SQLException {
         query = "INSERT INTO consultations (description, conclusion, date, from_time, to_time, fk_doctor, fk_patient) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";

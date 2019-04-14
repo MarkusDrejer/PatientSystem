@@ -18,6 +18,10 @@ public class DiagnosisService {
 
     private ResultSet resultSet;
 
+    /**
+     * puts results from database into list
+     * @param id
+     **/
     public List<Diagnosis> getDiagnosis(int id) throws SQLException {
         resultSet = diagnosisRepository.getDiagnosis(id);
         List<Diagnosis> diagnosiss = new ArrayList<>();
@@ -30,6 +34,10 @@ public class DiagnosisService {
         return diagnosiss;
     }
 
+    /**
+     * returns single diagnosis
+     * @param id
+     **/
     public Diagnosis getSingleDiagnosis(int id) throws SQLException {
         resultSet = diagnosisRepository.getSingleDiagnosis(id);
 
@@ -40,6 +48,9 @@ public class DiagnosisService {
         return diagnosis;
     }
 
+    /**
+     * returns diagnosis names
+     **/
     public List<Diagnosis> getDiagnosisNames() throws SQLException {
         resultSet = diagnosisRepository.getDiagnosisNames();
         List<Diagnosis> d_names = new ArrayList<>();
@@ -53,6 +64,9 @@ public class DiagnosisService {
         return d_names;
     }
 
+    /**
+     * fills diagnosis
+     **/
     private Diagnosis diagnosisFiller() throws SQLException {
         Diagnosis diagnosis = new Diagnosis();
         diagnosis.setId(resultSet.getInt("id"));
@@ -66,14 +80,26 @@ public class DiagnosisService {
         return diagnosis;
     }
 
+    /**
+     * edit diagnosis
+     * @param diagnosis
+     **/
     public void editDiagnosis(Diagnosis diagnosis) throws SQLException {
         diagnosisRepository.editDiagnosis(diagnosis);
     }
 
+    /**
+     * delete diagnosis
+     * @param id
+     **/
     public void deleteDiagnosis(int id) throws SQLException {
         diagnosisRepository.deleteDiagnosis(id);
     }
 
+    /**
+     * add diagnosis
+     * @param diagnosis
+     **/
     public void addDiagnosis(Diagnosis diagnosis) throws SQLException {
         resultSet = diagnosisRepository.addDiagnosis(diagnosis);
         resultSet.next();
@@ -82,6 +108,10 @@ public class DiagnosisService {
         diagnosisRepository.addDiagnosisJunction(key, medId);
     }
 
+    /**
+     * add diagnosis names
+     * @param name
+     **/
     public void addDiagnosisName(String name) throws SQLException{
         diagnosisRepository.addDiagnosisName(name);
     }

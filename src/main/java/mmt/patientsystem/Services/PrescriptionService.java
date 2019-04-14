@@ -21,6 +21,10 @@ public class PrescriptionService {
 
     private ResultSet resultSet;
 
+    /**
+     * puts results from database into list
+     * @param id
+     **/
     public List<Prescription> getPrescriptions(int id) throws SQLException {
         resultSet = prescriptionRepository.getPrescriptions(id);
         List<Prescription> prescriptionList = new ArrayList<>();
@@ -34,6 +38,10 @@ public class PrescriptionService {
         return prescriptionList;
     }
 
+    /**
+     * returns single prescription
+     * @param id
+     **/
     public Prescription getSinglePrescription(int id) throws SQLException {
         resultSet = prescriptionRepository.getSinglePrescription(id);
 
@@ -44,6 +52,9 @@ public class PrescriptionService {
         return prescription;
     }
 
+    /**
+     * fills prescription
+     **/
     private Prescription prescriptionFiller() throws SQLException {
         Prescription prescription = new Prescription();
         prescription.setId(resultSet.getInt("id"));
@@ -56,14 +67,26 @@ public class PrescriptionService {
         return prescription;
     }
 
+    /**
+     * edit prescription
+     * @param prescription
+     **/
     public void editPrescription(Prescription prescription) throws SQLException {
         prescriptionRepository.editPrescription(prescription);
     }
 
+    /**
+     * delete prescription
+     * @param id
+     **/
     public void deletePrescription(int id) throws SQLException {
         prescriptionRepository.deletePrescription(id);
     }
 
+    /**
+     * adds prescription
+     * @param prescription
+     **/
     public void addPrescription(Prescription prescription) throws SQLException {
         if(!checkPrescription.check()){
             throw new IllegalStateException("Unable to validate Prescription");

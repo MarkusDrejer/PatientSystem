@@ -18,6 +18,10 @@ public class ConsultationService {
 
     private ResultSet resultSet;
 
+    /**
+     * puts results from database into list
+     * @param id
+     **/
     public List<Consultation> getConsultations(int id) throws SQLException {
         resultSet = consultationRepository.getConsultations(id);
         List<Consultation> consultations = new ArrayList<>();
@@ -28,6 +32,10 @@ public class ConsultationService {
         return consultations;
     }
 
+    /**
+     * returns single consultation
+     * @param id
+     **/
     public Consultation getSingleConsultation(int id) throws SQLException {
         resultSet = consultationRepository.getSingleConsultation(id);
 
@@ -38,6 +46,9 @@ public class ConsultationService {
         return consultation;
     }
 
+    /**
+     * fills consultations
+     **/
     private Consultation consultationFiller() throws SQLException {
         Consultation consultation = new Consultation();
         consultation.setId(resultSet.getInt("id"));
@@ -53,14 +64,26 @@ public class ConsultationService {
 
     }
 
+    /**
+     * edits consultation
+     * @param consultation
+     **/
     public void editConsultation(Consultation consultation) throws SQLException {
         consultationRepository.editConsultation(consultation);
     }
 
+    /**
+     * delete consultation
+     * @param id
+     **/
     public void deleteConsultation(int id) throws SQLException {
         consultationRepository.deleteConsultation(id);
     }
 
+    /**
+     * add consultation
+     * @param consultation
+     **/
     public void addConsultation(Consultation consultation) throws SQLException {
         consultationRepository.addConsultation(consultation);
     }

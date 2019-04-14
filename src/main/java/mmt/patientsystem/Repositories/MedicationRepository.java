@@ -19,6 +19,11 @@ public class MedicationRepository {
     private Statement statement;
     private String query;
 
+    /**
+     * returns medications
+     * @param id
+     * @param type
+     **/
     public ResultSet getMedications(int id, int type) throws SQLException {
         if(type == 1) {
             query = "SELECT medicine.* FROM pm_junction " +
@@ -37,6 +42,11 @@ public class MedicationRepository {
         return statement.executeQuery(query);
     }
 
+    /**
+     * adds medicine
+     * @param medication
+     * @param type
+     **/
     public void addMedicine(Medication medication, int type) throws SQLException {
         if(type == 1) {
             query = "INSERT INTO pm_junction (fk_medicin, fk_prescription) " +

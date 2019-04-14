@@ -15,6 +15,10 @@ public class LoginService {
     @Autowired
     private LoginRepository loginRepository;
 
+    /**
+     * verifies user
+     * @param user
+     **/
     public boolean verifyUser(User user) throws SQLException {
         ResultSet resultSet = loginRepository.loginVerification(user);
 

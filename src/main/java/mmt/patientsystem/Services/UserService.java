@@ -18,6 +18,9 @@ public class UserService {
 
     private ResultSet resultSet;
 
+    /**
+     * puts results from database into list
+     **/
     public List<User> getAllUsers() throws SQLException {
         resultSet = userRepository.getAllUsers();
         List<User> userList = new ArrayList<>();
@@ -30,6 +33,10 @@ public class UserService {
         return userList;
     }
 
+    /**
+     * returns single user
+     * @param id
+     **/
     public User getSingleUser(int id) throws SQLException {
         resultSet = userRepository.getSingleUser(id);
         User user = null;
@@ -41,6 +48,9 @@ public class UserService {
         return user;
     }
 
+    /**
+     * fills user
+     **/
     private User userFiller() throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt("id"));
@@ -51,18 +61,33 @@ public class UserService {
         return user;
     }
 
+    /**
+     * edits user
+     * @param user
+     **/
     public void editUser(User user) throws SQLException {
         userRepository.editUser(user);
     }
 
+    /**
+     * delete user
+     * @param id
+     **/
     public void deleteUser(int id) throws SQLException {
         userRepository.deleteUser(id);
     }
 
+    /**
+     * add user
+     * @param user
+     **/
     public void addUser(User user) throws SQLException {
         userRepository.addUser(user);
     }
 
+    /**
+     * adds doctors to list
+     **/
     public List<User> getDoctors() throws SQLException {
         resultSet = userRepository.getDoctors();
         List<User> userList = new ArrayList<>();

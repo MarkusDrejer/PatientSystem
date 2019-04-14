@@ -18,6 +18,10 @@ public class LoginRepository {
     private PreparedStatement preparedStatement;
     private String query;
 
+    /**
+     * verifies user login
+     * @param user
+     **/
     public ResultSet loginVerification(User user) throws SQLException {
         query = "SELECT users.*, roles.role_name FROM users " +
                 "INNER JOIN roles ON users.fk_role = roles.id " +

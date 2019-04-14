@@ -19,6 +19,11 @@ public class PatientService {
 
     private ResultSet resultSet;
 
+    /**
+     * puts results from database into list
+     * @param order
+     * @param reverse
+     **/
     public List<Patient> getAllPatients(int order, boolean reverse) throws SQLException {
         resultSet = patientRepository.getAllPatients(order, reverse);
         List<Patient> patients = new ArrayList<>();
@@ -29,6 +34,10 @@ public class PatientService {
         return patients;
     }
 
+    /**
+     * returns single patient id
+     * @param id
+     **/
     public Patient getSinglePatientID(int id) throws SQLException{
         resultSet = patientRepository.getSinglePatientID(id);
 
@@ -39,6 +48,10 @@ public class PatientService {
         return patient;
     }
 
+    /**
+     * returns single patient from search
+     * @param patient
+     **/
     public int getSinglePatientSearch(Patient patient) throws SQLException {
         resultSet = patientRepository.getSinglePatientSearch(patient);
         int id;
@@ -51,6 +64,9 @@ public class PatientService {
         return id;
     }
 
+    /**
+     * fills patient
+     **/
     private Patient patientFiller() throws SQLException{
         Patient patient = new Patient();
         patient.setId(resultSet.getInt("id"));
@@ -66,14 +82,26 @@ public class PatientService {
         return patient;
     }
 
+    /**
+     * edits patient
+     * @param patient
+     **/
     public void editPatient(Patient patient) throws SQLException {
         patientRepository.editPatient(patient);
     }
 
+    /**
+     * delete patient
+     * @param id
+     **/
     public void deletePatient(int id) throws SQLException {
         patientRepository.deletePatient(id);
     }
 
+    /**
+     * add patient
+     * @param patient
+     **/
     public void addPatient(Patient patient) throws SQLException {
         patientRepository.addPatient(patient);
     }

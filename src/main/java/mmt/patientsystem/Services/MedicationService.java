@@ -18,6 +18,11 @@ public class MedicationService {
 
     private ResultSet resultSet;
 
+    /**
+     * puts results from database into list
+     * @param id
+     * @param type
+     **/
     public List<Medication> getMedications(int id, int type) throws SQLException {
         resultSet = medicationRepository.getMedications(id, type);
         List<Medication> medicationList = new ArrayList<>();
@@ -33,6 +38,11 @@ public class MedicationService {
         return medicationList;
     }
 
+    /**
+     * adds medicine
+     * @param medication
+     * @param type
+     **/
     public void addMedicine(Medication medication, int type) throws SQLException {
         medicationRepository.addMedicine(medication, type);
     }
