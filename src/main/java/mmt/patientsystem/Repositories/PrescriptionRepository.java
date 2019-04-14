@@ -18,7 +18,7 @@ public class PrescriptionRepository {
     private String query;
 
     /**
-     * returns prescriptions
+     * get all prescriptions and the medications given, concatenates all medications into string
      * @param id
      **/
     public ResultSet getPrescriptions(int id) throws SQLException {
