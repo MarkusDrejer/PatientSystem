@@ -81,7 +81,7 @@ public class PatientRepository {
     }
 
     /**
-     * fills chosen patient
+     * fills chosen patient, calculates age based on birthdate on a database level
      **/
     private void patientSelectFiller() {
         query = "SELECT *, YEAR(CURDATE()) - YEAR(birthdate) - IF(STR_TO_DATE(CONCAT(YEAR(CURDATE()), " +
